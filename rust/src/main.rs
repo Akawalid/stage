@@ -1,6 +1,8 @@
 use std::cell::RefCell;
 use std::rc::Rc;
 
+mod reversal;
+
 type NodeRef<T> = Option<Rc<RefCell<TreeNode<T>>>>;
 
 #[derive(Debug)]
