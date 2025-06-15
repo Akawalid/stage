@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE why3session PUBLIC "-//Why3//proof session v5//EN"
+"https://www.why3.org/why3session.dtd">
+<why3session shape_version="6">
+<prover id="0" name="Z3" version="4.12.4" timelimit="2.26581" memlimit="1000"/>
+<prover id="1" name="CVC4" version="1.8" timelimit="4.46943" memlimit="1000"/>
+<prover id="2" name="CVC5" version="1.0.5" timelimit="3.12783" memlimit="1000"/>
+<prover id="3" name="Alt-Ergo" version="2.6.0" timelimit="2.379" memlimit="1000"/>
+<file format="coma">
+<path name=".."/><path name="M_heap_sort.coma"/>
+<theory name="Coma">
+ <goal name="vc_len" proved="true">
+ <proof prover="3" timelimit="0.090661"><result status="valid" time="0.090661" steps="0"/></proof>
+ </goal>
+ <goal name="vc_rev" proved="true">
+ <proof prover="3" timelimit="0.069445"><result status="valid" time="0.069445" steps="0"/></proof>
+ </goal>
+ <goal name="vc_into_iter" proved="true">
+ <proof prover="3" timelimit="0.073125"><result status="valid" time="0.073125" steps="0"/></proof>
+ </goal>
+ <goal name="vc_next" proved="true">
+ <proof prover="3" timelimit="0.095662"><result status="valid" time="0.095662" steps="0"/></proof>
+ </goal>
+ <goal name="vc_v_Some" proved="true">
+ <proof prover="3" timelimit="0.110503"><result status="valid" time="0.110503" steps="0"/></proof>
+ </goal>
+ <goal name="vc_heapify" proved="true">
+ <proof prover="3" timelimit="0.110503"><result status="valid" time="0.110503" steps="0"/></proof>
+ </goal>
+ <goal name="vc_swap" proved="true">
+ <proof prover="3" timelimit="0.101459"><result status="valid" time="0.101459" steps="0"/></proof>
+ </goal>
+ <goal name="vc_heap_sort">
+ <transf name="split_vc" >
+  <goal name="vc_heap_sort.0" expl="assertion" proved="true">
+  <proof prover="3" timelimit="0.104062"><result status="valid" time="0.104062" steps="0"/></proof>
+  </goal>
+  <goal name="vc_heap_sort.1" expl="assertion" proved="true">
+  <proof prover="3" timelimit="0.088657"><result status="valid" time="0.088657" steps="0"/></proof>
+  </goal>
+  <goal name="vc_heap_sort.2" expl="assertion">
+  <proof prover="0" timelimit="3.02108"><result status="timeout" time="3.021079" steps="0"/></proof>
+  <proof prover="1"><result status="timeout" time="4.469432" steps="0"/></proof>
+  <proof prover="2"><result status="timeout" time="3.127830" steps="0"/></proof>
+  <proof prover="3" timelimit="3.172"><result status="timeout" time="3.172004" steps="0"/></proof>
+  <transf name="split_vc" >
+   <goal name="vc_heap_sort.2.0" expl="assertion">
+   <proof prover="0" timelimit="3.02108"><result status="timeout" time="3.021079" steps="0"/></proof>
+   <proof prover="1"><result status="timeout" time="4.469432" steps="0"/></proof>
+   <proof prover="2"><result status="timeout" time="3.127830" steps="0"/></proof>
+   <proof prover="3" timelimit="3.172"><result status="timeout" time="3.172004" steps="0"/></proof>
+   </goal>
+  </transf>
+  </goal>
+  <goal name="vc_heap_sort.3" expl="division by zero" proved="true">
+  <proof prover="3" timelimit="0.076331"><result status="valid" time="0.076331" steps="0"/></proof>
+  </goal>
+  <goal name="vc_heap_sort.4" expl="division by zero" proved="true">
+  <proof prover="3" timelimit="0.082765"><result status="valid" time="0.082765" steps="0"/></proof>
+  </goal>
+  <goal name="vc_heap_sort.5" expl="into_iter requires" proved="true">
+  <proof prover="3" timelimit="0.06668"><result status="valid" time="0.066680" steps="0"/></proof>
+  </goal>
+  <goal name="vc_heap_sort.6" expl="for invariant" proved="true">
+  <proof prover="3" timelimit="0.098286"><result status="valid" time="0.098286" steps="0"/></proof>
+  </goal>
+  <goal name="vc_heap_sort.7" expl="for invariant" proved="true">
+  <proof prover="3" timelimit="0.101524"><result status="valid" time="0.101524" steps="0"/></proof>
+  </goal>
+  <goal name="vc_heap_sort.8" expl="for invariant" proved="true">
+  <proof prover="3" timelimit="0.09818"><result status="valid" time="0.098180" steps="0"/></proof>
+  </goal>
+  <goal name="vc_heap_sort.9" expl="loop invariant #0" proved="true">
+  <proof prover="3" timelimit="0.084377"><result status="valid" time="0.084377" steps="0"/></proof>
+  </goal>
+  <goal name="vc_heap_sort.10" expl="loop invariant #1" proved="true">
+  <proof prover="3" timelimit="0.141557"><result status="valid" time="0.141557" steps="0"/></proof>
+  </goal>
+  <goal name="vc_heap_sort.11" expl="mut invariant" proved="true">
+  <proof prover="3"><result status="valid" time="0.084057" steps="46"/></proof>
+  </goal>
+  <goal name="vc_heap_sort.12" expl="for invariant" proved="true">
+  <proof prover="3"><result status="valid" time="0.124142" steps="79"/></proof>
+  </goal>
+  <goal name="vc_heap_sort.13" expl="for invariant" proved="true">
+  <proof prover="3"><result status="valid" time="0.116343" steps="80"/></proof>
+  </goal>
+  <goal name="vc_heap_sort.14" expl="for invariant" proved="true">
+  <proof prover="3"><result status="valid" time="0.114865" steps="86"/></proof>
+  </goal>
+  <goal name="vc_heap_sort.15" expl="loop invariant #0" proved="true">
+  <proof prover="3"><result status="valid" time="0.176709" steps="301"/></proof>
+  </goal>
+  <goal name="vc_heap_sort.16" expl="loop invariant #1" proved="true">
+  <proof prover="3"><result status="valid" time="0.183032" steps="306"/></proof>
+  </goal>
+  <goal name="vc_heap_sort.17" proved="true">
+  <proof prover="3" timelimit="0.097462"><result status="valid" time="0.097462" steps="0"/></proof>
+  </goal>
+  <goal name="vc_heap_sort.18" expl="into_iter requires" proved="true">
+  <proof prover="0"><result status="valid" time="0.037975" steps="13368"/></proof>
+  </goal>
+  <goal name="vc_heap_sort.19" expl="for invariant" proved="true">
+  <proof prover="0"><result status="valid" time="0.109623" steps="169357"/></proof>
+  </goal>
+  <goal name="vc_heap_sort.20" expl="for invariant" proved="true">
+  <proof prover="0"><result status="valid" time="0.118946" steps="169425"/></proof>
+  </goal>
+  <goal name="vc_heap_sort.21" expl="for invariant" proved="true">
+  <proof prover="3" timelimit="0.094188"><result status="valid" time="0.094188" steps="0"/></proof>
+  </goal>
+  <goal name="vc_heap_sort.22" expl="loop invariant #0" proved="true">
+  <proof prover="3" timelimit="0.27914"><result status="valid" time="0.279140" steps="0"/></proof>
+  </goal>
+  <goal name="vc_heap_sort.23" expl="loop invariant #1" proved="true">
+  <proof prover="3" timelimit="0.114935"><result status="valid" time="0.114935" steps="0"/></proof>
+  </goal>
+  <goal name="vc_heap_sort.24" expl="heap_sort ensures #0" proved="true">
+  <proof prover="3" timelimit="0.218128"><result status="valid" time="0.218128" steps="0"/></proof>
+  </goal>
+  <goal name="vc_heap_sort.25" expl="heap_sort ensures #1" proved="true">
+  <proof prover="3" timelimit="0.198838"><result status="valid" time="0.198838" steps="0"/></proof>
+  </goal>
+  <goal name="vc_heap_sort.26" expl="swap requires #0" proved="true">
+  <proof prover="3"><result status="valid" time="0.277787" steps="804"/></proof>
+  </goal>
+  <goal name="vc_heap_sort.27" expl="swap requires #1" proved="true">
+  <proof prover="3"><result status="valid" time="0.317620" steps="1025"/></proof>
+  </goal>
+  <goal name="vc_heap_sort.28" expl="mut invariant" proved="true">
+  <proof prover="3"><result status="valid" time="0.105546" steps="94"/></proof>
+  </goal>
+  <goal name="vc_heap_sort.29" expl="for invariant" proved="true">
+  <proof prover="3"><result status="valid" time="0.103958" steps="138"/></proof>
+  </goal>
+  <goal name="vc_heap_sort.30" expl="for invariant" proved="true">
+  <proof prover="3"><result status="valid" time="0.130477" steps="140"/></proof>
+  </goal>
+  <goal name="vc_heap_sort.31" expl="for invariant" proved="true">
+  <proof prover="0"><result status="valid" time="0.218100" steps="212335"/></proof>
+  </goal>
+  <goal name="vc_heap_sort.32" expl="loop invariant #0" proved="true">
+  <proof prover="0"><result status="valid" time="0.193868" steps="222257"/></proof>
+  </goal>
+  <goal name="vc_heap_sort.33" expl="loop invariant #1" proved="true">
+  <proof prover="3"><result status="valid" time="0.181473" steps="446"/></proof>
+  </goal>
+  <goal name="vc_heap_sort.34" proved="true">
+  <proof prover="0"><result status="valid" time="0.140664" steps="190409"/></proof>
+  </goal>
+ </transf>
+ </goal>
+</theory>
+</file>
+</why3session>

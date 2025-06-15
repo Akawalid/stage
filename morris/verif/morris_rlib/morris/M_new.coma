@@ -1,0 +1,180 @@
+(* #"/home/baggabom/stage/morris/src/lib.rs" 67 0 67 72 *)
+
+let%span src = "/home/baggabom/stage/creusot/creusot-contracts/src/std/rc.rs" 31 23 31 28
+let%span src'0 = "/home/baggabom/stage/creusot/creusot-contracts/src/std/rc.rs" 30 26 30 42
+let%span slib = "/home/baggabom/stage/morris/src/lib.rs" 67 10 67 13
+let%span slib'0 = "/home/baggabom/stage/morris/src/lib.rs" 67 30 67 72
+let%span spcell = "/home/baggabom/stage/creusot/creusot-contracts/src/pcell.rs" 95 15 95 20
+let%span spcell'0 = "/home/baggabom/stage/creusot/creusot-contracts/src/pcell.rs" 95 4 95 54
+let%span spcell'1 = "/home/baggabom/stage/creusot/creusot-contracts/src/pcell.rs" 93 14 93 44
+let%span spcell'2 = "/home/baggabom/stage/creusot/creusot-contracts/src/pcell.rs" 94 14 94 35
+let%span spcell'3 = "/home/baggabom/stage/creusot/creusot-contracts/src/pcell.rs" 71 8 71 15
+let%span spcell'4 = "/home/baggabom/stage/creusot/creusot-contracts/src/pcell.rs" 54 4 54 12
+let%span sghost = "/home/baggabom/stage/creusot/creusot-contracts/src/ghost.rs" 109 8 109 31
+let%span sboxed = "/home/baggabom/stage/creusot/creusot-contracts/src/std/boxed.rs" 33 8 33 18
+
+use creusot.prelude.Opaque
+use creusot.prelude.Any
+
+type t_NonNull  =
+  { t_NonNull__pointer: Opaque.ptr }
+
+type t_Rc  =
+  { t_Rc__ptr: t_NonNull; t_Rc__phantom: (); t_Rc__alloc: () }
+
+type t_Option  =
+  | C_None
+  | C_Some t_Rc
+
+type t_T
+
+type t_TreeNode  =
+  { t_TreeNode__val: t_T; t_TreeNode__left: t_Option; t_TreeNode__right: t_Option }
+
+type t_UnsafeCell  =
+  { t_UnsafeCell__value: t_TreeNode }
+
+type t_PCell  =
+  { t_PCell__0: t_UnsafeCell }
+
+type t_Id
+
+type t_PCellOwn  =
+  { t_PCellOwn__qy95zprivate: (); t_PCellOwn__id: t_Id; t_PCellOwn__val: t_TreeNode }
+
+type t_Ghost  =
+  { t_Ghost__0: t_PCellOwn }
+
+type tuple  =
+  { _0: t_PCell; _1: t_Ghost }
+
+predicate inv (_0'0 : t_T)
+
+predicate inv'0 (_0'0 : t_TreeNode)
+
+axiom inv_axiom [@rewrite] : forall x : t_TreeNode [inv'0 x] . inv'0 x
+= match x with
+  | {t_TreeNode__val = val' ; t_TreeNode__left = left ; t_TreeNode__right = right} -> inv val'
+  end
+
+predicate inv'1 (_0'0 : t_UnsafeCell)
+
+axiom inv_axiom'0 [@rewrite] : forall x : t_UnsafeCell [inv'1 x] . inv'1 x
+= match x with
+  | {t_UnsafeCell__value = value} -> inv'0 value
+  end
+
+predicate inv'2 (_0'0 : t_PCell)
+
+axiom inv_axiom'1 [@rewrite] : forall x : t_PCell [inv'2 x] . inv'2 x
+= match x with
+  | {t_PCell__0 = a_0} -> inv'1 a_0
+  end
+
+predicate invariant' (self : t_TreeNode) =
+  [%#sboxed] inv'0 self
+
+predicate inv'3 (_0'0 : t_TreeNode)
+
+axiom inv_axiom'2 [@rewrite] : forall x : t_TreeNode [inv'3 x] . inv'3 x = invariant' x
+
+predicate inv'4 (_0'0 : t_PCellOwn)
+
+axiom inv_axiom'3 [@rewrite] : forall x : t_PCellOwn [inv'4 x] . inv'4 x
+= match x with
+  | {t_PCellOwn__qy95zprivate = _private ; t_PCellOwn__id = id ; t_PCellOwn__val = val'} -> inv'3 val'
+  end
+
+function inner_logic (self : t_Ghost) : t_PCellOwn
+
+predicate invariant''0 (self : t_Ghost) =
+  [%#sghost] inv'4 (inner_logic self)
+
+predicate inv'5 (_0'0 : t_Ghost)
+
+axiom inv_axiom'4 [@rewrite] : forall x : t_Ghost [inv'5 x] . inv'5 x
+= (invariant''0 x
+/\ match x with
+  | {t_Ghost__0 = a_0} -> inv'4 a_0
+  end)
+
+predicate inv'6 (_0'0 : tuple)
+
+axiom inv_axiom'5 [@rewrite] : forall x : tuple [inv'6 x] . inv'6 x
+= (let {_0 = x0 ; _1 = x1} = x in inv'2 x0 /\ inv'5 x1)
+
+function id (self : t_PCell) : t_Id
+
+function id'0 (self : t_PCellOwn) : t_Id =
+  [%#spcell'3] self.t_PCellOwn__id
+
+function view (self : t_PCellOwn) : t_TreeNode =
+  [%#spcell'4] self.t_PCellOwn__val
+
+let rec new (value:t_TreeNode) (return'  (x:tuple))= {[@expl:new 'value' type invariant] [%#spcell] inv'0 value}
+  any
+  [ return''0 (result:tuple)-> {[%#spcell'0] inv'6 result}
+    {[%#spcell'1] id result._0 = id'0 (inner_logic result._1)}
+    {[%#spcell'2] view (inner_logic result._1) = value}
+    (! return' {result}) ]
+
+
+type t_Comb  =
+  { t_Comb__pcell: t_PCell; t_Comb__id: int }
+
+predicate inv'7 (_0'0 : t_Comb)
+
+axiom inv_axiom'6 [@rewrite] : forall x : t_Comb [inv'7 x] . inv'7 x
+= match x with
+  | {t_Comb__pcell = pcell ; t_Comb__id = id'1} -> inv'2 pcell
+  end
+
+function view'0 (self : t_Rc) : t_Comb
+
+let rec new'0 (value:t_Comb) (return'  (x:t_Rc))= {[@expl:new 'value' type invariant] [%#src] inv'7 value}
+  any [ return''0 (result:t_Rc)-> {[%#src'0] view'0 result = value} (! return' {result}) ] 
+
+type tuple'0  =
+  { _0'0: t_Option; _1'0: t_Ghost }
+
+predicate inv'8 (_0'1 : tuple'0)
+
+axiom inv_axiom'7 [@rewrite] : forall x : tuple'0 [inv'8 x] . inv'8 x = (let {_0'0 = x0 ; _1'0 = x1} = x in inv'5 x1)
+
+meta "compute_max_steps" 1000000
+
+let rec new'1[#"/home/baggabom/stage/morris/src/lib.rs" 67 0 67 72] (val':t_T) (id'1:int) (return'  (x:tuple'0))= {[@expl:new 'val' type invariant] [%#slib] inv val'}
+  (! bb0
+  [ bb0 = s0
+    [ s0 =  [ &_8 <- C_None ] s1
+    | s1 =  [ &_9 <- C_None ] s2
+    | s2 =  [ &_6 <- { t_TreeNode__val = val''0; t_TreeNode__left = _8; t_TreeNode__right = _9 } ] s3
+    | s3 = bb1 ]
+  
+  | bb1 = bb2
+  | bb2 = bb3
+  | bb3 = s0 [ s0 = new {_6} (fun (_ret:tuple) ->  [ &_5 <- _ret ] s1) | s1 = bb4 ] 
+  | bb4 = s0 [ s0 =  [ &pcell <- _5._0 ] s1 | s1 =  [ &perm <- _5._1 ] s2 | s2 = bb5 ] 
+  | bb5 = s0 [ s0 =  [ &_12 <- { t_Comb__pcell = pcell; t_Comb__id = id'2 } ] s1 | s1 = bb6 ] 
+  | bb6 = s0 [ s0 = new'0 {_12} (fun (_ret:t_Rc) ->  [ &_11 <- _ret ] s1) | s1 = bb7 ] 
+  | bb7 = s0 [ s0 =  [ &_10 <- C_Some _11 ] s1 | s1 = bb8 ] 
+  | bb8 = s0 [ s0 =  [ &_0'1 <- { _0'0 = _10; _1'0 = perm } ] s1 | s1 = bb9 ] 
+  | bb9 = bb10
+  | bb10 = bb11
+  | bb11 = bb12
+  | bb12 = bb13
+  | bb13 = return''0 {_0'1} ]
+  )
+  [ & _0'1 : tuple'0 = Any.any_l ()
+  | & val''0 : t_T = val'
+  | & id'2 : int = id'1
+  | & pcell : t_PCell = Any.any_l ()
+  | & perm : t_Ghost = Any.any_l ()
+  | & _5 : tuple = Any.any_l ()
+  | & _6 : t_TreeNode = Any.any_l ()
+  | & _8 : t_Option = Any.any_l ()
+  | & _9 : t_Option = Any.any_l ()
+  | & _10 : t_Option = Any.any_l ()
+  | & _11 : t_Rc = Any.any_l ()
+  | & _12 : t_Comb = Any.any_l () ]
+   [ return''0 (result:tuple'0)-> {[@expl:new result type invariant] [%#slib'0] inv'8 result} (! return' {result}) ] 
