@@ -3,84 +3,87 @@ use ::std::rc::Rc;
 use creusot_contracts::pcell::{PCell, PCellOwn};
 use creusot_contracts::*;
 
-type NodeRef<T> = Option<Rc<Comb<T>>>;
-struct Comb<T> {
-    pcell: PCell<TreeNode<T>>,
-    id: Int,
-}
-struct TreeNode<T> {
-    val: T,
-    left: NodeRef<T>,
-    right: NodeRef<T>,
-}
+mod reversal_pcell;
+mod reversal_raw_ptr;
 
-fn new<T>(val: T, id: Int) -> (NodeRef<T>, Ghost<PCellOwn<TreeNode<T>>>) {
-    let (pcell, perm) = PCell::new(TreeNode {
-        val,
-        left: None,
-        right: None,
-    });
+// type NodeRef<T> = Option<Rc<Comb<T>>>;
+// struct Comb<T> {
+//     pcell: PCell<TreeNode<T>>,
+//     id: Int,
+// }
+// struct TreeNode<T> {
+//     val: T,
+//     left: NodeRef<T>,
+//     right: NodeRef<T>,
+// }
 
-    (Some(Rc::new(Comb { pcell, id })), perm)
-}
+// fn new<T>(val: T, id: Int) -> (NodeRef<T>, Ghost<PCellOwn<TreeNode<T>>>) {
+//     let (pcell, perm) = PCell::new(TreeNode {
+//         val,
+//         left: None,
+//         right: None,
+//     });
 
-fn morris_inorder_traversal<T>(root: NodeRef<T>, mut seq: Seq<Ghost<PCellOwn<TreeNode<T>>>>) {
-    let mut t = root;
+//     (Some(Rc::new(Comb { pcell, id })), perm)
+// }
 
-    while !t.is_none() {
-        if unsafe {
-            let perm = seq.get_ghost(t.clone().unwrap().id).unwrap().borrow();
-            t.clone().unwrap().pcell.borrow(perm).left.is_none()
-        } {
-            //println!("{:?}", t.clone().unwrap().borrow().val);
-            unsafe {
-                let perm = seq.get_ghost(t.clone().unwrap().id).unwrap().borrow();
-                t = t.clone().unwrap().pcell.borrow(perm).right.clone();
-            }
-        } else {
-            let mut q = unsafe {
-                let perm = seq.get_ghost(t.clone().unwrap().id).unwrap().borrow();
-                t.clone().unwrap().pcell.borrow(perm).left.clone().unwrap()
-            };
+// fn morris_inorder_traversal<T>(root: NodeRef<T>, mut seq: Seq<Ghost<PCellOwn<TreeNode<T>>>>) {
+//     let mut t = root;
 
-            loop {
-                if unsafe {
-                    let perm = seq.get_ghost(t.clone().unwrap().id).unwrap().borrow();
-                    q.pcell.borrow(perm).right.is_none()
-                } || unsafe {
-                    let perm = seq.get_ghost(t.clone().unwrap().id).unwrap().borrow();
-                    Rc::ptr_eq(
-                        q.pcell.borrow(perm).right.as_ref().unwrap(),
-                        &t.clone().unwrap(),
-                    )
-                } {
-                    break;
-                }
-                let next;
-                let perm = seq.get_ghost(t.clone().unwrap().id).unwrap().borrow();
-                unsafe { next = q.pcell.borrow(perm).right.clone().unwrap() };
-                q = next;
-            }
-            let perm = seq.get_mut_ghost(q.clone().id).unwrap().borrow_mut();
+//     while !t.is_none() {
+//         if unsafe {
+//             let perm = seq.get_ghost(t.clone().unwrap().id).unwrap().borrow();
+//             t.clone().unwrap().pcell.borrow(perm).left.is_none()
+//         } {
+//             //println!("{:?}", t.clone().unwrap().borrow().val);
+//             unsafe {
+//                 let perm = seq.get_ghost(t.clone().unwrap().id).unwrap().borrow();
+//                 t = t.clone().unwrap().pcell.borrow(perm).right.clone();
+//             }
+//         } else {
+//             let mut q = unsafe {
+//                 let perm = seq.get_ghost(t.clone().unwrap().id).unwrap().borrow();
+//                 t.clone().unwrap().pcell.borrow(perm).left.clone().unwrap()
+//             };
 
-            let mutable_ref = unsafe { q.pcell.borrow_mut(perm) };
-            if mutable_ref.right.is_none() {
-                mutable_ref.right = Some(t.clone().unwrap());
-                let perm = seq.get_ghost(t.clone().unwrap().id).unwrap().borrow();
-                unsafe {
-                    t = t.clone().unwrap().pcell.borrow(perm).left.clone();
-                };
-            } else {
-                mutable_ref.right = None;
-                //println!("{:?}", t.clone().unwrap().borrow().val);
-                let perm = seq.get_ghost(t.clone().unwrap().id).unwrap().borrow();
-                unsafe {
-                    t = t.clone().unwrap().pcell.borrow(perm).right.clone();
-                }
-            }
-        }
-    }
-}
+//             loop {
+//                 if unsafe {
+//                     let perm = seq.get_ghost(t.clone().unwrap().id).unwrap().borrow();
+//                     q.pcell.borrow(perm).right.is_none()
+//                 } || unsafe {
+//                     let perm = seq.get_ghost(t.clone().unwrap().id).unwrap().borrow();
+//                     Rc::ptr_eq(
+//                         q.pcell.borrow(perm).right.as_ref().unwrap(),
+//                         &t.clone().unwrap(),
+//                     )
+//                 } {
+//                     break;
+//                 }
+//                 let next;
+//                 let perm = seq.get_ghost(t.clone().unwrap().id).unwrap().borrow();
+//                 unsafe { next = q.pcell.borrow(perm).right.clone().unwrap() };
+//                 q = next;
+//             }
+//             let perm = seq.get_mut_ghost(q.clone().id).unwrap().borrow_mut();
+
+//             let mutable_ref = unsafe { q.pcell.borrow_mut(perm) };
+//             if mutable_ref.right.is_none() {
+//                 mutable_ref.right = Some(t.clone().unwrap());
+//                 let perm = seq.get_ghost(t.clone().unwrap().id).unwrap().borrow();
+//                 unsafe {
+//                     t = t.clone().unwrap().pcell.borrow(perm).left.clone();
+//                 };
+//             } else {
+//                 mutable_ref.right = None;
+//                 //println!("{:?}", t.clone().unwrap().borrow().val);
+//                 let perm = seq.get_ghost(t.clone().unwrap().id).unwrap().borrow();
+//                 unsafe {
+//                     t = t.clone().unwrap().pcell.borrow(perm).right.clone();
+//                 }
+//             }
+//         }
+//     }
+// }
 
 // #[predicate]
 // #[variant(seq.len() - i)]
