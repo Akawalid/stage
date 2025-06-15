@@ -1,0 +1,34 @@
+thread 'rustc' panicked at creusot/src/backend/ty_inv.rs:73:18:
+not implemented: dyn [Binder { value: Trait(std::fmt::Write), bound_vars: [] }] + '?30
+stack backtrace:
+   0:     0x74fb64862ee5 - std::backtrace::Backtrace::create::h2d4276ea66f8d84d
+   1:     0x74fb62c15c45 - std::backtrace::Backtrace::force_capture::hb91139e770f18342
+   2:     0x74fb61d87644 - std[41a6e8152209c0a6]::panicking::update_hook::<alloc[9f80a3905cc8b55b]::boxed::Box<rustc_driver_impl[3ce1408bca960349]::install_ice_hook::{closure#1}>>::{closure#0}
+   3:     0x74fb62c2e583 - std::panicking::rust_panic_with_hook::hdb647d40fc260137
+   4:     0x74fb62c2e27a - std::panicking::begin_panic_handler::{{closure}}::h7323aa792739fc4e
+   5:     0x74fb62c2bc49 - std::sys::backtrace::__rust_end_short_backtrace::h304d83d1d823b3b1
+   6:     0x74fb62c2df3d - rust_begin_unwind
+   7:     0x74fb5f852a00 - core::panicking::panic_fmt::h9a9c479b3cce79d6
+   8:     0x5c1369d4bc7f - creusot::backend::ty_inv::is_tyinv_trivial::he4d6cb0fa28cdc44
+   9:     0x5c1369fa557e - creusot::translation::function::BodyTranslator::translate_body::he1bb33b208d8d9ff
+  10:     0x5c1369f9f3ea - creusot::translation::function::BodyTranslator::with_context::hae879a4fdc566239
+  11:     0x5c1369eb8f90 - once_map::unsync::OnceMap<K,V,S>::get_or_try_insert::ha8225394df8ca67d
+  12:     0x5c1369f583fe - creusot::backend::program::translate_function::h8e336af351fcce54
+  13:     0x5c1369d20f70 - creusot::backend::Why3Generator::translate::h1dbd8f865ed2b88c
+  14:     0x5c1369f7b715 - creusot::translation::after_analysis::hcd59b1e3c26a641b
+  15:     0x5c1369ce3692 - <creusot::callbacks::ToWhy as rustc_driver_impl::Callbacks>::after_expansion::h9414ed3b9fcfe856
+  16:     0x74fb6442e859 - rustc_interface[444c50c8c58a8997]::passes::create_and_enter_global_ctxt::<core[1b69f308fde5021f]::option::Option<rustc_interface[444c50c8c58a8997]::queries::Linker>, rustc_driver_impl[3ce1408bca960349]::run_compiler::{closure#0}::{closure#2}>::{closure#2}::{closure#0}
+  17:     0x74fb643245d8 - rustc_interface[444c50c8c58a8997]::interface::run_compiler::<(), rustc_driver_impl[3ce1408bca960349]::run_compiler::{closure#0}>::{closure#1}
+  18:     0x74fb6428c5f5 - std[41a6e8152209c0a6]::sys::backtrace::__rust_begin_short_backtrace::<rustc_interface[444c50c8c58a8997]::util::run_in_thread_with_globals<rustc_interface[444c50c8c58a8997]::util::run_in_thread_pool_with_globals<rustc_interface[444c50c8c58a8997]::interface::run_compiler<(), rustc_driver_impl[3ce1408bca960349]::run_compiler::{closure#0}>::{closure#1}, ()>::{closure#0}, ()>::{closure#0}::{closure#0}, ()>
+  19:     0x74fb6428c2d9 - <<std[41a6e8152209c0a6]::thread::Builder>::spawn_unchecked_<rustc_interface[444c50c8c58a8997]::util::run_in_thread_with_globals<rustc_interface[444c50c8c58a8997]::util::run_in_thread_pool_with_globals<rustc_interface[444c50c8c58a8997]::interface::run_compiler<(), rustc_driver_impl[3ce1408bca960349]::run_compiler::{closure#0}>::{closure#1}, ()>::{closure#0}, ()>::{closure#0}::{closure#0}, ()>::{closure#1} as core[1b69f308fde5021f]::ops::function::FnOnce<()>>::call_once::{shim:vtable#0}
+  20:     0x74fb6428ba6f - std::sys::pal::unix::thread::Thread::new::thread_start::h57c67f308f577aff
+  21:     0x74fb5e294ac3 - <unknown>
+  22:     0x74fb5e326850 - <unknown>
+  23:                0x0 - <unknown>
+
+
+rustc version: 1.86.0-nightly (a730edcd6 2025-01-30)
+platform: x86_64-unknown-linux-gnu
+
+query stack during panic:
+end of query stack
