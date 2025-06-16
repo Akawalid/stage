@@ -4,9 +4,19 @@ use ::std::mem;
 use ::std::rc::Rc;
 use creusot_contracts::pcell::{PCell, PCellOwn};
 use creusot_contracts::*;
+
 enum List<T> {
     Empty,
     Cons(T, Rc<PCell<List<T>>>),
+}
+
+pub struct Node<T> {
+    elem: T,
+    next: Rc<PCell<List<T>>>,
+}
+
+pub struct List<T> {
+    head: Option<Node<T>>,
 }
 
 impl<T> List<T> {
@@ -18,15 +28,15 @@ impl<T> List<T> {
         let mut q = &mut List::Empty;
         let mut p = self;
         let mut index = 0;
-        while let List::Cons(_, next) = p {
+        while p != List::Empty {
             unsafe {
-                let perm = ghost!(seq.get_mut_ghost(*Int::new(index)).unwrap());
+                let perm = ghost!(seq.get_mut_ghost(Int::new(index).into_inner()).unwrap());
                 let fwd = next.borrow_mut(perm);
 
                 //j'aurais du faire directement
                 // next.set(perm, *q), mais le borrow_checker renvoie une erreur.
                 let old_q = mem::replace(q, List::Empty);
-                let perm = ghost!(seq.get_mut_ghost(*Int::new(index)).unwrap());
+                let perm = ghost!(seq.get_mut_ghost(Int::new(index).into_inner()).unwrap());
                 next.set(perm, old_q);
 
                 //si j'interchange les deux lignes en bas, le borrowchecker ne passerais pas.

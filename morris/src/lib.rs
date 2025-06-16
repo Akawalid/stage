@@ -1,7 +1,4 @@
 extern crate creusot_contracts;
-use ::std::rc::Rc;
-use creusot_contracts::pcell::{PCell, PCellOwn};
-use creusot_contracts::*;
 
 mod reversal_pcell;
 mod reversal_raw_ptr;
