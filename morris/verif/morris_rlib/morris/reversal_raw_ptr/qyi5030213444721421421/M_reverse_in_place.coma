@@ -1,56 +1,53 @@
-(* #"/home/baggabom/stage/creusot_rust/morris/src/reversal_raw_ptr.rs" 69 4 72 21 *)
+(* #"/home/baggabom/stage/creusot_rust/morris/src/reversal_raw_ptr.rs" 72 4 75 21 *)
 
 (* reversal_raw_ptr::Node<T> *)
 
-let%span sreversal_raw_ptr = "/home/baggabom/stage/creusot_rust/morris/src/reversal_raw_ptr.rs" 75 31 75 35
-let%span sreversal_raw_ptr'0 = "/home/baggabom/stage/creusot_rust/morris/src/reversal_raw_ptr.rs" 76 20 79 55
-let%span sreversal_raw_ptr'1 = "/home/baggabom/stage/creusot_rust/morris/src/reversal_raw_ptr.rs" 86 37 86 41
-let%span sreversal_raw_ptr'2 = "/home/baggabom/stage/creusot_rust/morris/src/reversal_raw_ptr.rs" 71 12 71 15
-let%span sreversal_raw_ptr'3 = "/home/baggabom/stage/creusot_rust/morris/src/reversal_raw_ptr.rs" 67 15 67 34
-let%span sreversal_raw_ptr'4 = "/home/baggabom/stage/creusot_rust/morris/src/reversal_raw_ptr.rs" 68 14 68 47
-let%span sreversal_raw_ptr'5 = "/home/baggabom/stage/creusot_rust/morris/src/reversal_raw_ptr.rs" 36 12 36 42
-let%span sreversal_raw_ptr'6 = "/home/baggabom/stage/creusot_rust/morris/src/reversal_raw_ptr.rs" 18 12 27 13
-let%span sptr = "/home/baggabom/stage/creusot/creusot-contracts/src/std/ptr.rs" 103 22 103 44
-let%span sptr'0 = "/home/baggabom/stage/creusot/creusot-contracts/src/std/ptr.rs" 89 18 89 48
-let%span sptr'1 = "/home/baggabom/stage/creusot/creusot-contracts/src/std/ptr.rs" 62 14 62 53
-let%span sptr'2 = "/home/baggabom/stage/creusot/creusot-contracts/src/std/ptr.rs" 64 8 64 35
+let%span sreversal_raw_ptr = "/home/baggabom/stage/creusot_rust/morris/src/reversal_raw_ptr.rs" 78 31 78 35
+let%span sreversal_raw_ptr'0 = "/home/baggabom/stage/creusot_rust/morris/src/reversal_raw_ptr.rs" 79 20 82 55
+let%span sreversal_raw_ptr'1 = "/home/baggabom/stage/creusot_rust/morris/src/reversal_raw_ptr.rs" 89 37 89 41
+let%span sreversal_raw_ptr'2 = "/home/baggabom/stage/creusot_rust/morris/src/reversal_raw_ptr.rs" 74 8 74 11
+let%span sreversal_raw_ptr'3 = "/home/baggabom/stage/creusot_rust/morris/src/reversal_raw_ptr.rs" 69 15 69 36
+let%span sreversal_raw_ptr'4 = "/home/baggabom/stage/creusot_rust/morris/src/reversal_raw_ptr.rs" 70 15 70 19
+let%span sreversal_raw_ptr'5 = "/home/baggabom/stage/creusot_rust/morris/src/reversal_raw_ptr.rs" 71 14 71 48
+let%span sreversal_raw_ptr'6 = "/home/baggabom/stage/creusot_rust/morris/src/reversal_raw_ptr.rs" 37 12 37 42
+let%span sreversal_raw_ptr'7 = "/home/baggabom/stage/creusot_rust/morris/src/reversal_raw_ptr.rs" 14 14 14 32
+let%span sreversal_raw_ptr'8 = "/home/baggabom/stage/creusot_rust/morris/src/reversal_raw_ptr.rs" 19 12 28 13
+let%span sptr = "/home/baggabom/stage/creusot/creusot-contracts/src/std/ptr.rs" 99 22 99 44
+let%span sptr'0 = "/home/baggabom/stage/creusot/creusot-contracts/src/std/ptr.rs" 85 18 85 48
+let%span sptr'1 = "/home/baggabom/stage/creusot/creusot-contracts/src/std/ptr.rs" 59 14 59 53
+let%span sptr'2 = "/home/baggabom/stage/creusot/creusot-contracts/src/std/ptr.rs" 61 8 61 35
+let%span sint = "/home/baggabom/stage/creusot/creusot-contracts/src/logic/int.rs" 56 14 56 31
+let%span sint'0 = "/home/baggabom/stage/creusot/creusot-contracts/src/logic/int.rs" 289 14 289 36
+let%span sghost = "/home/baggabom/stage/creusot/creusot-contracts/src/ghost.rs" 181 14 181 29
+let%span sghost'0 = "/home/baggabom/stage/creusot/creusot-contracts/src/ghost.rs" 162 14 162 26
+let%span sghost'1 = "/home/baggabom/stage/creusot/creusot-contracts/src/ghost.rs" 79 22 79 26
+let%span sghost'2 = "/home/baggabom/stage/creusot/creusot-contracts/src/ghost.rs" 79 4 79 48
+let%span sghost'3 = "/home/baggabom/stage/creusot/creusot-contracts/src/ghost.rs" 77 14 77 31
+let%span sghost'4 = "/home/baggabom/stage/creusot/creusot-contracts/src/ghost.rs" 78 14 78 31
+let%span sghost'5 = "/home/baggabom/stage/creusot/creusot-contracts/src/ghost.rs" 67 14 67 43
+let%span sghost'6 = "/home/baggabom/stage/creusot/creusot-contracts/src/ghost.rs" 164 15 164 16
+let%span sghost'7 = "/home/baggabom/stage/creusot/creusot-contracts/src/ghost.rs" 164 4 164 28
+let%span sghost'8 = "/home/baggabom/stage/creusot/creusot-contracts/src/ghost.rs" 99 8 99 18
 let%span sseq = "/home/baggabom/stage/creusot/creusot-contracts/src/logic/seq.rs" 577 30 577 34
 let%span sseq'0 = "/home/baggabom/stage/creusot/creusot-contracts/src/logic/seq.rs" 577 4 577 65
 let%span sseq'1 = "/home/baggabom/stage/creusot/creusot-contracts/src/logic/seq.rs" 571 14 574 5
 let%span sseq'2 = "/home/baggabom/stage/creusot/creusot-contracts/src/logic/seq.rs" 575 14 575 76
 let%span sseq'3 = "/home/baggabom/stage/creusot/creusot-contracts/src/logic/seq.rs" 576 14 576 44
 let%span sseq'4 = "/home/baggabom/stage/creusot/creusot-contracts/src/logic/seq.rs" 86 8 86 82
-let%span sseq'5 = "/home/baggabom/stage/creusot/creusot-contracts/src/logic/seq.rs" 652 20 652 95
-let%span sghost = "/home/baggabom/stage/creusot/creusot-contracts/src/ghost.rs" 216 22 216 26
-let%span sghost'0 = "/home/baggabom/stage/creusot/creusot-contracts/src/ghost.rs" 214 14 214 29
-let%span sghost'1 = "/home/baggabom/stage/creusot/creusot-contracts/src/ghost.rs" 191 4 191 28
-let%span sghost'2 = "/home/baggabom/stage/creusot/creusot-contracts/src/ghost.rs" 189 14 189 26
-let%span sghost'3 = "/home/baggabom/stage/creusot/creusot-contracts/src/ghost.rs" 84 22 84 26
-let%span sghost'4 = "/home/baggabom/stage/creusot/creusot-contracts/src/ghost.rs" 84 4 84 48
-let%span sghost'5 = "/home/baggabom/stage/creusot/creusot-contracts/src/ghost.rs" 82 14 82 46
-let%span sghost'6 = "/home/baggabom/stage/creusot/creusot-contracts/src/ghost.rs" 83 14 83 46
-let%span sghost'7 = "/home/baggabom/stage/creusot/creusot-contracts/src/ghost.rs" 67 14 67 18
-let%span sghost'8 = "/home/baggabom/stage/creusot/creusot-contracts/src/ghost.rs" 66 14 66 46
-let%span sghost'9 = "/home/baggabom/stage/creusot/creusot-contracts/src/ghost.rs" 191 15 191 16
-let%span sghost'10 = "/home/baggabom/stage/creusot/creusot-contracts/src/ghost.rs" 117 8 117 36
-let%span sghost'11 = "/home/baggabom/stage/creusot/creusot-contracts/src/ghost.rs" 109 8 109 31
-let%span sboxed = "/home/baggabom/stage/creusot/creusot-contracts/src/std/boxed.rs" 33 8 33 18
-let%span sptr_own = "/home/baggabom/stage/creusot/creusot-contracts/src/ptr_own.rs" 104 41 104 44
-let%span sptr_own'0 = "/home/baggabom/stage/creusot/creusot-contracts/src/ptr_own.rs" 99 15 99 31
-let%span sptr_own'1 = "/home/baggabom/stage/creusot/creusot-contracts/src/ptr_own.rs" 104 4 104 78
-let%span sptr_own'2 = "/home/baggabom/stage/creusot/creusot-contracts/src/ptr_own.rs" 100 14 100 35
-let%span sptr_own'3 = "/home/baggabom/stage/creusot/creusot-contracts/src/ptr_own.rs" 102 14 102 53
-let%span sptr_own'4 = "/home/baggabom/stage/creusot/creusot-contracts/src/ptr_own.rs" 103 14 103 52
-let%span sptr_own'5 = "/home/baggabom/stage/creusot/creusot-contracts/src/ptr_own.rs" 51 8 51 35
-let%span sresolve = "/home/baggabom/stage/creusot/creusot-contracts/src/resolve.rs" 54 20 54 34
-let%span sinvariant = "/home/baggabom/stage/creusot/creusot-contracts/src/invariant.rs" 100 20 100 44
-let%span sinvariant'0 = "/home/baggabom/stage/creusot/creusot-contracts/src/invariant.rs" 90 8 90 18
-let%span sint = "/home/baggabom/stage/creusot/creusot-contracts/src/logic/int.rs" 59 4 59 42
-let%span sint'0 = "/home/baggabom/stage/creusot/creusot-contracts/src/logic/int.rs" 56 14 56 31
-let%span sint'1 = "/home/baggabom/stage/creusot/creusot-contracts/src/logic/int.rs" 247 14 247 36
+let%span sseq'5 = "/home/baggabom/stage/creusot/creusot-contracts/src/logic/seq.rs" 673 20 673 95
 let%span soption = "/home/baggabom/stage/creusot/creusot-contracts/src/std/option.rs" 135 16 135 17
 let%span soption'0 = "/home/baggabom/stage/creusot/creusot-contracts/src/std/option.rs" 136 27 136 39
 let%span soption'1 = "/home/baggabom/stage/creusot/creusot-contracts/src/std/option.rs" 137 26 137 46
+let%span sptr_own = "/home/baggabom/stage/creusot/creusot-contracts/src/ptr_own.rs" 102 41 102 44
+let%span sptr_own'0 = "/home/baggabom/stage/creusot/creusot-contracts/src/ptr_own.rs" 97 15 97 31
+let%span sptr_own'1 = "/home/baggabom/stage/creusot/creusot-contracts/src/ptr_own.rs" 102 4 102 78
+let%span sptr_own'2 = "/home/baggabom/stage/creusot/creusot-contracts/src/ptr_own.rs" 98 14 98 35
+let%span sptr_own'3 = "/home/baggabom/stage/creusot/creusot-contracts/src/ptr_own.rs" 100 14 100 53
+let%span sptr_own'4 = "/home/baggabom/stage/creusot/creusot-contracts/src/ptr_own.rs" 101 14 101 52
+let%span sptr_own'5 = "/home/baggabom/stage/creusot/creusot-contracts/src/ptr_own.rs" 49 8 49 35
+let%span sresolve = "/home/baggabom/stage/creusot/creusot-contracts/src/resolve.rs" 49 20 49 34
+let%span sinvariant = "/home/baggabom/stage/creusot/creusot-contracts/src/invariant.rs" 101 20 101 44
+let%span sboxed = "/home/baggabom/stage/creusot/creusot-contracts/src/std/boxed.rs" 33 8 33 18
 
 use creusot.prelude.Opaque
 use creusot.int.UInt64
@@ -72,39 +69,16 @@ let rec null (return'  (x:Opaque.ptr))= any
   [ return''0 (result:Opaque.ptr)-> {[%#sptr] is_null_logic result} (! return' {result}) ]
 
 
-type t_Ghost  =
-  { t_Ghost__0: int }
-
-predicate inv (_0 : int)
-
-axiom inv_axiom [@rewrite] : forall x : int [inv x] . inv x = true
-
-function inner_logic (self : t_Ghost) : int
-
-predicate invariant' (self : t_Ghost) =
-  [%#sghost'11] inv (inner_logic self)
-
-predicate inv'0 (_0 : t_Ghost)
-
-axiom inv_axiom'0 [@rewrite] : forall x : t_Ghost [inv'0 x] . inv'0 x
-= (invariant' x
-/\ match x with
-  | {t_Ghost__0 = a_0} -> true
-  end)
-
-let rec new (value:Int128.t) (return'  (x:t_Ghost))= any
-  [ return''0 (result:t_Ghost)-> {[%#sint] inv'0 result}
-    {[%#sint'0] inner_logic result = Int128.to_int value}
-    (! return' {result}) ]
+let rec new (value:Int128.t) (return'  (x: int))= any
+  [ return''0 (result: int)-> {[%#sint] result = Int128.to_int value} (! return' {result}) ]
 
 
-let rec into_inner (self:t_Ghost) (return'  (x:int))= {[@expl:into_inner 'self' type invariant] [%#sghost] inv'0 self}
-  any [ return''0 (result:int)-> {[%#sghost'0] result = inner_logic self} (! return' {result}) ] 
+let rec into_inner (self: int) (return'  (x:int))= any
+  [ return''0 (result:int)-> {[%#sghost] result = self} (! return' {result}) ]
 
-let rec new'0 (x:int) (return'  (x'0:t_Ghost))= any
-  [ return''0 (result:t_Ghost)-> {[%#sghost'1] inv'0 result}
-    {[%#sghost'2] inner_logic result = x}
-    (! return' {result}) ]
+
+let rec new'0 (x:int) (return'  (x'0: int))= any
+  [ return''0 (result: int)-> {[%#sghost'0] result = x} (! return' {result}) ]
 
 
 type t_T
@@ -119,135 +93,121 @@ function ptr (self : t_PtrOwn) : Opaque.ptr
 
 function val' (self : t_PtrOwn) : t_Node
 
-predicate list_aux [#"/home/baggabom/stage/creusot_rust/morris/src/reversal_raw_ptr.rs" 14 4 14 80] (l : Opaque.ptr) (perm_seq : Seq.seq t_PtrOwn) (i : int)
+predicate list_aux [#"/home/baggabom/stage/creusot_rust/morris/src/reversal_raw_ptr.rs" 15 4 15 81] (l : Opaque.ptr) (perm_seq : Seq.seq t_PtrOwn) (i : int)
 
- =
-  [%#sreversal_raw_ptr'6] if is_null_logic l then
-    Seq.length perm_seq = i
+
+axiom list_aux_def : forall l : Opaque.ptr, perm_seq : Seq.seq t_PtrOwn, i : int . list_aux l perm_seq i
+= ([%#sreversal_raw_ptr'8] if is_null_logic l then
+  Seq.length perm_seq = i
+else
+  if i < Seq.length perm_seq then
+    let ptr'0 = ptr (Seq.get perm_seq i) in l = ptr'0
+    /\ list_aux (val' (Seq.get perm_seq i)).t_Node__next perm_seq (i + 1)
   else
-    if i < Seq.length perm_seq then
-      let ptr'0 = ptr (Seq.get perm_seq i) in l = ptr'0
-      /\ list_aux (val' (Seq.get perm_seq i)).t_Node__next perm_seq (i + 1)
-    else
-      false
-  
+    false
 
+)
 
-predicate list [#"/home/baggabom/stage/creusot_rust/morris/src/reversal_raw_ptr.rs" 32 4 32 68] (l : Opaque.ptr) (perm_seq : Seq.seq t_PtrOwn)
+predicate list [#"/home/baggabom/stage/creusot_rust/morris/src/reversal_raw_ptr.rs" 33 4 33 69] (l : Opaque.ptr) (perm_seq : Seq.seq t_PtrOwn)
 
  =
-  [%#sreversal_raw_ptr'5] list_aux l perm_seq 0
-
-type t_Ghost'0  =
-  { t_Ghost__0'0: Seq.seq t_PtrOwn }
-
-function inner_logic'0 (self : t_Ghost'0) : Seq.seq t_PtrOwn
+  [%#sreversal_raw_ptr'6] list_aux l perm_seq 0
 
 let rec is_null (self_:Opaque.ptr) (return'  (x:bool))= any
   [ return''0 (result:bool)-> {[%#sptr'0] result = is_null_logic self_} (! return' {result}) ]
 
 
-predicate invariant''0 (self : t_PtrOwn) =
+predicate invariant' (self : t_PtrOwn) =
   [%#sptr_own'5] not is_null_logic (ptr self)
 
-predicate inv'1 (_0 : t_T)
+predicate inv (_0 : t_T)
 
-predicate inv'2 (_0 : t_Node)
+predicate inv'0 (_0 : t_Node)
 
-axiom inv_axiom'1 [@rewrite] : forall x : t_Node [inv'2 x] . inv'2 x
+axiom inv_axiom [@rewrite] : forall x : t_Node [inv'0 x] . inv'0 x
 = match x with
-  | {t_Node__elem = elem ; t_Node__next = next} -> inv'1 elem
+  | {t_Node__elem = elem ; t_Node__next = next} -> inv elem
   end
 
-predicate invariant''1 (self : t_Node) =
+predicate invariant''0 (self : t_Node) =
+  [%#sboxed] inv'0 self
+
+predicate inv'1 (_0 : t_Node)
+
+axiom inv_axiom'0 [@rewrite] : forall x : t_Node [inv'1 x] . inv'1 x = invariant''0 x
+
+predicate inv'2 (_0 : t_PtrOwn)
+
+axiom inv_axiom'1 [@rewrite] : forall x : t_PtrOwn [inv'2 x] . inv'2 x
+= (invariant' x
+/\ match x with
+  | {t_PtrOwn__ptr = ptr'0 ; t_PtrOwn__val = val''0} -> inv'1 val''0
+  end)
+
+predicate invariant''1 (self : t_PtrOwn) =
   [%#sboxed] inv'2 self
 
-predicate inv'3 (_0 : t_Node)
+predicate inv'3 (_0 : t_PtrOwn)
 
-axiom inv_axiom'2 [@rewrite] : forall x : t_Node [inv'3 x] . inv'3 x = invariant''1 x
+axiom inv_axiom'2 [@rewrite] : forall x : t_PtrOwn [inv'3 x] . inv'3 x = invariant''1 x
 
-predicate inv'4 (_0 : t_PtrOwn)
+predicate invariant''2 (self : Seq.seq t_PtrOwn) =
+  [%#sseq'5] forall i : int . 0 <= i /\ i < Seq.length self  -> inv'3 (Seq.get self i)
 
-axiom inv_axiom'3 [@rewrite] : forall x : t_PtrOwn [inv'4 x] . inv'4 x
-= (invariant''0 x
-/\ match x with
-  | {t_PtrOwn__ptr = ptr'0 ; t_PtrOwn__val = val''0} -> inv'3 val''0
-  end)
+predicate inv'4 (_0 : Seq.seq t_PtrOwn)
 
-predicate invariant''2 (self : t_PtrOwn) =
-  [%#sboxed] inv'4 self
+axiom inv_axiom'3 [@rewrite] : forall x : Seq.seq t_PtrOwn [inv'4 x] . inv'4 x = invariant''2 x
 
-predicate inv'5 (_0 : t_PtrOwn)
+predicate invariant''3 (self :  (Seq.seq t_PtrOwn)) =
+  [%#sghost'8] inv'4 self
 
-axiom inv_axiom'4 [@rewrite] : forall x : t_PtrOwn [inv'5 x] . inv'5 x = invariant''2 x
+predicate inv'5 (_0 :  (Seq.seq t_PtrOwn))
 
-predicate invariant''3 (self : Seq.seq t_PtrOwn) =
-  [%#sseq'5] forall i : int . 0 <= i /\ i < Seq.length self  -> inv'5 (Seq.get self i)
+axiom inv_axiom'4 [@rewrite] : forall x :  (Seq.seq t_PtrOwn) [inv'5 x] . inv'5 x = invariant''3 x
 
-predicate inv'6 (_0 : Seq.seq t_PtrOwn)
+predicate invariant''4 (self : MutBorrow.t ( (Seq.seq t_PtrOwn))) =
+  [%#sinvariant] inv'5 self.current /\ inv'5 self.final
 
-axiom inv_axiom'5 [@rewrite] : forall x : Seq.seq t_PtrOwn [inv'6 x] . inv'6 x = invariant''3 x
+predicate inv'6 (_0 : MutBorrow.t ( (Seq.seq t_PtrOwn)))
 
-predicate invariant''4 (self : t_Ghost'0) =
-  [%#sghost'11] inv'6 (inner_logic'0 self)
+axiom inv_axiom'5 [@rewrite] : forall x : MutBorrow.t ( (Seq.seq t_PtrOwn)) [inv'6 x] . inv'6 x = invariant''4 x
 
-predicate inv'7 (_0 : t_Ghost'0)
+predicate invariant''5 (self : MutBorrow.t (Seq.seq t_PtrOwn)) =
+  [%#sinvariant] inv'4 self.current /\ inv'4 self.final
 
-axiom inv_axiom'6 [@rewrite] : forall x : t_Ghost'0 [inv'7 x] . inv'7 x
-= (invariant''4 x
-/\ match x with
-  | {t_Ghost__0'0 = a_0} -> inv'6 a_0
-  end)
+predicate inv'7 (_0 : MutBorrow.t (Seq.seq t_PtrOwn))
 
-predicate invariant''5 (self : MutBorrow.t t_Ghost'0) =
-  [%#sinvariant] inv'7 self.current /\ inv'7 self.final
+axiom inv_axiom'6 [@rewrite] : forall x : MutBorrow.t (Seq.seq t_PtrOwn) [inv'7 x] . inv'7 x = invariant''5 x
 
-predicate inv'8 (_0 : MutBorrow.t t_Ghost'0)
-
-axiom inv_axiom'7 [@rewrite] : forall x : MutBorrow.t t_Ghost'0 [inv'8 x] . inv'8 x = invariant''5 x
-
-predicate invariant''6 (self : MutBorrow.t (Seq.seq t_PtrOwn)) =
-  [%#sinvariant] inv'6 self.current /\ inv'6 self.final
-
-predicate inv'9 (_0 : MutBorrow.t (Seq.seq t_PtrOwn))
-
-axiom inv_axiom'8 [@rewrite] : forall x : MutBorrow.t (Seq.seq t_PtrOwn) [inv'9 x] . inv'9 x = invariant''6 x
-
-let rec deref_mut (self:MutBorrow.t t_Ghost'0) (return'  (x:MutBorrow.t (Seq.seq t_PtrOwn)))= {[@expl:deref_mut 'self' type invariant] [%#sghost'3] inv'8 self}
+let rec deref_mut (self:MutBorrow.t ( (Seq.seq t_PtrOwn))) (return'  (x:MutBorrow.t (Seq.seq t_PtrOwn)))= {[@expl:deref_mut 'self' type invariant] [%#sghost'1] inv'6 self}
   any
-  [ return''0 (result:MutBorrow.t (Seq.seq t_PtrOwn))-> {[%#sghost'4] inv'9 result}
-    {[%#sghost'5] result.current = inner_logic'0 self.current}
-    {[%#sghost'6] result.final = inner_logic'0 self.final}
+  [ return''0 (result:MutBorrow.t (Seq.seq t_PtrOwn))-> {[%#sghost'2] inv'7 result}
+    {[%#sghost'3] result.current = self.current}
+    {[%#sghost'4] result.final = self.final}
     (! return' {result}) ]
 
 
-predicate invariant''7 (self : t_Ghost) =
-  [%#sinvariant'0] inv'0 self
+let rec deref (self: int) (return'  (x:int))= any
+  [ return''0 (result:int)-> {[%#sghost'5] self = result} (! return' {result}) ]
 
-predicate inv'10 (_0 : t_Ghost)
-
-axiom inv_axiom'9 [@rewrite] : forall x : t_Ghost [inv'10 x] . inv'10 x = invariant''7 x
-
-let rec deref (self:t_Ghost) (return'  (x:int))= {[@expl:deref 'self' type invariant] [%#sghost'7] inv'10 self}
-  any [ return''0 (result:int)-> {[%#sghost'8] inner_logic self = result} (! return' {result}) ] 
 
 type t_Option  =
   | C_None
   | C_Some (MutBorrow.t t_PtrOwn)
 
-predicate invariant''8 (self : MutBorrow.t t_PtrOwn) =
-  [%#sinvariant] inv'4 self.current /\ inv'4 self.final
+predicate invariant''6 (self : MutBorrow.t t_PtrOwn) =
+  [%#sinvariant] inv'2 self.current /\ inv'2 self.final
 
-predicate inv'11 (_0 : MutBorrow.t t_PtrOwn)
+predicate inv'8 (_0 : MutBorrow.t t_PtrOwn)
 
-axiom inv_axiom'10 [@rewrite] : forall x : MutBorrow.t t_PtrOwn [inv'11 x] . inv'11 x = invariant''8 x
+axiom inv_axiom'7 [@rewrite] : forall x : MutBorrow.t t_PtrOwn [inv'8 x] . inv'8 x = invariant''6 x
 
-predicate inv'12 (_0 : t_Option)
+predicate inv'9 (_0 : t_Option)
 
-axiom inv_axiom'11 [@rewrite] : forall x : t_Option [inv'12 x] . inv'12 x
+axiom inv_axiom'8 [@rewrite] : forall x : t_Option [inv'9 x] . inv'9 x
 = match x with
   | C_None -> true
-  | C_Some a_0 -> inv'11 a_0
+  | C_Some a_0 -> inv'8 a_0
   end
 
 type t_Option'0  =
@@ -257,9 +217,9 @@ type t_Option'0  =
 function get (self : Seq.seq t_PtrOwn) (ix : int) : t_Option'0 =
   [%#sseq'4] if 0 <= ix /\ ix < Seq.length self then C_Some'0 (Seq.get self ix) else C_None'0
 
-let rec get_mut_ghost (self:MutBorrow.t (Seq.seq t_PtrOwn)) (index:int) (return'  (x:t_Option))= {[@expl:get_mut_ghost 'self' type invariant] [%#sseq] inv'9 self}
+let rec get_mut_ghost (self:MutBorrow.t (Seq.seq t_PtrOwn)) (index:int) (return'  (x:t_Option))= {[@expl:get_mut_ghost 'self' type invariant] [%#sseq] inv'7 self}
   any
-  [ return''0 (result:t_Option)-> {[%#sseq'0] inv'12 result}
+  [ return''0 (result:t_Option)-> {[%#sseq'0] inv'9 result}
     {[%#sseq'1] match result with
       | C_None -> get self.current index = C_None'0 /\ self.current = self.final
       | C_Some r -> get self.current index = C_Some'0 (r.current) /\ r.final = Seq.get self.final index
@@ -269,51 +229,42 @@ let rec get_mut_ghost (self:MutBorrow.t (Seq.seq t_PtrOwn)) (index:int) (return'
     (! return' {result}) ]
 
 
-let rec unwrap (self_:t_Option) (return'  (x:MutBorrow.t t_PtrOwn))= {[@expl:unwrap 'self_' type invariant] [%#soption] inv'12 self_}
+let rec unwrap (self_:t_Option) (return'  (x:MutBorrow.t t_PtrOwn))= {[@expl:unwrap 'self_' type invariant] [%#soption] inv'9 self_}
   {[@expl:unwrap requires] [%#soption'0] self_ <> C_None}
   any
-  [ return''0 (result:MutBorrow.t t_PtrOwn)-> {inv'11 result}
+  [ return''0 (result:MutBorrow.t t_PtrOwn)-> {inv'8 result}
     {[%#soption'1] C_Some result = self_}
     (! return' {result}) ]
 
 
-type t_Ghost'1  =
-  { t_Ghost__0'1: MutBorrow.t t_PtrOwn }
+predicate invariant''7 (self :  (MutBorrow.t t_PtrOwn)) =
+  [%#sghost'8] inv'8 self
 
-function inner_logic'1 (self : t_Ghost'1) : MutBorrow.t t_PtrOwn
+predicate inv'10 (_0 :  (MutBorrow.t t_PtrOwn))
 
-predicate invariant''9 (self : t_Ghost'1) =
-  [%#sghost'11] inv'11 (inner_logic'1 self)
+axiom inv_axiom'9 [@rewrite] : forall x :  (MutBorrow.t t_PtrOwn) [inv'10 x] . inv'10 x = invariant''7 x
 
-predicate inv'13 (_0 : t_Ghost'1)
-
-axiom inv_axiom'12 [@rewrite] : forall x : t_Ghost'1 [inv'13 x] . inv'13 x
-= (invariant''9 x
-/\ match x with
-  | {t_Ghost__0'1 = a_0} -> inv'11 a_0
-  end)
-
-let rec new'1 (x:MutBorrow.t t_PtrOwn) (return'  (x'0:t_Ghost'1))= {[@expl:new 'x' type invariant] [%#sghost'9] inv'11 x}
+let rec new'1 (x:MutBorrow.t t_PtrOwn) (return'  (x'0: (MutBorrow.t t_PtrOwn)))= {[@expl:new 'x' type invariant] [%#sghost'6] inv'8 x}
   any
-  [ return''0 (result:t_Ghost'1)-> {[%#sghost'1] inv'13 result}
-    {[%#sghost'2] inner_logic'1 result = x}
+  [ return''0 (result: (MutBorrow.t t_PtrOwn))-> {[%#sghost'7] inv'10 result}
+    {[%#sghost'0] result = x}
     (! return' {result}) ]
 
 
-predicate invariant''10 (self : MutBorrow.t t_Node) =
-  [%#sinvariant] inv'2 self.current /\ inv'2 self.final
+predicate invariant''8 (self : MutBorrow.t t_Node) =
+  [%#sinvariant] inv'0 self.current /\ inv'0 self.final
 
-predicate inv'14 (_0 : MutBorrow.t t_Node)
+predicate inv'11 (_0 : MutBorrow.t t_Node)
 
-axiom inv_axiom'13 [@rewrite] : forall x : MutBorrow.t t_Node [inv'14 x] . inv'14 x = invariant''10 x
+axiom inv_axiom'10 [@rewrite] : forall x : MutBorrow.t t_Node [inv'11 x] . inv'11 x = invariant''8 x
 
-let rec as_mut (ptr'0:Opaque.ptr) (own:t_Ghost'1) (return'  (x:MutBorrow.t t_Node))= {[@expl:as_mut 'own' type invariant] [%#sptr_own] inv'13 own}
-  {[@expl:as_mut requires] [%#sptr_own'0] ptr'0 = ptr (inner_logic'1 own).current}
+let rec as_mut (ptr'0:Opaque.ptr) (own: (MutBorrow.t t_PtrOwn)) (return'  (x:MutBorrow.t t_Node))= {[@expl:as_mut 'own' type invariant] [%#sptr_own] inv'10 own}
+  {[@expl:as_mut requires] [%#sptr_own'0] ptr'0 = ptr own.current}
   any
-  [ return''0 (result:MutBorrow.t t_Node)-> {[%#sptr_own'1] inv'14 result}
-    {[%#sptr_own'2] result.current = val' (inner_logic'1 own).current}
-    {[%#sptr_own'3] ptr (inner_logic'1 own).final = ptr (inner_logic'1 own).current}
-    {[%#sptr_own'4] val' (inner_logic'1 own).final = result.final}
+  [ return''0 (result:MutBorrow.t t_Node)-> {[%#sptr_own'1] inv'11 result}
+    {[%#sptr_own'2] result.current = val' own.current}
+    {[%#sptr_own'3] ptr own.final = ptr own.current}
+    {[%#sptr_own'4] val' own.final = result.final}
     (! return' {result}) ]
 
 
@@ -336,20 +287,12 @@ predicate resolve'4 (_0 : MutBorrow.t t_Node) =
   resolve'3 _0
 
 let rec add (self:int) (other:int) (return'  (x:int))= any
-  [ return''0 (result:int)-> {[%#sint'1] result = self + other} (! return' {result}) ]
+  [ return''0 (result:int)-> {[%#sint'0] result = self + other} (! return' {result}) ]
 
 
-predicate invariant''11 (self : MutBorrow.t t_Ghost) =
-  [%#sinvariant] inv'0 self.current /\ inv'0 self.final
-
-predicate inv'15 (_0 : MutBorrow.t t_Ghost)
-
-axiom inv_axiom'14 [@rewrite] : forall x : MutBorrow.t t_Ghost [inv'15 x] . inv'15 x = invariant''11 x
-
-let rec deref_mut'0 (self:MutBorrow.t t_Ghost) (return'  (x:MutBorrow.t int))= {[@expl:deref_mut 'self' type invariant] [%#sghost'3] inv'15 self}
-  any
-  [ return''0 (result:MutBorrow.t int)-> {[%#sghost'5] result.current = inner_logic self.current}
-    {[%#sghost'6] result.final = inner_logic self.final}
+let rec deref_mut'0 (self:MutBorrow.t ( int)) (return'  (x:MutBorrow.t int))= any
+  [ return''0 (result:MutBorrow.t int)-> {[%#sghost'3] result.current = self.current}
+    {[%#sghost'4] result.final = self.final}
     (! return' {result}) ]
 
 
@@ -359,178 +302,159 @@ predicate resolve'5 (self : MutBorrow.t int) =
 predicate resolve'6 (_0 : MutBorrow.t int) =
   resolve'5 _0
 
-type t_Ghost'2  =
-  { t_Ghost__0'2: () }
-
-predicate inv'16 (_0 : ())
-
-axiom inv_axiom'15 [@rewrite] : forall x : () [inv'16 x] . inv'16 x = true
-
-function inner_logic'2 (self : t_Ghost'2) : ()
-
-predicate invariant''12 (self : t_Ghost'2) =
-  [%#sghost'11] inv'16 (inner_logic'2 self)
-
-predicate inv'17 (_0 : t_Ghost'2)
-
-axiom inv_axiom'16 [@rewrite] : forall x : t_Ghost'2 [inv'17 x] . inv'17 x
-= (invariant''12 x
-/\ match x with
-  | {t_Ghost__0'2 = a_0} -> true
-  end)
-
-let rec new'2 (x:()) (return'  (x'0:t_Ghost'2))= any
-  [ return''0 (result:t_Ghost'2)-> {[%#sghost'1] inv'17 result}
-    {[%#sghost'2] inner_logic'2 result = x}
-    (! return' {result}) ]
+let rec new'2 (x:()) (return'  (x'0: ()))= any
+  [ return''0 (result: ())-> {[%#sghost'0] result = x} (! return' {result}) ]
 
 
-predicate resolve'7 (_0 : Seq.seq t_PtrOwn) =
-  true
+predicate resolve'7 (self : MutBorrow.t ( (Seq.seq t_PtrOwn))) =
+  [%#sresolve] self.final = self.current
 
-predicate resolve'8 (self : t_Ghost'0) =
-  [%#sghost'10] resolve'7 (inner_logic'0 self)
-
-predicate resolve'9 (_0 : t_Ghost'0) =
-  resolve'8 _0
+predicate resolve'8 (_0 : MutBorrow.t ( (Seq.seq t_PtrOwn))) =
+  resolve'7 _0
 
 meta "compute_max_steps" 1000000
 
-let rec reverse_in_place[#"/home/baggabom/stage/creusot_rust/morris/src/reversal_raw_ptr.rs" 69 4 72 21] (p:Opaque.ptr) (seq:t_Ghost'0) (return'  (x:Opaque.ptr))= {[@expl:reverse_in_place 'seq' type invariant] [%#sreversal_raw_ptr'2] inv'7 seq}
-  {[@expl:reverse_in_place requires] [%#sreversal_raw_ptr'3] list p (inner_logic'0 seq)}
+let rec reverse_in_place[#"/home/baggabom/stage/creusot_rust/morris/src/reversal_raw_ptr.rs" 72 4 75 21] (p:Opaque.ptr) (seq:MutBorrow.t ( (Seq.seq t_PtrOwn))) (return'  (x:Opaque.ptr))= {[@expl:reverse_in_place 'seq' type invariant] [%#sreversal_raw_ptr'2] inv'6 seq}
+  {[@expl:reverse_in_place requires #0] [%#sreversal_raw_ptr'3] list p seq.current}
+  {[@expl:reverse_in_place requires #1] [%#sreversal_raw_ptr'4] true}
   (! bb0
   [ bb0 = s0 [ s0 = null (fun (_ret:Opaque.ptr) ->  [ &q <- _ret ] s1) | s1 = bb1 ] 
-  | bb1 = s0 [ s0 = new {[%#sreversal_raw_ptr] (0 : Int128.t)} (fun (_ret:t_Ghost) ->  [ &_8 <- _ret ] s1) | s1 = bb2 ] 
-  | bb2 = s0 [ s0 = into_inner {_8} (fun (_ret:int) ->  [ &_7 <- _ret ] s1) | s1 = bb3 ] 
-  | bb3 = s0 [ s0 = new'0 {_7} (fun (_ret:t_Ghost) ->  [ &index <- _ret ] s1) | s1 = bb4 ] 
-  | bb4 = bb5
+  | bb1 = s0 [ s0 = new {[%#sreversal_raw_ptr] (0 : Int128.t)} (fun (_ret: int) ->  [ &_9 <- _ret ] s1) | s1 = bb2 ] 
+  | bb2 = s0 [ s0 = into_inner {_9} (fun (_ret:int) ->  [ &_8 <- _ret ] s1) | s1 = bb3 ] 
+  | bb3 = s0 [ s0 = new'0 {_8} (fun (_ret: int) ->  [ &index <- _ret ] s1) | s1 = bb4 ] 
+  | bb4 = s0 [ s0 =  [ &old_5_0 <- seq'0 ] s1 | s1 = bb5 ] 
   | bb5 = bb5'0
-    [ bb5'0 = {[@expl:loop invariant] [%#sreversal_raw_ptr'0] exists a1 : Seq.seq t_PtrOwn, a2 : Seq.seq t_PtrOwn . list q a1
-      /\ list p'0 a2 /\ Reverse.reverse (inner_logic'0 seq'0) = Seq.(++) (Reverse.reverse a2) a1}
+    [ bb5'0 = {[@expl:mut invariant] old_5_0.final = seq'0.final}
+      {[@expl:loop invariant] [%#sreversal_raw_ptr'0] exists a1 : Seq.seq t_PtrOwn, a2 : Seq.seq t_PtrOwn . list q a1
+      /\ list p'0 a2 /\ Reverse.reverse seq'0.current = Seq.(++) (Reverse.reverse a2) a1}
       (! s0) [ s0 = bb6 ] 
-      [ bb6 = s0 [ s0 = is_null {p'0} (fun (_ret:bool) ->  [ &_13 <- _ret ] s1) | s1 = bb7 ] 
-      | bb7 = any [ br0 -> {_13 = false} (! bb9) | br1 -> {_13} (! bb8) ] 
+      [ bb6 = s0 [ s0 = is_null {p'0} (fun (_ret:bool) ->  [ &_14 <- _ret ] s1) | s1 = bb7 ] 
+      | bb7 = any [ br0 -> {_14 = false} (! bb9) | br1 -> {_14} (! bb8) ] 
       | bb9 = s0
-        [ s0 = {inv'7 seq'0}
-          MutBorrow.borrow_mut <t_Ghost'0> {seq'0}
-            (fun (_ret:MutBorrow.t t_Ghost'0) ->  [ &_25 <- _ret ] -{inv'7 _ret.final}-  [ &seq'0 <- _ret.final ] s1)
-        | s1 = deref_mut {_25} (fun (_ret:MutBorrow.t (Seq.seq t_PtrOwn)) ->  [ &_24 <- _ret ] s2)
+        [ s0 = {inv'5 seq'0.current}
+          MutBorrow.borrow_mut < (Seq.seq t_PtrOwn)> {seq'0.current}
+            (fun (_ret:MutBorrow.t ( (Seq.seq t_PtrOwn))) ->
+               [ &_26 <- _ret ] 
+              -{inv'5 _ret.final}-
+               [ &seq'0 <- { seq'0 with current = _ret.final } ] 
+              s1)
+        | s1 = deref_mut {_26} (fun (_ret:MutBorrow.t (Seq.seq t_PtrOwn)) ->  [ &_25 <- _ret ] s2)
         | s2 = bb10 ]
       
-      | bb10 = s0
-        [ s0 = {inv'6 _24.current}
-          MutBorrow.borrow_final <Seq.seq t_PtrOwn> {_24.current} {MutBorrow.get_id _24}
+      | bb10 = s0 [ s0 = deref {index} (fun (_ret:int) ->  [ &_28 <- _ret ] s1) | s1 = bb11 ] 
+      | bb11 = s0
+        [ s0 = {inv'4 _25.current}
+          MutBorrow.borrow_final <Seq.seq t_PtrOwn> {_25.current} {MutBorrow.get_id _25}
             (fun (_ret:MutBorrow.t (Seq.seq t_PtrOwn)) ->
-               [ &_23 <- _ret ] 
-              -{inv'6 _ret.final}-
-               [ &_24 <- { _24 with current = _ret.final } ] 
+               [ &_24 <- _ret ] 
+              -{inv'4 _ret.final}-
+               [ &_25 <- { _25 with current = _ret.final } ] 
               s1)
-        | s1 = deref {index} (fun (_ret:int) ->  [ &_27 <- _ret ] s2)
-        | s2 = bb11 ]
+        | s1 = get_mut_ghost {_24} {_28} (fun (_ret:t_Option) ->  [ &_23 <- _ret ] s2)
+        | s2 = bb12 ]
       
-      | bb11 = s0 [ s0 = get_mut_ghost {_23} {_27} (fun (_ret:t_Option) ->  [ &_22 <- _ret ] s1) | s1 = bb12 ] 
-      | bb12 = s0 [ s0 = unwrap {_22} (fun (_ret:MutBorrow.t t_PtrOwn) ->  [ &_21 <- _ret ] s1) | s1 = bb13 ] 
+      | bb12 = s0 [ s0 = unwrap {_23} (fun (_ret:MutBorrow.t t_PtrOwn) ->  [ &_22 <- _ret ] s1) | s1 = bb13 ] 
       | bb13 = s0
-        [ s0 = {inv'4 _21.current}
+        [ s0 = {inv'2 _22.current}
+          MutBorrow.borrow_final <t_PtrOwn> {_22.current} {MutBorrow.get_id _22}
+            (fun (_ret:MutBorrow.t t_PtrOwn) ->
+               [ &_21 <- _ret ] 
+              -{inv'2 _ret.final}-
+               [ &_22 <- { _22 with current = _ret.final } ] 
+              s1)
+        | s1 = {inv'2 _21.current}
           MutBorrow.borrow_final <t_PtrOwn> {_21.current} {MutBorrow.get_id _21}
             (fun (_ret:MutBorrow.t t_PtrOwn) ->
                [ &_20 <- _ret ] 
-              -{inv'4 _ret.final}-
+              -{inv'2 _ret.final}-
                [ &_21 <- { _21 with current = _ret.final } ] 
-              s1)
-        | s1 = {inv'4 _20.current}
-          MutBorrow.borrow_final <t_PtrOwn> {_20.current} {MutBorrow.get_id _20}
-            (fun (_ret:MutBorrow.t t_PtrOwn) ->
-               [ &_19 <- _ret ] 
-              -{inv'4 _ret.final}-
-               [ &_20 <- { _20 with current = _ret.final } ] 
               s2)
-        | s2 = new'1 {_19} (fun (_ret:t_Ghost'1) ->  [ &_18 <- _ret ] s3)
+        | s2 = new'1 {_20} (fun (_ret: (MutBorrow.t t_PtrOwn)) ->  [ &_19 <- _ret ] s3)
         | s3 = bb14 ]
       
-      | bb14 = s0 [ s0 = as_mut {p'0} {_18} (fun (_ret:MutBorrow.t t_Node) ->  [ &_16 <- _ret ] s1) | s1 = bb15 ] 
+      | bb14 = s0 [ s0 = as_mut {p'0} {_19} (fun (_ret:MutBorrow.t t_Node) ->  [ &_17 <- _ret ] s1) | s1 = bb15 ] 
       | bb15 = s0
-        [ s0 = {[@expl:type invariant] inv'9 _24} s1
-        | s1 = -{resolve'0 _24}- s2
-        | s2 = {[@expl:type invariant] inv'11 _21} s3
-        | s3 = -{resolve'2 _21}- s4
-        | s4 = {[@expl:type invariant] inv'11 _20} s5
-        | s5 = -{resolve'2 _20}- s6
-        | s6 = {inv'2 _16.current}
-          MutBorrow.borrow_final <t_Node> {_16.current} {MutBorrow.get_id _16}
+        [ s0 = {[@expl:type invariant] inv'7 _25} s1
+        | s1 = -{resolve'0 _25}- s2
+        | s2 = {[@expl:type invariant] inv'8 _22} s3
+        | s3 = -{resolve'2 _22}- s4
+        | s4 = {[@expl:type invariant] inv'8 _21} s5
+        | s5 = -{resolve'2 _21}- s6
+        | s6 = {inv'0 _17.current}
+          MutBorrow.borrow_final <t_Node> {_17.current} {MutBorrow.get_id _17}
             (fun (_ret:MutBorrow.t t_Node) ->
                [ &p2 <- _ret ] 
-              -{inv'2 _ret.final}-
-               [ &_16 <- { _16 with current = _ret.final } ] 
+              -{inv'0 _ret.final}-
+               [ &_17 <- { _17 with current = _ret.final } ] 
               s7)
-        | s7 = {[@expl:type invariant] inv'14 _16} s8
-        | s8 = -{resolve'4 _16}- s9
+        | s7 = {[@expl:type invariant] inv'11 _17} s8
+        | s8 = -{resolve'4 _17}- s9
         | s9 =  [ &next <- (p2.current).t_Node__next ] s10
         | s10 =  [ &p2 <- { p2 with current = { p2.current with t_Node__next = q } } ] s11
-        | s11 = {[@expl:type invariant] inv'14 p2} s12
+        | s11 = {[@expl:type invariant] inv'11 p2} s12
         | s12 = -{resolve'4 p2}- s13
         | s13 =  [ &q <- p'0 ] s14
         | s14 =  [ &p'0 <- next ] s15
-        | s15 = deref {index} (fun (_ret:int) ->  [ &_37 <- _ret ] s16)
+        | s15 = deref {index} (fun (_ret:int) ->  [ &_38 <- _ret ] s16)
         | s16 = bb16 ]
       
       | bb16 = s0
-        [ s0 = new {[%#sreversal_raw_ptr'1] (1 : Int128.t)} (fun (_ret:t_Ghost) ->  [ &_40 <- _ret ] s1) | s1 = bb17 ]
+        [ s0 = new {[%#sreversal_raw_ptr'1] (1 : Int128.t)} (fun (_ret: int) ->  [ &_41 <- _ret ] s1) | s1 = bb17 ]
       
-      | bb17 = s0 [ s0 = into_inner {_40} (fun (_ret:int) ->  [ &_39 <- _ret ] s1) | s1 = bb18 ] 
-      | bb18 = s0 [ s0 = add {_37} {_39} (fun (_ret:int) ->  [ &_35 <- _ret ] s1) | s1 = bb19 ] 
+      | bb17 = s0 [ s0 = into_inner {_41} (fun (_ret:int) ->  [ &_40 <- _ret ] s1) | s1 = bb18 ] 
+      | bb18 = s0 [ s0 = add {_38} {_40} (fun (_ret:int) ->  [ &_36 <- _ret ] s1) | s1 = bb19 ] 
       | bb19 = s0
-        [ s0 = {inv'0 index}
-          MutBorrow.borrow_mut <t_Ghost> {index}
-            (fun (_ret:MutBorrow.t t_Ghost) ->  [ &_42 <- _ret ] -{inv'0 _ret.final}-  [ &index <- _ret.final ] s1)
-        | s1 = deref_mut'0 {_42} (fun (_ret:MutBorrow.t int) ->  [ &_41 <- _ret ] s2)
+        [ s0 = MutBorrow.borrow_mut < int> {index}
+            (fun (_ret:MutBorrow.t ( int)) ->  [ &_43 <- _ret ]  [ &index <- _ret.final ] s1)
+        | s1 = deref_mut'0 {_43} (fun (_ret:MutBorrow.t int) ->  [ &_42 <- _ret ] s2)
         | s2 = bb20 ]
       
       | bb20 = s0
-        [ s0 =  [ &_41 <- { _41 with current = _35 } ] s1
-        | s1 = -{resolve'6 _41}- s2
-        | s2 = new'2 {_34} (fun (_ret:t_Ghost'2) ->  [ &_33 <- _ret ] s3)
+        [ s0 =  [ &_42 <- { _42 with current = _36 } ] s1
+        | s1 = -{resolve'6 _42}- s2
+        | s2 = new'2 {_35} (fun (_ret: ()) ->  [ &_34 <- _ret ] s3)
         | s3 = bb21 ]
       
       | bb21 = bb5'0 ]
      ]
   
   | bb8 = s0
-    [ s0 = {[@expl:type invariant] inv'7 seq'0} s1
-    | s1 = -{resolve'9 seq'0}- s2
+    [ s0 = {[@expl:type invariant] inv'6 seq'0} s1
+    | s1 = -{resolve'8 seq'0}- s2
     | s2 =  [ &_0 <- q ] s3
     | s3 = return''0 {_0} ]
    ]
   )
   [ & _0 : Opaque.ptr = Any.any_l ()
   | & p'0 : Opaque.ptr = p
-  | & seq'0 : t_Ghost'0 = seq
+  | & seq'0 : MutBorrow.t ( (Seq.seq t_PtrOwn)) = seq
   | & q : Opaque.ptr = Any.any_l ()
-  | & index : t_Ghost = Any.any_l ()
-  | & _7 : int = Any.any_l ()
-  | & _8 : t_Ghost = Any.any_l ()
-  | & _13 : bool = Any.any_l ()
+  | & index :  int = Any.any_l ()
+  | & _8 : int = Any.any_l ()
+  | & _9 :  int = Any.any_l ()
+  | & _14 : bool = Any.any_l ()
   | & p2 : MutBorrow.t t_Node = Any.any_l ()
-  | & _16 : MutBorrow.t t_Node = Any.any_l ()
-  | & _18 : t_Ghost'1 = Any.any_l ()
-  | & _19 : MutBorrow.t t_PtrOwn = Any.any_l ()
+  | & _17 : MutBorrow.t t_Node = Any.any_l ()
+  | & _19 :  (MutBorrow.t t_PtrOwn) = Any.any_l ()
   | & _20 : MutBorrow.t t_PtrOwn = Any.any_l ()
   | & _21 : MutBorrow.t t_PtrOwn = Any.any_l ()
-  | & _22 : t_Option = Any.any_l ()
-  | & _23 : MutBorrow.t (Seq.seq t_PtrOwn) = Any.any_l ()
+  | & _22 : MutBorrow.t t_PtrOwn = Any.any_l ()
+  | & _23 : t_Option = Any.any_l ()
   | & _24 : MutBorrow.t (Seq.seq t_PtrOwn) = Any.any_l ()
-  | & _25 : MutBorrow.t t_Ghost'0 = Any.any_l ()
-  | & _27 : int = Any.any_l ()
+  | & _25 : MutBorrow.t (Seq.seq t_PtrOwn) = Any.any_l ()
+  | & _26 : MutBorrow.t ( (Seq.seq t_PtrOwn)) = Any.any_l ()
+  | & _28 : int = Any.any_l ()
   | & next : Opaque.ptr = Any.any_l ()
-  | & _33 : t_Ghost'2 = Any.any_l ()
-  | & _34 : () = Any.any_l ()
-  | & _35 : int = Any.any_l ()
-  | & _37 : int = Any.any_l ()
-  | & _39 : int = Any.any_l ()
-  | & _40 : t_Ghost = Any.any_l ()
-  | & _41 : MutBorrow.t int = Any.any_l ()
-  | & _42 : MutBorrow.t t_Ghost = Any.any_l () ]
+  | & _34 :  () = Any.any_l ()
+  | & _35 : () = Any.any_l ()
+  | & _36 : int = Any.any_l ()
+  | & _38 : int = Any.any_l ()
+  | & _40 : int = Any.any_l ()
+  | & _41 :  int = Any.any_l ()
+  | & _42 : MutBorrow.t int = Any.any_l ()
+  | & _43 : MutBorrow.t ( int) = Any.any_l ()
+  | & old_5_0 : MutBorrow.t ( (Seq.seq t_PtrOwn)) = Any.any_l () ]
   
-  [ return''0 (result:Opaque.ptr)-> {[@expl:reverse_in_place ensures] [%#sreversal_raw_ptr'4] list result (Reverse.reverse (inner_logic'0 seq))}
+  [ return''0 (result:Opaque.ptr)-> {[@expl:reverse_in_place ensures] [%#sreversal_raw_ptr'5] list result (Reverse.reverse seq.current)}
     (! return' {result}) ]
   
