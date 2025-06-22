@@ -11,7 +11,8 @@ pub struct Node<T> {
 
 impl<T: PartialEq> Node<T> {
     #[predicate]
-    fn list_aux(l: RawPtr<Self>, perm_seq: &mut Seq<PtrOwn<Node<T>>>, i: Int) -> bool {
+    #[variant(perm_seq.len() - i)]
+    fn list_aux(l: RawPtr<Self>, perm_seq: &Seq<PtrOwn<Node<T>>>, i: Int) -> bool {
         //On n'aura pas vraiment besoin de l puisque on suppose que perm_seq ne peut pas etre autre chose que la liste
         //des permissions de l
         pearlite! {
@@ -29,23 +30,24 @@ impl<T: PartialEq> Node<T> {
     }
 
     #[predicate]
-    fn list(l: RawPtr<Self>, perm_seq: &mut Seq<PtrOwn<Node<T>>>) -> bool {
+    fn list(l: RawPtr<Self>, perm_seq: &Seq<PtrOwn<Node<T>>>) -> bool {
         //On n'aura pas vraiment besoin de l puisque on suppose que perm_seq ne peut pas etre autre chose que la liste
         //des permissions de l
         pearlite! {
             Self::list_aux(l, perm_seq, 0)
         }
     }
-
+    #[trusted]
     pub fn empty() -> (RawPtr<Self>, Ghost<Seq<PtrOwn<Node<T>>>>) {
         (ptr::null(), Seq::new())
     }
-
+    #[trusted]
     pub fn cons(e: T, l: RawPtr<Self>, seq: &mut Ghost<Seq<PtrOwn<Node<T>>>>) -> RawPtr<Self> {
         let (raw, own) = PtrOwn::new(Node { elem: e, next: l });
         ghost!(seq.push_front_ghost(own.into_inner()));
         raw
     }
+    #[trusted]
     pub fn nth(mut p: RawPtr<Self>, nth: i128, seq: &Ghost<Seq<PtrOwn<Node<T>>>>) -> &T {
         //requires nth >= 0
         let mut i = 0;
@@ -64,8 +66,9 @@ impl<T: PartialEq> Node<T> {
         }
     }
 
-    #[requires(Self::list(p, &mut**seq))]
-    #[ensures(Self::list(result, &mut seq.reverse()))]
+    #[requires(Self::list(p, &**seq))]
+    #[requires(true)]
+    #[ensures(Self::list(result, &seq.reverse()))]
     pub fn reverse_in_place(
         mut p: RawPtr<Self>,
         seq: &mut Ghost<Seq<PtrOwn<Node<T>>>>,
@@ -74,8 +77,8 @@ impl<T: PartialEq> Node<T> {
         let mut q = ptr::null();
         let mut index = ghost!(0int);
         #[invariant(exists<a1: Seq<PtrOwn<Node<T>>>, a2:Seq<PtrOwn<Node<T>>>> 
-            Self::list(q, &mut a1) 
-            && Self::list (p, &mut a2) 
+            Self::list(q, &a1) 
+            && Self::list (p, &a2) 
             && seq.reverse() == a2.reverse().concat(a1))]
         while !p.is_null() {
             let p2 = unsafe { PtrOwn::as_mut(p, ghost!(seq.get_mut_ghost(*index).unwrap())) };
@@ -89,6 +92,7 @@ impl<T: PartialEq> Node<T> {
     }
 }
 
+#[trusted]
 pub fn list_of_vector1<T: PartialEq>(
     mut vec: Vec<T>,
 ) -> (RawPtr<Node<T>>, Ghost<Seq<PtrOwn<Node<T>>>>) {
@@ -101,6 +105,7 @@ pub fn list_of_vector1<T: PartialEq>(
     (l, seq)
 }
 
+#[trusted]
 pub fn list_of_vector2<T: Clone + PartialEq>(
     vec: &Vec<T>,
 ) -> (RawPtr<Node<T>>, Ghost<Seq<PtrOwn<Node<T>>>>) {
