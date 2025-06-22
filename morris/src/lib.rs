@@ -1,7 +1,7 @@
 extern crate creusot_contracts;
 
-mod reversal_pcell;
-mod reversal_raw_ptr;
+//mod reversal_pcell;
+pub mod reversal_raw_ptr;
 
 // type NodeRef<T> = Option<Rc<Comb<T>>>;
 // struct Comb<T> {
