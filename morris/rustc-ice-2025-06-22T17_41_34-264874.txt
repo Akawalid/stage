@@ -1,0 +1,47 @@
+thread 'rustc' panicked at creusot/src/translation/pearlite.rs:1221:26:
+internal error: entered unreachable code: Unexpected deref type: creusot_contracts::Seq<creusot_contracts::ptr_own::PtrOwn<reversal_raw_ptr::Node<T/#0>>>.
+stack backtrace:
+   0:     0x711be5a62ee5 - std::backtrace::Backtrace::create::h2d4276ea66f8d84d
+   1:     0x711be3e15c45 - std::backtrace::Backtrace::force_capture::hb91139e770f18342
+   2:     0x711be2f87644 - std[41a6e8152209c0a6]::panicking::update_hook::<alloc[9f80a3905cc8b55b]::boxed::Box<rustc_driver_impl[3ce1408bca960349]::install_ice_hook::{closure#1}>>::{closure#0}
+   3:     0x711be3e2e583 - std::panicking::rust_panic_with_hook::hdb647d40fc260137
+   4:     0x711be3e2e27a - std::panicking::begin_panic_handler::{{closure}}::h7323aa792739fc4e
+   5:     0x711be3e2bc49 - std::sys::backtrace::__rust_end_short_backtrace::h304d83d1d823b3b1
+   6:     0x711be3e2df3d - rust_begin_unwind
+   7:     0x711be0a52a00 - core::panicking::panic_fmt::h9a9c479b3cce79d6
+   8:     0x603cb73d849c - creusot::translation::pearlite::ThirTerm::logical_reborrow_inner::h26d1c749c565d37f
+   9:     0x603cb73d729c - creusot::translation::pearlite::ThirTerm::logical_reborrow_inner::h26d1c749c565d37f
+  10:     0x603cb73d7190 - creusot::translation::pearlite::ThirTerm::logical_reborrow_inner::h26d1c749c565d37f
+  11:     0x603cb73d729c - creusot::translation::pearlite::ThirTerm::logical_reborrow_inner::h26d1c749c565d37f
+  12:     0x603cb73d6606 - creusot::translation::pearlite::ThirTerm::logical_reborrow::h7079f94cf4a056d4
+  13:     0x603cb73d1867 - creusot::translation::pearlite::ThirTerm::expr_term::h7c5ac4a2290a8ddb
+  14:     0x603cb73d65b5 - creusot::translation::pearlite::ThirTerm::logical_reborrow::h7079f94cf4a056d4
+  15:     0x603cb73d1867 - creusot::translation::pearlite::ThirTerm::expr_term::h7c5ac4a2290a8ddb
+  16:     0x603cb73d1cb3 - creusot::translation::pearlite::ThirTerm::expr_term::h7c5ac4a2290a8ddb
+  17:     0x603cb7342d90 - <alloc::vec::Vec<T> as alloc::vec::spec_from_iter::SpecFromIter<T,I>>::from_iter::h76a52d07b51c0349
+  18:     0x603cb735f1fe - core::iter::adapters::try_process::h8c4a9d334d576102
+  19:     0x603cb73d4944 - creusot::translation::pearlite::ThirTerm::expr_term::h7c5ac4a2290a8ddb
+  20:     0x603cb73cfa49 - creusot::translation::pearlite::pearlite_with_triggers::h3858d1caebccbdb2
+  21:     0x603cb73cf733 - creusot::translation::pearlite::pearlite::h588a32c78009f121
+  22:     0x603cb7449b47 - once_map::unsync::OnceMap<K,V,S>::get_or_try_insert::hf8531721ca33e2d9
+  23:     0x603cb73ae0a8 - creusot::translation::specification::contract_of::h0b0f20cc1b2755fc
+  24:     0x603cb73b006e - creusot::translation::specification::pre_sig_of::hc18bbca84d2725be
+  25:     0x603cb744742f - once_map::unsync::OnceMap<K,V,S>::get_or_try_insert::h2c85c4e72c476143
+  26:     0x603cb73b2537 - creusot::validate::purity::validate_purity::h32cb2d14a7748f1a
+  27:     0x603cb750afbc - creusot::translation::before_analysis::h54498a1e26e37cf5
+  28:     0x603cb72735d3 - <creusot::callbacks::ToWhy as rustc_driver_impl::Callbacks>::after_expansion::h9414ed3b9fcfe856
+  29:     0x711be562e859 - rustc_interface[444c50c8c58a8997]::passes::create_and_enter_global_ctxt::<core[1b69f308fde5021f]::option::Option<rustc_interface[444c50c8c58a8997]::queries::Linker>, rustc_driver_impl[3ce1408bca960349]::run_compiler::{closure#0}::{closure#2}>::{closure#2}::{closure#0}
+  30:     0x711be55245d8 - rustc_interface[444c50c8c58a8997]::interface::run_compiler::<(), rustc_driver_impl[3ce1408bca960349]::run_compiler::{closure#0}>::{closure#1}
+  31:     0x711be548c5f5 - std[41a6e8152209c0a6]::sys::backtrace::__rust_begin_short_backtrace::<rustc_interface[444c50c8c58a8997]::util::run_in_thread_with_globals<rustc_interface[444c50c8c58a8997]::util::run_in_thread_pool_with_globals<rustc_interface[444c50c8c58a8997]::interface::run_compiler<(), rustc_driver_impl[3ce1408bca960349]::run_compiler::{closure#0}>::{closure#1}, ()>::{closure#0}, ()>::{closure#0}::{closure#0}, ()>
+  32:     0x711be548c2d9 - <<std[41a6e8152209c0a6]::thread::Builder>::spawn_unchecked_<rustc_interface[444c50c8c58a8997]::util::run_in_thread_with_globals<rustc_interface[444c50c8c58a8997]::util::run_in_thread_pool_with_globals<rustc_interface[444c50c8c58a8997]::interface::run_compiler<(), rustc_driver_impl[3ce1408bca960349]::run_compiler::{closure#0}>::{closure#1}, ()>::{closure#0}, ()>::{closure#0}::{closure#0}, ()>::{closure#1} as core[1b69f308fde5021f]::ops::function::FnOnce<()>>::call_once::{shim:vtable#0}
+  33:     0x711be548ba6f - std::sys::pal::unix::thread::Thread::new::thread_start::h57c67f308f577aff
+  34:     0x711bdf494ac3 - <unknown>
+  35:     0x711bdf526850 - <unknown>
+  36:                0x0 - <unknown>
+
+
+rustc version: 1.86.0-nightly (a730edcd6 2025-01-30)
+platform: x86_64-unknown-linux-gnu
+
+query stack during panic:
+end of query stack

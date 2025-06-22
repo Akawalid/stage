@@ -1,15 +1,8 @@
 #![allow(dead_code)]
 extern crate creusot_contracts;
-use ::std::mem;
 use ::std::rc::Rc;
 use creusot_contracts::pcell::{PCell, PCellOwn};
 use creusot_contracts::*;
-
-enum List<T> {
-    Empty,
-    Cons(T, Rc<PCell<List<T>>>),
-}
-
 pub struct Node<T> {
     elem: T,
     next: Rc<PCell<List<T>>>,
@@ -18,32 +11,34 @@ pub struct Node<T> {
 pub struct List<T> {
     head: Option<Node<T>>,
 }
-
 impl<T> List<T> {
     pub fn new() -> Self {
-        List::Empty
+        List { head: None }
     }
-
-    pub fn reverse_in_place(&mut self, mut seq: Ghost<Seq<PCellOwn<List<T>>>>) {
-        let mut q = &mut List::Empty;
+    pub fn reverse_in_place(&mut self, mut seq: Ghost<Seq<PCellOwn<List<T>>>>) -> Self {
+        let mut q = List { head: None };
         let mut p = self;
         let mut index = 0;
-        while p != List::Empty {
+        let mut next; //I put here next to make it outlive the loop
+
+        while !p.head.is_none() {
+            let curr = p.head.take().unwrap();
+            next = curr.next.clone();
+
+            let perm = ghost!(seq.get_mut_ghost(Int::new(index).into_inner()).unwrap());
             unsafe {
-                let perm = ghost!(seq.get_mut_ghost(Int::new(index).into_inner()).unwrap());
-                let fwd = next.borrow_mut(perm);
-
-                //j'aurais du faire directement
-                // next.set(perm, *q), mais le borrow_checker renvoie une erreur.
-                let old_q = mem::replace(q, List::Empty);
-                let perm = ghost!(seq.get_mut_ghost(Int::new(index).into_inner()).unwrap());
-                next.set(perm, old_q);
-
-                //si j'interchange les deux lignes en bas, le borrowchecker ne passerais pas.
-                p = fwd;
-                q = p;
-                index += 1;
+                next.set(perm, q);
             }
+
+            q = List { head: Some(curr) };
+
+            let perm = ghost!(seq.get_mut_ghost(Int::new(index).into_inner()).unwrap());
+            unsafe {
+                p = next.borrow_mut(perm);
+            }
+
+            index += 1;
         }
+        q
     }
 }
