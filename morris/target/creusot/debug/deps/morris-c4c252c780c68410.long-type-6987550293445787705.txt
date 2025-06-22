@@ -1,1 +1,0 @@
-creusot_contracts::Ghost<creusot_contracts::Seq<creusot_contracts::ptr_own::PtrOwn<morris::reversal_raw_ptr::Node<i32>>>>
