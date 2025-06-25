@@ -7,7 +7,7 @@
   ],
   "proofs": {
     "Coma": {
-      "vc_empty": { "prover": "alt-ergo@2.6.0", "time": 0.07 },
+      "vc_empty": { "prover": "alt-ergo@2.6.0", "time": 0.031 },
       "vc_new": { "prover": "alt-ergo@2.6.0", "time": 0.029 },
       "vc_null": { "prover": "alt-ergo@2.6.0", "time": 0.023 }
     }

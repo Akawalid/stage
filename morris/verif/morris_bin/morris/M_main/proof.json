@@ -6,35 +6,6 @@
     { "prover": "cvc4@1.8", "size": 26, "time": 0.398 }
   ],
   "proofs": {
-    "Coma": {
-      "vc_clone'": { "prover": "alt-ergo@2.6.0", "time": 0.045 },
-      "vc_into_vec": { "prover": "alt-ergo@2.6.0", "time": 0.047 },
-      "vc_list_of_vector1": { "prover": "alt-ergo@2.6.0", "time": 0.031 },
-      "vc_main": {
-        "tactic": "split_vc",
-        "children": [
-          { "prover": "z3@4.12.4", "time": 0.048 },
-          null,
-          { "prover": "z3@4.12.4", "time": 0.038 },
-          null,
-          { "prover": "z3@4.12.4", "time": 0.058 },
-          null,
-          { "prover": "z3@4.12.4", "time": 0.033 },
-          { "prover": "alt-ergo@2.6.0", "time": 0.044 },
-          { "prover": "alt-ergo@2.6.0", "time": 0.033 },
-          null,
-          { "prover": "alt-ergo@2.6.0", "time": 0.036 },
-          { "prover": "alt-ergo@2.6.0", "time": 0.036 },
-          null,
-          { "prover": "alt-ergo@2.6.0", "time": 0.04 },
-          null,
-          { "prover": "alt-ergo@2.6.0", "time": 0.04 },
-          null
-        ]
-      },
-      "vc_nth": { "prover": "alt-ergo@2.6.0", "time": 0.033 },
-      "vc_print": { "prover": "alt-ergo@2.6.0", "time": 0.041 },
-      "vc_reverse_in_place": { "prover": "alt-ergo@2.6.0", "time": 0.025 }
-    }
+    "Coma": { "vc_main": { "tactic": "split_vc", "children": [] } }
   }
 }
