@@ -88,8 +88,10 @@ impl<T> Node<T> {
     
     #[requires(Self::list(p, **seq))]
     #[ensures(Self::list(result, (^seq).reverse()))]
-    #[ensures(forall<i: Int> exists<j: Int> 0 <= i && i < seq.len() ==>  0 <= j && j < (^seq).len() && (seq[i].val().elem == (^seq)[j].val().elem))]
-    #[ensures(forall<i: Int> exists<j: Int> 0 <= i && i < seq.len() ==>  0 <= j && j < (^seq).len() && (seq[j].val().elem == (^seq)[i].val().elem))]
+    
+    //stabilité par inversion
+    #[ensures(forall<i: Int> 0 <= i && i < seq.len() ==> exists<j: Int> 0 <= j && j < (^seq).len() && (seq[j].val().elem == (^seq)[i].val().elem))]
+    #[ensures(seq.len() == (^seq).len())]
     pub fn reverse_in_place(
         mut p: RawPtr<Self>,
         seq: &mut Ghost<Seq<PtrOwn<Node<T>>>>,
@@ -100,16 +102,20 @@ impl<T> Node<T> {
         };
         let mut q = ptr::null();
         let mut index = ghost!(0int);    
-        let mut seq0 = snapshot!(seq);
+        let seq0 = snapshot!(seq);
+
+        //utile pour invariant0 initialisation
+        proof_assert!(seq.subsequence(0, seq.len()) == **seq);
+
         #[invariant(
             Self::list(q, seq.subsequence(0, *index).reverse()) 
             && Self::list (p, seq.subsequence(*index, seq.len())) 
         //    && **seq == seq.subsequence(0, *index).concat(seq.subsequence(*index, seq.len()))
-
         )]
         #[invariant(0 <= *index && *index <= seq.len())]
-        #[invariant(forall<i: Int> 0 <= i && i < seq.len() ==> exists<j: Int> 0 <= j && j < seq0.len() && (seq[i].val().elem == seq0[j].val().elem))]
-        #[invariant(forall<i: Int> 0 <= i && i < seq.len() ==> exists<j: Int> 0 <= j && j < seq0.len() && (seq[j].val().elem == seq0[i].val().elem))]
+        #[invariant(forall<i: Int> 0 <= i && i < seq0.len() ==> exists<j: Int> 0 <= j && j < seq.len() && (seq0[j].val().elem == seq[i].val().elem))]
+        #[invariant(seq0.len() == seq.len())]
+        #[invariant(inv(seq))]
         while !p.is_null() {
             proof_assert!(*index < seq.len());
             let p2 = unsafe { PtrOwn::as_mut(p, ghost!(seq.get_mut_ghost(*index).unwrap())) };
@@ -118,11 +124,19 @@ impl<T> Node<T> {
             q = p;
             p = next;
             ghost!(*index = *index + 1int);
-            seq0 = snapshot!(seq);
+           // seq0 = snapshot!(seq);
         }
-        proof_assert!(Self::list(q, seq.subsequence(0, *index).reverse()));
-        proof_assert!(Self::list(q, seq.subsequence(0, seq.len()).reverse()));
+
+        //utile pour montrer la postecondition de l'invariant #0
         proof_assert!(seq.subsequence(0, seq.len()) == **seq);
+        
+        let final_seq = snapshot!(seq);
+
+        proof_assert!(
+            forall<i: Int> 0 <= i && i < seq0.len() ==>
+                exists<j: Int> 0 <= j && j < final_seq.len()
+                && final_seq[i].val().elem == seq0[j].val().elem
+        );
         q
     }
 }
