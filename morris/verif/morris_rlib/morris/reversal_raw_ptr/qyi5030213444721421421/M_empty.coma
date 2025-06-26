@@ -1,10 +1,10 @@
-(* #"/home/baggabom/stage/creusot_rust/morris/src/reversal_raw_ptr.rs" 35 4 35 65 *)
+(* #"/home/baggabom/stage/creusot_rust/morris/src/reversal_raw_ptr.rs" 34 4 34 65 *)
 
 (* reversal_raw_ptr::Node<T> *)
 
-let%span sreversal_raw_ptr = "/home/baggabom/stage/creusot_rust/morris/src/reversal_raw_ptr.rs" 35 22 35 65
-let%span sreversal_raw_ptr'0 = "/home/baggabom/stage/creusot_rust/morris/src/reversal_raw_ptr.rs" 33 14 33 45
-let%span sreversal_raw_ptr'1 = "/home/baggabom/stage/creusot_rust/morris/src/reversal_raw_ptr.rs" 34 4 34 40
+let%span sreversal_raw_ptr = "/home/baggabom/stage/creusot_rust/morris/src/reversal_raw_ptr.rs" 34 22 34 65
+let%span sreversal_raw_ptr'0 = "/home/baggabom/stage/creusot_rust/morris/src/reversal_raw_ptr.rs" 32 14 32 45
+let%span sreversal_raw_ptr'1 = "/home/baggabom/stage/creusot_rust/morris/src/reversal_raw_ptr.rs" 33 4 33 40
 let%span sreversal_raw_ptr'2 = "/home/baggabom/stage/creusot_rust/morris/src/reversal_raw_ptr.rs" 14 14 14 28
 let%span sreversal_raw_ptr'3 = "/home/baggabom/stage/creusot_rust/morris/src/reversal_raw_ptr.rs" 19 12 28 13
 let%span sptr = "/home/baggabom/stage/creusot/creusot-contracts/src/std/ptr.rs" 99 22 99 44
@@ -127,7 +127,7 @@ else
 
 meta "compute_max_steps" 1000000
 
-let rec empty[#"/home/baggabom/stage/creusot_rust/morris/src/reversal_raw_ptr.rs" 35 4 35 65] (return'  (x:tuple))= (! bb0
+let rec empty[#"/home/baggabom/stage/creusot_rust/morris/src/reversal_raw_ptr.rs" 34 4 34 65] (return'  (x:tuple))= (! bb0
   [ bb0 = s0 [ s0 = null (fun (_ret:Opaque.ptr) ->  [ &_3 <- _ret ] s1) | s1 = bb1 ] 
   | bb1 = s0 [ s0 = new (fun (_ret: (Seq.seq t_PtrOwn)) ->  [ &_4 <- _ret ] s1) | s1 = bb2 ] 
   | bb2 = s0 [ s0 =  [ &_0 <- { _p0 = _3; _p1 = _4 } ] s1 | s1 = return''0 {_0} ]  ]

@@ -29,14 +29,13 @@ impl<T> Node<T> {
         }
     }
 
-    
     #[ensures(Self::list(result.0, *result.1))]
     #[ensures(result.0.is_null_logic())]
     pub fn empty() -> (RawPtr<Self>, Ghost<Seq<PtrOwn<Node<T>>>>) {
         (ptr::null(), Seq::new())
     }
 
-     #[trusted]
+    #[trusted]
     #[requires(Self::list(l, **seq))]
     #[ensures(Self::list(result,  *^seq))]
     #[ensures(forall<i:Int> 0 <= i && i < (^seq).tail().len() ==> seq[i] == (^seq).tail()[i])]
@@ -53,7 +52,6 @@ impl<T> Node<T> {
         raw
     }
 
-
     #[trusted]
     #[requires(Self::list(p, **seq))]
     #[requires(0 <= nth@ && nth@ < seq.len() )]
@@ -61,13 +59,13 @@ impl<T> Node<T> {
     pub fn nth(mut p: RawPtr<Self>, nth: i128, seq: &Ghost<Seq<PtrOwn<Node<T>>>>) -> &T {
         //requires nth >= 0
         let mut i = 0;
-       //let mut seq_taililng = snapshot!(**seq);
+        //let mut seq_taililng = snapshot!(**seq);
         proof_assert!(**seq == seq.subsequence(0, seq.len()));
         #[invariant(0 <= i@ && i@ <= nth@)]
-        #[invariant(Self::list(p, seq.subsequence(i@, seq.len())))] 
+        #[invariant(Self::list(p, seq.subsequence(i@, seq.len())))]
         loop {
             //je ne comprends pas pourquoi il n'arirve pas à prouver les deux assertions en bas alors que c'est trivial
-                // hypothèse: snapshot! n'est bon pour tracker la valeur de seq meme si c'est une valeur immutable
+            // hypothèse: snapshot! n'est bon pour tracker la valeur de seq meme si c'est une valeur immutable
             //proof_assert!(seq_taililng[0] == seq[i@]);
             //proof_assert!(Self::list(p, *seq_taililng));
             let rw = unsafe {
@@ -85,10 +83,8 @@ impl<T> Node<T> {
         }
     }
 
-    
     #[requires(Self::list(p, **seq))]
     #[ensures(Self::list(result, (^seq).reverse()))]
-    
     //stabilité par inversion
     #[ensures(forall<i: Int> 0 <= i && i < seq.len() ==> exists<j: Int> 0 <= j && j < (^seq).len() && (seq[j].val().elem == (^seq)[i].val().elem))]
     #[ensures(seq.len() == (^seq).len())]
@@ -97,20 +93,24 @@ impl<T> Node<T> {
         seq: &mut Ghost<Seq<PtrOwn<Node<T>>>>,
     ) -> RawPtr<Self> {
         //requires p n'est pas un lasso
-        snapshot!{
+        snapshot! {
             let _ = Seq::<T>::ext_eq;
         };
-        let mut q = ptr::null();
-        let mut index = ghost!(0int);    
+        let mut q: *const Node<T> = ptr::null();
+        let mut index = ghost!(0int);
         let seq0 = snapshot!(seq);
+        let reverted_seq = Seq::empty();
 
         //utile pour invariant0 initialisation
         proof_assert!(seq.subsequence(0, seq.len()) == **seq);
 
+        // #[invariant(
+        //     Self::list(q, seq.subsequence(0, *index).reverse())
+        //     && Self::list (p, seq.subsequence(*index, seq.len()))
+        // )]
         #[invariant(
-            Self::list(q, seq.subsequence(0, *index).reverse()) 
-            && Self::list (p, seq.subsequence(*index, seq.len())) 
-        //    && **seq == seq.subsequence(0, *index).concat(seq.subsequence(*index, seq.len()))
+            Self::list(q, reverted_seq)
+            && Self::list (p, **seq)
         )]
         #[invariant(0 <= *index && *index <= seq.len())]
         #[invariant(forall<i: Int> 0 <= i && i < seq0.len() ==> exists<j: Int> 0 <= j && j < seq.len() && (seq0[j].val().elem == seq[i].val().elem))]
@@ -124,19 +124,11 @@ impl<T> Node<T> {
             q = p;
             p = next;
             ghost!(*index = *index + 1int);
-           // seq0 = snapshot!(seq);
+            // seq0 = snapshot!(seq);
         }
 
         //utile pour montrer la postecondition de l'invariant #0
         proof_assert!(seq.subsequence(0, seq.len()) == **seq);
-        
-        let final_seq = snapshot!(seq);
-
-        proof_assert!(
-            forall<i: Int> 0 <= i && i < seq0.len() ==>
-                exists<j: Int> 0 <= j && j < final_seq.len()
-                && final_seq[i].val().elem == seq0[j].val().elem
-        );
         q
     }
 }
@@ -145,9 +137,7 @@ impl<T> Node<T> {
 #[ensures(Node::list(result.0, *result.1))]
 #[ensures(result.1.len() == vec.view().len())]
 #[ensures(forall<i: Int> 0 <= i && i < vec.view().len() ==> (*result.1)[i].val().elem == vec.view()[i])]
-pub fn list_of_vector1<T>(
-    mut vec: Vec<T>,
-) -> (RawPtr<Node<T>>, Ghost<Seq<PtrOwn<Node<T>>>>) {
+pub fn list_of_vector1<T>(mut vec: Vec<T>) -> (RawPtr<Node<T>>, Ghost<Seq<PtrOwn<Node<T>>>>) {
     //Takes possession of elements in the vector
     let (mut l, mut seq) = Node::empty();
     let vec0 = snapshot!(vec);
@@ -156,24 +146,23 @@ pub fn list_of_vector1<T>(
     #[invariant(Node::list(l, *seq))]
     #[invariant(vec.view().len() + seq.len() == vec0.view().len())]
     #[invariant(forall<i: Int> 0 <= i && i < vec.view().len() ==> vec.view()[i] == vec0.view()[i])]
-    #[invariant(inv(seq))] 
-    loop  {
+    #[invariant(inv(seq))]
+    loop {
         //let vec1 = snapshot!(vec);
         //let seq1 = snapshot!(seq);
         //proof_assert!(vec1.view().len() > 0 ==> vec1.view()[vec1.view().len()-1] == vec0.view()[vec1.view().len()-1]);
-        
-        if let Some(v) = vec.pop() {            
+
+        if let Some(v) = vec.pop() {
             //let vv = snapshot!(v);
             l = Node::cons(v, l, &mut seq);
             //proof_assert!(vec1.view().len() == vec.view().len() + 1);
             //proof_assert!(seq[0].val().elem == *vv && seq.tail() == **seq1);
             //proof_assert!(forall<i: Int>
-              //  vec1.view().len() <= i && i < vec0.view().len() ==> seq1[i - vec1.view().len()].val().elem == vec0.view()[i]);
+            //  vec1.view().len() <= i && i < vec0.view().len() ==> seq1[i - vec1.view().len()].val().elem == vec0.view()[i]);
             //proof_assert!(vec1.view() == vec.view().push_back(*vv));
             //proof_assert!(vec1.view()[vec.view().len()] == vec0.view()[vec.view().len()]);
             //proof_assert!(seq[0].val().elem == vec0.view()[vec.view().len()]);
-        }
-        else {
+        } else {
             break;
         }
     }
@@ -181,9 +170,7 @@ pub fn list_of_vector1<T>(
 }
 
 #[trusted]
-pub fn list_of_vector2<T: Clone>(
-    vec: &Vec<T>,
-) -> (RawPtr<Node<T>>, Ghost<Seq<PtrOwn<Node<T>>>>) {
+pub fn list_of_vector2<T: Clone>(vec: &Vec<T>) -> (RawPtr<Node<T>>, Ghost<Seq<PtrOwn<Node<T>>>>) {
     let (mut l, mut seq) = Node::empty();
 
     let mut i = 1;
