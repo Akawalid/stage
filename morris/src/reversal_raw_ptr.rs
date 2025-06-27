@@ -84,10 +84,10 @@ impl<T> Node<T> {
     }
 
     #[requires(Self::list(p, **seq))]
-    #[ensures(Self::list(result, (^seq).reverse()))]
+    #[ensures(Self::list(result, *^seq))]
     //stabilité par inversion
-    #[ensures(forall<i: Int> 0 <= i && i < seq.len() ==> exists<j: Int> 0 <= j && j < (^seq).len() && (seq[j].val().elem == (^seq)[i].val().elem))]
-    #[ensures(seq.len() == (^seq).len())]
+    // #[ensures(forall<i: Int> 0 <= i && i < seq.len() ==> exists<j: Int> 0 <= j && j < (^seq).len() && (seq[j].val().elem == (^seq)[i].val().elem))]
+    // #[ensures(seq.len() == (^seq).len())]
     pub fn reverse_in_place(
         mut p: RawPtr<Self>,
         seq: &mut Ghost<Seq<PtrOwn<Node<T>>>>,
@@ -97,38 +97,36 @@ impl<T> Node<T> {
             let _ = Seq::<T>::ext_eq;
         };
         let mut q: *const Node<T> = ptr::null();
-        let mut index = ghost!(0int);
-        let seq0 = snapshot!(seq);
-        let reverted_seq = Seq::empty();
+        let mut reverted_seq = Seq::new();
 
-        //utile pour invariant0 initialisation
-        proof_assert!(seq.subsequence(0, seq.len()) == **seq);
-
-        // #[invariant(
-        //     Self::list(q, seq.subsequence(0, *index).reverse())
-        //     && Self::list (p, seq.subsequence(*index, seq.len()))
-        // )]
-        #[invariant(
-            Self::list(q, reverted_seq)
-            && Self::list (p, **seq)
-        )]
-        #[invariant(0 <= *index && *index <= seq.len())]
-        #[invariant(forall<i: Int> 0 <= i && i < seq0.len() ==> exists<j: Int> 0 <= j && j < seq.len() && (seq0[j].val().elem == seq[i].val().elem))]
-        #[invariant(seq0.len() == seq.len())]
+        #[invariant(Self::list(q, *reverted_seq))]
+        #[invariant(Self::list (p, **seq))]
         #[invariant(inv(seq))]
+        #[invariant(inv(reverted_seq))]
+        // #[invariant(forall<i: Int> 0 <= i && i < seq0.len() ==> exists<j: Int> 0 <= j && j < seq.len() && (seq0[j].val().elem == seq[i].val().elem))]
+        // #[invariant(seq0.len() == seq.len())]
         while !p.is_null() {
-            proof_assert!(*index < seq.len());
-            let p2 = unsafe { PtrOwn::as_mut(p, ghost!(seq.get_mut_ghost(*index).unwrap())) };
+            let snap = snapshot!(**seq);
+            let p2 =
+                unsafe { PtrOwn::as_mut(p, ghost!(seq.get_mut_ghost(*ghost!(0int)).unwrap())) };
             let next = p2.next;
             p2.next = q;
             q = p;
             p = next;
-            ghost!(*index = *index + 1int);
-            // seq0 = snapshot!(seq);
-        }
+            let snap2 = snapshot!(**seq);
+            ghost!((*reverted_seq).push_front_ghost(seq.pop_front_ghost().unwrap()));
+            //Hypothesis: invariant(Self::list (p, **seq))
+            // We need to add to the hypothesis the fac that the tail of the previous seq is the new seq
+            proof_assert!(snap2.tail() == **seq);
 
-        //utile pour montrer la postecondition de l'invariant #0
-        proof_assert!(seq.subsequence(0, seq.len()) == **seq);
+            //In order to proof the last assertion, we need the following assertion
+            //It esnures that seq.tail() didn't change between the beginig of the loop and the end, what ensures the stability of our invariant
+            proof_assert!((*snap2).tail() == (*snap).tail());
+
+            //this should be enough to prove #[invariant(Self::list (p, **seq))], whith using the latter, creusot proves well the remaining invariant about q
+            proof_assert!(Self::list(p, (*snap2).tail()));
+        }
+        ghost!(**seq = reverted_seq.into_inner());
         q
     }
 }
