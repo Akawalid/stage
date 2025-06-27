@@ -83,11 +83,29 @@ impl<T> Node<T> {
         }
     }
 
+    #[predicate]
+    pub fn contains(s: Seq<PtrOwn<Node<T>>>, x: T) -> bool
+    where
+        T: Sized, // TODO: don't require this (problem: uses index)
+    {
+        pearlite! { exists<i: Int> 0 <= i &&  i < s.len() && s[i].val().elem == x }
+    }
+
+    #[predicate]
+    pub fn reverse(seq: Seq<PtrOwn<Node<T>>>, other: Seq<PtrOwn<Node<T>>>) -> bool
+    where
+        T: Sized, // TODO: don't require this (problem: uses index)
+    {
+        pearlite! {}
+    }
+
     #[requires(Self::list(p, **seq))]
     #[ensures(Self::list(result, *^seq))]
     //stabilité par inversion
-    // #[ensures(forall<i: Int> 0 <= i && i < seq.len() ==> exists<j: Int> 0 <= j && j < (^seq).len() && (seq[j].val().elem == (^seq)[i].val().elem))]
+    //#[ensures(forall<i: Int> 0 <= i && i < seq.len() ==> exists<j: Int> 0 <= j && j < (^seq).len() && (seq[j].val().elem == (^seq)[i].val().elem))]
+
     // #[ensures(seq.len() == (^seq).len())]
+    // #[ensures(forall<e: T> Self::contains(**seq, e) ==> Self::contains(*^seq, e))]
     pub fn reverse_in_place(
         mut p: RawPtr<Self>,
         seq: &mut Ghost<Seq<PtrOwn<Node<T>>>>,
@@ -98,18 +116,26 @@ impl<T> Node<T> {
         };
         let mut q: *const Node<T> = ptr::null();
         let mut reverted_seq = Seq::new();
+        let seq0 = snapshot!(**seq);
 
         #[invariant(Self::list(q, *reverted_seq))]
         #[invariant(Self::list (p, **seq))]
         #[invariant(inv(seq))]
         #[invariant(inv(reverted_seq))]
-        // #[invariant(forall<i: Int> 0 <= i && i < seq0.len() ==> exists<j: Int> 0 <= j && j < seq.len() && (seq0[j].val().elem == seq[i].val().elem))]
-        // #[invariant(seq0.len() == seq.len())]
+        // #[invariant(forall<i: Int> 0 <= i && i < seq0.len() ==>
+        //     exists<j: Int> 0 <= j && j < seq.len() && (seq0[j].val().elem == seq[i].val().elem)
+        //     ||
+        //     exists<j: Int> 0 <= j && j < reverted_seq.len() && (seq0[j].val().elem == reverted_seq[i].val().elem)
+        //     )]
+        // #[invariant(forall<e: T> Self::contains(*seq0, e) ==> Self::contains(*reverted_seq, e) || Self::contains(**seq, e))]
+        // #[invariant(seq0.len() == seq.len() + reverted_seq.len())]
         while !p.is_null() {
             let snap = snapshot!(**seq);
+            let reversed_snap = snapshot!(*reverted_seq);
             let p2 =
                 unsafe { PtrOwn::as_mut(p, ghost!(seq.get_mut_ghost(*ghost!(0int)).unwrap())) };
             let next = p2.next;
+            let e0 = snapshot!(p2.elem);
             p2.next = q;
             q = p;
             p = next;
@@ -124,7 +150,15 @@ impl<T> Node<T> {
             proof_assert!((*snap2).tail() == (*snap).tail());
 
             //this should be enough to prove #[invariant(Self::list (p, **seq))], whith using the latter, creusot proves well the remaining invariant about q
+            //proof_assert!(Self::list(p, (*snap2).tail()));
             proof_assert!(Self::list(p, (*snap2).tail()));
+
+            // proof_assert!(forall<e: T> Self::contains(**seq, e) && e != *e0 ==> Self::contains(*snap, e));
+            // proof_assert!(forall<e: T> Self::contains(*snap, e) && e != *e0 ==> Self::contains(**seq, e) );
+            // proof_assert!(forall<e: T> Self::contains(*reverted_seq, e) ==> e != *e0 ==> Self::contains(*reversed_snap, e));
+            // proof_assert!(forall<e: T> Self::contains(*reversed_snap, e) && e != *e0 ==> Self::contains(*reverted_seq, e));
+            // proof_assert!(forall<e: T> Self::contains(*seq0, e) ==> e != *e0 ==> Self::contains(*reverted_seq, e) || Self::contains(**seq, e));
+            //proof_assert!(Self::contains(*reverted_seq, *e0));
         }
         ghost!(**seq = reverted_seq.into_inner());
         q
