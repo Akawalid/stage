@@ -92,15 +92,20 @@ impl<T> Node<T> {
     }
 
     #[predicate]
-    pub fn reverse(seq: Seq<PtrOwn<Node<T>>>, other: Seq<PtrOwn<Node<T>>>) -> bool
+    pub fn reverse(seq: Seq<PtrOwn<Node<T>>>, other: Seq<PtrOwn<Node<T>>>, lb: Int, lh: Int) -> bool
     where
         T: Sized, // TODO: don't require this (problem: uses index)
     {
-        pearlite! {}
+        pearlite! {
+             forall<i: Int>
+            lb <= i && i < lh
+            ==> seq[i].val().elem == other[other.len() - i - 1].val().elem
+        }
     }
 
     #[requires(Self::list(p, **seq))]
     #[ensures(Self::list(result, *^seq))]
+    #[ensures(seq.len() == (^seq).len() && Self::reverse(**seq, *^seq, 0, seq.len()))]
     //stabilité par inversion
     //#[ensures(forall<i: Int> 0 <= i && i < seq.len() ==> exists<j: Int> 0 <= j && j < (^seq).len() && (seq[j].val().elem == (^seq)[i].val().elem))]
 
@@ -118,48 +123,51 @@ impl<T> Node<T> {
         let mut reverted_seq = Seq::new();
         let seq0 = snapshot!(**seq);
 
-        #[invariant(Self::list(q, *reverted_seq))]
-        #[invariant(Self::list (p, **seq))]
+        #[invariant(Self::list(q, *reverted_seq))] //0
+        #[invariant(Self::list (p, **seq))] //1
+        #[invariant(Self::reverse(seq0.subsequence(0, reverted_seq.len()), *reverted_seq, 0, reverted_seq.len()))]
+        //2
+        #[invariant(reverted_seq.len() + seq.len() == seq0.len())]
+        //3
+
+        //l'invariant en bas, permet (théoriquement) de montrer l'assertion a1339 et a4224 ce qui permet de réduire le nombre
+        //de proofs asserts considérablement, mais malheureusement le prouveurs n'y arrive pas
+        #[invariant(**seq == seq0.subsequence(reverted_seq.len(), seq0.len()))]
+        //#[invariant(seq[0].val().elem == seq0[reverted_seq.len()].val().elem)]
         #[invariant(inv(seq))]
         #[invariant(inv(reverted_seq))]
-        // #[invariant(forall<i: Int> 0 <= i && i < seq0.len() ==>
-        //     exists<j: Int> 0 <= j && j < seq.len() && (seq0[j].val().elem == seq[i].val().elem)
-        //     ||
-        //     exists<j: Int> 0 <= j && j < reverted_seq.len() && (seq0[j].val().elem == reverted_seq[i].val().elem)
-        //     )]
-        // #[invariant(forall<e: T> Self::contains(*seq0, e) ==> Self::contains(*reverted_seq, e) || Self::contains(**seq, e))]
-        // #[invariant(seq0.len() == seq.len() + reverted_seq.len())]
         while !p.is_null() {
             let snap = snapshot!(**seq);
-            let reversed_snap = snapshot!(*reverted_seq);
             let p2 =
                 unsafe { PtrOwn::as_mut(p, ghost!(seq.get_mut_ghost(*ghost!(0int)).unwrap())) };
             let next = p2.next;
-            let e0 = snapshot!(p2.elem);
             p2.next = q;
             q = p;
             p = next;
             let snap2 = snapshot!(**seq);
+
             ghost!((*reverted_seq).push_front_ghost(seq.pop_front_ghost().unwrap()));
+
             //Hypothesis: invariant(Self::list (p, **seq))
             // We need to add to the hypothesis the fac that the tail of the previous seq is the new seq
-            proof_assert!(snap2.tail() == **seq);
+            //a1369
+            proof_assert!((*snap2).tail() == **seq);
 
             //In order to proof the last assertion, we need the following assertion
             //It esnures that seq.tail() didn't change between the beginig of the loop and the end, what ensures the stability of our invariant
+            //a7070
             proof_assert!((*snap2).tail() == (*snap).tail());
 
             //this should be enough to prove #[invariant(Self::list (p, **seq))], whith using the latter, creusot proves well the remaining invariant about q
             //proof_assert!(Self::list(p, (*snap2).tail()));
+            //a1313
             proof_assert!(Self::list(p, (*snap2).tail()));
-
-            // proof_assert!(forall<e: T> Self::contains(**seq, e) && e != *e0 ==> Self::contains(*snap, e));
-            // proof_assert!(forall<e: T> Self::contains(*snap, e) && e != *e0 ==> Self::contains(**seq, e) );
-            // proof_assert!(forall<e: T> Self::contains(*reverted_seq, e) ==> e != *e0 ==> Self::contains(*reversed_snap, e));
-            // proof_assert!(forall<e: T> Self::contains(*reversed_snap, e) && e != *e0 ==> Self::contains(*reverted_seq, e));
-            // proof_assert!(forall<e: T> Self::contains(*seq0, e) ==> e != *e0 ==> Self::contains(*reverted_seq, e) || Self::contains(**seq, e));
-            //proof_assert!(Self::contains(*reverted_seq, *e0));
+            // ==> invariant #1 checks for iteration n+1
         }
+
+        //Pour montrer ensures#1 (ensures(seq.len() == (^seq).len() && Self::reverse(**seq, *^seq, 0, seq.len())))
+        //a4224
+        proof_assert!(seq0.subsequence(0, reverted_seq.len()) == *seq0);
         ghost!(**seq = reverted_seq.into_inner());
         q
     }
