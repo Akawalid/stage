@@ -103,15 +103,22 @@ impl<T> Node<T> {
         }
     }
 
+    #[trusted]
     #[logic]
-    #[requires(Self::reverse(seq0.subsequence(0, rev_seq.len()), rev_seq, 0, rev_seq.len()))]
-    #[requires(seq == seq0.subsequence(rev_seq.len(), seq0.len()))]
+    #[requires(Self::reverse(seq0.subsequence(0, rev_seq.len()), *rev_seq, 0, rev_seq.len()))]
+    #[requires(*seq == seq0.subsequence(rev_seq.len(), seq0.len()))]
     #[ensures(rev_seq.len() + seq.len() == seq0.len())]
     fn disjunciton_lemma(
-        seq0: Seq<PtrOwn<Node<T>>>,
-        seq: Seq<PtrOwn<Node<T>>>,
-        rev_seq: Seq<PtrOwn<Node<T>>>,
+        seq0: &Seq<PtrOwn<Node<T>>>,
+        seq: &Seq<PtrOwn<Node<T>>>,
+        rev_seq: &Seq<PtrOwn<Node<T>>>,
     ) {
+        proof_assert!(rev_seq.len() == seq0.subsequence(0, rev_seq.len()).len());
+        proof_assert!(
+            seq0.subsequence(0, rev_seq.len())
+                .concat(seq0.subsequence(rev_seq.len(), seq0.len()))
+                == *seq0
+        );
     }
 
     #[requires(Self::list(p, **seq))]
@@ -137,40 +144,46 @@ impl<T> Node<T> {
         #[invariant(Self::list(q, *reverted_seq))]
         #[invariant(Self::list(p, **seq))]
         #[invariant(Self::reverse(seq0.subsequence(0, reverted_seq.len()), *reverted_seq, 0, reverted_seq.len()))]
-        #[invariant(reverted_seq.len() + seq.len() == seq0.len())]
+        //Question!!!!!!!!!! Ican either keep this invariant which proves everything, or remove it and prove disjunction_lemma
+        //which makes the code cleaner.
+        //#[invariant(reverted_seq.len() + seq.len() == seq0.len())]
         #[invariant(**seq == seq0.subsequence(reverted_seq.len(), seq0.len()))]
-        //#[invariant(seq[0].val().elem == seq0[reverted_seq.len()].val().elem)]
         #[invariant(inv(seq))]
         #[invariant(inv(reverted_seq))]
         while !p.is_null() {
-            let snap = snapshot!(**seq);
+            snapshot!(Self::disjunciton_lemma(&*seq0, &**seq, &*reverted_seq));
+            let sloop_entry = snapshot!(**seq);
+            let revs_loop_entry = snapshot!(*reverted_seq);
             let p2 =
                 unsafe { PtrOwn::as_mut(p, ghost!(seq.get_mut_ghost(*ghost!(0int)).unwrap())) };
             let next = p2.next;
             p2.next = q;
             q = p;
             p = next;
-            let snap2 = snapshot!(**seq);
+            let sloop_exit = snapshot!(**seq);
 
             ghost!((*reverted_seq).push_front_ghost(seq.pop_front_ghost().unwrap()));
+
+            //a0156: Assertion used to prove invariant #1 (we can remove it and use use_th seq.FreeMonoid instead)
+            proof_assert!(reverted_seq.tail() == *revs_loop_entry);
 
             //Hypothesis: invariant(Self::list (p, **seq))
             // We need to add to the hypothesis the fac that the tail of the previous seq is the new seq
             //a1369
-            proof_assert!((*snap2).tail() == **seq);
+            proof_assert!((*sloop_exit).tail() == **seq);
 
             //In order to proof the last assertion, we need the following assertion
             //It esnures that seq.tail() didn't change between the beginig of the loop and the end, what ensures the stability of our invariant
             //a7070
-            proof_assert!((*snap2).tail() == (*snap).tail());
+            proof_assert!((*sloop_exit).tail() == (*sloop_entry).tail());
 
             //this should be enough to prove #[invariant(Self::list (p, **seq))], whith using the latter, creusot proves well the remaining invariant about q
             //proof_assert!(Self::list(p, (*snap2).tail()));
             //a1313
-            proof_assert!(Self::list(p, (*snap2).tail()));
+            proof_assert!(Self::list(p, (*sloop_exit).tail()));
             // ==> invariant #1 checks for iteration n+1
         }
-
+        snapshot!(Self::disjunciton_lemma(&*seq0, &**seq, &*reverted_seq));
         //Pour montrer ensures#1 (ensures(seq.len() == (^seq).len() && Self::reverse(**seq, *^seq, 0, seq.len())))
         //a4224
         proof_assert!(seq0.subsequence(0, reverted_seq.len()) == *seq0);
