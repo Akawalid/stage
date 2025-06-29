@@ -103,6 +103,17 @@ impl<T> Node<T> {
         }
     }
 
+    #[logic]
+    #[requires(Self::reverse(seq0.subsequence(0, rev_seq.len()), rev_seq, 0, rev_seq.len()))]
+    #[requires(seq == seq0.subsequence(rev_seq.len(), seq0.len()))]
+    #[ensures(rev_seq.len() + seq.len() == seq0.len())]
+    fn disjunciton_lemma(
+        seq0: Seq<PtrOwn<Node<T>>>,
+        seq: Seq<PtrOwn<Node<T>>>,
+        rev_seq: Seq<PtrOwn<Node<T>>>,
+    ) {
+    }
+
     #[requires(Self::list(p, **seq))]
     #[ensures(Self::list(result, *^seq))]
     #[ensures(seq.len() == (^seq).len() && Self::reverse(**seq, *^seq, 0, seq.len()))]
@@ -123,15 +134,10 @@ impl<T> Node<T> {
         let mut reverted_seq = Seq::new();
         let seq0 = snapshot!(**seq);
 
-        #[invariant(Self::list(q, *reverted_seq))] //0
-        #[invariant(Self::list (p, **seq))] //1
+        #[invariant(Self::list(q, *reverted_seq))]
+        #[invariant(Self::list(p, **seq))]
         #[invariant(Self::reverse(seq0.subsequence(0, reverted_seq.len()), *reverted_seq, 0, reverted_seq.len()))]
-        //2
         #[invariant(reverted_seq.len() + seq.len() == seq0.len())]
-        //3
-
-        //l'invariant en bas, permet (théoriquement) de montrer l'assertion a1339 et a4224 ce qui permet de réduire le nombre
-        //de proofs asserts considérablement, mais malheureusement le prouveurs n'y arrive pas
         #[invariant(**seq == seq0.subsequence(reverted_seq.len(), seq0.len()))]
         //#[invariant(seq[0].val().elem == seq0[reverted_seq.len()].val().elem)]
         #[invariant(inv(seq))]

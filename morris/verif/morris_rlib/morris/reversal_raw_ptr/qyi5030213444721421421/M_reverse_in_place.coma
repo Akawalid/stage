@@ -1,27 +1,27 @@
-(* #"/home/baggabom/stage/creusot_rust/morris/src/reversal_raw_ptr.rs" 114 4 117 21 *)
+(* #"/home/baggabom/stage/creusot_rust/morris/src/reversal_raw_ptr.rs" 125 4 128 21 *)
 
 (* reversal_raw_ptr::Node<T> *)
 
-let%span sreversal_raw_ptr = "/home/baggabom/stage/creusot_rust/morris/src/reversal_raw_ptr.rs" 119 8 121 9
-let%span sreversal_raw_ptr'0 = "/home/baggabom/stage/creusot_rust/morris/src/reversal_raw_ptr.rs" 124 19 124 35
-let%span sreversal_raw_ptr'1 = "/home/baggabom/stage/creusot_rust/morris/src/reversal_raw_ptr.rs" 138 20 138 37
-let%span sreversal_raw_ptr'2 = "/home/baggabom/stage/creusot_rust/morris/src/reversal_raw_ptr.rs" 137 20 137 28
-let%span sreversal_raw_ptr'3 = "/home/baggabom/stage/creusot_rust/morris/src/reversal_raw_ptr.rs" 135 20 135 77
-let%span sreversal_raw_ptr'4 = "/home/baggabom/stage/creusot_rust/morris/src/reversal_raw_ptr.rs" 130 20 130 64
-let%span sreversal_raw_ptr'5 = "/home/baggabom/stage/creusot_rust/morris/src/reversal_raw_ptr.rs" 128 20 128 112
-let%span sreversal_raw_ptr'6 = "/home/baggabom/stage/creusot_rust/morris/src/reversal_raw_ptr.rs" 127 20 127 41
-let%span sreversal_raw_ptr'7 = "/home/baggabom/stage/creusot_rust/morris/src/reversal_raw_ptr.rs" 126 20 126 48
-let%span sreversal_raw_ptr'8 = "/home/baggabom/stage/creusot_rust/morris/src/reversal_raw_ptr.rs" 140 23 140 39
-let%span sreversal_raw_ptr'9 = "/home/baggabom/stage/creusot_rust/morris/src/reversal_raw_ptr.rs" 142 76 142 80
-let%span sreversal_raw_ptr'10 = "/home/baggabom/stage/creusot_rust/morris/src/reversal_raw_ptr.rs" 147 24 147 40
-let%span sreversal_raw_ptr'11 = "/home/baggabom/stage/creusot_rust/morris/src/reversal_raw_ptr.rs" 154 26 154 50
-let%span sreversal_raw_ptr'12 = "/home/baggabom/stage/creusot_rust/morris/src/reversal_raw_ptr.rs" 159 26 159 59
-let%span sreversal_raw_ptr'13 = "/home/baggabom/stage/creusot_rust/morris/src/reversal_raw_ptr.rs" 164 26 164 56
-let%span sreversal_raw_ptr'14 = "/home/baggabom/stage/creusot_rust/morris/src/reversal_raw_ptr.rs" 170 22 170 70
-let%span sreversal_raw_ptr'15 = "/home/baggabom/stage/creusot_rust/morris/src/reversal_raw_ptr.rs" 116 8 116 11
-let%span sreversal_raw_ptr'16 = "/home/baggabom/stage/creusot_rust/morris/src/reversal_raw_ptr.rs" 106 15 106 35
-let%span sreversal_raw_ptr'17 = "/home/baggabom/stage/creusot_rust/morris/src/reversal_raw_ptr.rs" 107 14 107 39
-let%span sreversal_raw_ptr'18 = "/home/baggabom/stage/creusot_rust/morris/src/reversal_raw_ptr.rs" 108 14 108 84
+let%span sreversal_raw_ptr = "/home/baggabom/stage/creusot_rust/morris/src/reversal_raw_ptr.rs" 130 8 132 9
+let%span sreversal_raw_ptr'0 = "/home/baggabom/stage/creusot_rust/morris/src/reversal_raw_ptr.rs" 135 19 135 35
+let%span sreversal_raw_ptr'1 = "/home/baggabom/stage/creusot_rust/morris/src/reversal_raw_ptr.rs" 144 20 144 37
+let%span sreversal_raw_ptr'2 = "/home/baggabom/stage/creusot_rust/morris/src/reversal_raw_ptr.rs" 143 20 143 28
+let%span sreversal_raw_ptr'3 = "/home/baggabom/stage/creusot_rust/morris/src/reversal_raw_ptr.rs" 141 20 141 77
+let%span sreversal_raw_ptr'4 = "/home/baggabom/stage/creusot_rust/morris/src/reversal_raw_ptr.rs" 140 20 140 64
+let%span sreversal_raw_ptr'5 = "/home/baggabom/stage/creusot_rust/morris/src/reversal_raw_ptr.rs" 139 20 139 112
+let%span sreversal_raw_ptr'6 = "/home/baggabom/stage/creusot_rust/morris/src/reversal_raw_ptr.rs" 138 20 138 40
+let%span sreversal_raw_ptr'7 = "/home/baggabom/stage/creusot_rust/morris/src/reversal_raw_ptr.rs" 137 20 137 48
+let%span sreversal_raw_ptr'8 = "/home/baggabom/stage/creusot_rust/morris/src/reversal_raw_ptr.rs" 146 23 146 39
+let%span sreversal_raw_ptr'9 = "/home/baggabom/stage/creusot_rust/morris/src/reversal_raw_ptr.rs" 148 76 148 80
+let%span sreversal_raw_ptr'10 = "/home/baggabom/stage/creusot_rust/morris/src/reversal_raw_ptr.rs" 153 24 153 40
+let%span sreversal_raw_ptr'11 = "/home/baggabom/stage/creusot_rust/morris/src/reversal_raw_ptr.rs" 160 26 160 50
+let%span sreversal_raw_ptr'12 = "/home/baggabom/stage/creusot_rust/morris/src/reversal_raw_ptr.rs" 165 26 165 59
+let%span sreversal_raw_ptr'13 = "/home/baggabom/stage/creusot_rust/morris/src/reversal_raw_ptr.rs" 170 26 170 56
+let%span sreversal_raw_ptr'14 = "/home/baggabom/stage/creusot_rust/morris/src/reversal_raw_ptr.rs" 176 22 176 70
+let%span sreversal_raw_ptr'15 = "/home/baggabom/stage/creusot_rust/morris/src/reversal_raw_ptr.rs" 127 8 127 11
+let%span sreversal_raw_ptr'16 = "/home/baggabom/stage/creusot_rust/morris/src/reversal_raw_ptr.rs" 117 15 117 35
+let%span sreversal_raw_ptr'17 = "/home/baggabom/stage/creusot_rust/morris/src/reversal_raw_ptr.rs" 118 14 118 39
+let%span sreversal_raw_ptr'18 = "/home/baggabom/stage/creusot_rust/morris/src/reversal_raw_ptr.rs" 119 14 119 84
 let%span sreversal_raw_ptr'19 = "/home/baggabom/stage/creusot_rust/morris/src/reversal_raw_ptr.rs" 100 13 102 74
 let%span sreversal_raw_ptr'20 = "/home/baggabom/stage/creusot_rust/morris/src/reversal_raw_ptr.rs" 14 14 14 28
 let%span sreversal_raw_ptr'21 = "/home/baggabom/stage/creusot_rust/morris/src/reversal_raw_ptr.rs" 19 12 28 13
@@ -366,7 +366,7 @@ predicate resolve'6 (_0 : MutBorrow.t ( (Seq.seq t_PtrOwn))) =
 
 meta "compute_max_steps" 1000000
 
-let rec reverse_in_place[#"/home/baggabom/stage/creusot_rust/morris/src/reversal_raw_ptr.rs" 114 4 117 21] (p:Opaque.ptr) (seq:MutBorrow.t ( (Seq.seq t_PtrOwn))) (return'  (x:Opaque.ptr))= {[@expl:reverse_in_place 'seq' type invariant] [%#sreversal_raw_ptr'15] inv'6 seq}
+let rec reverse_in_place[#"/home/baggabom/stage/creusot_rust/morris/src/reversal_raw_ptr.rs" 125 4 128 21] (p:Opaque.ptr) (seq:MutBorrow.t ( (Seq.seq t_PtrOwn))) (return'  (x:Opaque.ptr))= {[@expl:reverse_in_place 'seq' type invariant] [%#sreversal_raw_ptr'15] inv'6 seq}
   {[@expl:reverse_in_place requires] [%#sreversal_raw_ptr'16] list p seq.current}
   (! bb0
   [ bb0 = s0 [ s0 =  [ &_6 <- [%#sreversal_raw_ptr] let _ = () in () ] s1 | s1 = bb1 ] 
