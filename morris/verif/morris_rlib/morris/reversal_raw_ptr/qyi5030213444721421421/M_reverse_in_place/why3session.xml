@@ -2,10 +2,10 @@
 <!DOCTYPE why3session PUBLIC "-//Why3//proof session v5//EN"
 "https://www.why3.org/why3session.dtd">
 <why3session shape_version="6">
-<prover id="0" name="Z3" version="4.12.4" timelimit="3.02108" memlimit="1000"/>
+<prover id="0" name="Z3" version="4.12.4" timelimit="2.26581" memlimit="1000"/>
 <prover id="1" name="CVC4" version="1.8" timelimit="4.46943" memlimit="1000"/>
 <prover id="2" name="CVC5" version="1.0.5" timelimit="3.12783" memlimit="1000"/>
-<prover id="3" name="Alt-Ergo" version="2.6.0" timelimit="0.092689" memlimit="1000"/>
+<prover id="3" name="Alt-Ergo" version="2.6.0" timelimit="2.379" memlimit="1000"/>
 <file format="coma">
 <path name=".."/><path name="M_reverse_in_place.coma"/>
 <theory name="Coma">
@@ -16,253 +16,238 @@
  <proof prover="3" timelimit="0.051736"><result status="valid" time="0.051736" steps="0"/></proof>
  </goal>
  <goal name="vc_is_null" proved="true">
- <proof prover="3" timelimit="0.061965"><result status="valid" time="0.061965" steps="0"/></proof>
+ <proof prover="3" timelimit="0.044019"><result status="valid" time="0.044019" steps="0"/></proof>
  </goal>
  <goal name="vc_deref_mut" proved="true">
- <proof prover="3"><result status="valid" time="0.092689" steps="0"/></proof>
+ <proof prover="3" timelimit="0.049636"><result status="valid" time="0.049636" steps="0"/></proof>
  </goal>
  <goal name="vc_new&#39;0" proved="true">
- <proof prover="3"><result status="valid" time="0.092689" steps="0"/></proof>
+ <proof prover="3" timelimit="0.049636"><result status="valid" time="0.049636" steps="0"/></proof>
  </goal>
  <goal name="vc_into_inner" proved="true">
- <proof prover="3"><result status="valid" time="0.092689" steps="0"/></proof>
+ <proof prover="3" timelimit="0.049636"><result status="valid" time="0.049636" steps="0"/></proof>
  </goal>
  <goal name="vc_new&#39;1" proved="true">
- <proof prover="3"><result status="valid" time="0.092689" steps="0"/></proof>
+ <proof prover="3" timelimit="0.049636"><result status="valid" time="0.049636" steps="0"/></proof>
  </goal>
  <goal name="vc_deref" proved="true">
- <proof prover="3"><result status="valid" time="0.092689" steps="0"/></proof>
+ <proof prover="3" timelimit="0.049636"><result status="valid" time="0.049636" steps="0"/></proof>
  </goal>
  <goal name="vc_get_mut_ghost" proved="true">
- <proof prover="3" timelimit="0.094992"><result status="valid" time="0.094992" steps="0"/></proof>
+ <proof prover="3" timelimit="0.056208"><result status="valid" time="0.056208" steps="0"/></proof>
  </goal>
  <goal name="vc_unwrap" proved="true">
- <proof prover="3" timelimit="0.094992"><result status="valid" time="0.094992" steps="0"/></proof>
+ <proof prover="3" timelimit="0.056208"><result status="valid" time="0.056208" steps="0"/></proof>
  </goal>
  <goal name="vc_new&#39;2" proved="true">
- <proof prover="3" timelimit="0.088751"><result status="valid" time="0.088751" steps="0"/></proof>
+ <proof prover="3" timelimit="0.046083"><result status="valid" time="0.046083" steps="0"/></proof>
  </goal>
  <goal name="vc_as_mut" proved="true">
- <proof prover="3" timelimit="0.066168"><result status="valid" time="0.066168" steps="0"/></proof>
+ <proof prover="3" timelimit="0.055845"><result status="valid" time="0.055845" steps="0"/></proof>
  </goal>
  <goal name="vc_pop_front_ghost" proved="true">
- <proof prover="3" timelimit="0.056261"><result status="valid" time="0.056261" steps="0"/></proof>
+ <proof prover="3" timelimit="0.056772"><result status="valid" time="0.056772" steps="0"/></proof>
  </goal>
  <goal name="vc_unwrap&#39;0" proved="true">
- <proof prover="3" timelimit="0.056261"><result status="valid" time="0.056261" steps="0"/></proof>
+ <proof prover="3" timelimit="0.056772"><result status="valid" time="0.056772" steps="0"/></proof>
  </goal>
  <goal name="vc_push_front_ghost" proved="true">
- <proof prover="3" timelimit="0.056261"><result status="valid" time="0.056261" steps="0"/></proof>
+ <proof prover="3" timelimit="0.056772"><result status="valid" time="0.056772" steps="0"/></proof>
  </goal>
  <goal name="vc_new&#39;3" proved="true">
- <proof prover="3" timelimit="0.056261"><result status="valid" time="0.056261" steps="0"/></proof>
+ <proof prover="3" timelimit="0.056772"><result status="valid" time="0.056772" steps="0"/></proof>
  </goal>
  <goal name="vc_into_inner&#39;0" proved="true">
- <proof prover="3" timelimit="0.056261"><result status="valid" time="0.056261" steps="0"/></proof>
+ <proof prover="3" timelimit="0.056772"><result status="valid" time="0.056772" steps="0"/></proof>
  </goal>
  <goal name="vc_reverse_in_place">
  <transf name="split_vc" >
   <goal name="vc_reverse_in_place.0" expl="loop invariant #0" proved="true">
-  <proof prover="3" timelimit="0.088751"><result status="valid" time="0.088751" steps="0"/></proof>
+  <proof prover="3" timelimit="0.074403"><result status="valid" time="0.074403" steps="0"/></proof>
   </goal>
   <goal name="vc_reverse_in_place.1" expl="loop invariant #1" proved="true">
-  <proof prover="3" timelimit="0.04759"><result status="valid" time="0.047590" steps="0"/></proof>
+  <proof prover="3" timelimit="0.065131"><result status="valid" time="0.065131" steps="0"/></proof>
   </goal>
   <goal name="vc_reverse_in_place.2" expl="loop invariant #2" proved="true">
-  <proof prover="3" timelimit="0.058093"><result status="valid" time="0.058093" steps="0"/></proof>
+  <proof prover="3" timelimit="0.073094"><result status="valid" time="0.073094" steps="0"/></proof>
   </goal>
   <goal name="vc_reverse_in_place.3" expl="loop invariant #3" proved="true">
-  <proof prover="3" timelimit="0.039829"><result status="valid" time="0.039829" steps="0"/></proof>
+  <proof prover="3" timelimit="0.07203"><result status="valid" time="0.072030" steps="0"/></proof>
   </goal>
   <goal name="vc_reverse_in_place.4" expl="loop invariant #4" proved="true">
-  <proof prover="3" timelimit="0.04178"><result status="valid" time="0.041780" steps="0"/></proof>
+  <proof prover="3"><result status="valid" time="0.095651" steps="99"/></proof>
   </goal>
   <goal name="vc_reverse_in_place.5" expl="loop invariant #5" proved="true">
-  <proof prover="3" timelimit="0.046987"><result status="valid" time="0.046987" steps="0"/></proof>
+  <proof prover="3"><result status="valid" time="0.064182" steps="22"/></proof>
   </goal>
-  <goal name="vc_reverse_in_place.6" proved="true">
-  <proof prover="3" timelimit="0.053638"><result status="valid" time="0.053638" steps="0"/></proof>
+  <goal name="vc_reverse_in_place.6" expl="loop invariant #6" proved="true">
+  <proof prover="3"><result status="valid" time="0.071564" steps="22"/></proof>
   </goal>
-  <goal name="vc_reverse_in_place.7" expl="deref_mut &#39;self&#39; type invariant" proved="true">
-  <proof prover="3" timelimit="0.068432"><result status="valid" time="0.068432" steps="0"/></proof>
+  <goal name="vc_reverse_in_place.7" proved="true">
+  <proof prover="3"><result status="valid" time="0.078240" steps="91"/></proof>
   </goal>
-  <goal name="vc_reverse_in_place.8" proved="true">
-  <proof prover="3" timelimit="0.060747"><result status="valid" time="0.060747" steps="0"/></proof>
+  <goal name="vc_reverse_in_place.8" expl="deref_mut &#39;self&#39; type invariant" proved="true">
+  <proof prover="3"><result status="valid" time="0.095701" steps="49"/></proof>
   </goal>
-  <goal name="vc_reverse_in_place.9" expl="get_mut_ghost &#39;self&#39; type invariant" proved="true">
-  <proof prover="3" timelimit="0.102138"><result status="valid" time="0.102138" steps="0"/></proof>
+  <goal name="vc_reverse_in_place.9" proved="true">
+  <proof prover="3"><result status="valid" time="0.094374" steps="48"/></proof>
   </goal>
-  <goal name="vc_reverse_in_place.10" expl="unwrap &#39;self_&#39; type invariant" proved="true">
-  <proof prover="3" timelimit="0.077105"><result status="valid" time="0.077105" steps="0"/></proof>
+  <goal name="vc_reverse_in_place.10" expl="get_mut_ghost &#39;self&#39; type invariant" proved="true">
+  <proof prover="3"><result status="valid" time="0.080388" steps="55"/></proof>
   </goal>
-  <goal name="vc_reverse_in_place.11" expl="unwrap requires" proved="true">
-  <proof prover="3" timelimit="0.094692"><result status="valid" time="0.094692" steps="0"/></proof>
+  <goal name="vc_reverse_in_place.11" expl="unwrap &#39;self_&#39; type invariant" proved="true">
+  <proof prover="3"><result status="valid" time="0.100067" steps="50"/></proof>
   </goal>
-  <goal name="vc_reverse_in_place.12" proved="true">
-  <proof prover="3" timelimit="0.111723"><result status="valid" time="0.111723" steps="0"/></proof>
+  <goal name="vc_reverse_in_place.12" expl="unwrap requires" proved="true">
+  <proof prover="3"><result status="valid" time="0.108461" steps="137"/></proof>
   </goal>
   <goal name="vc_reverse_in_place.13" proved="true">
-  <proof prover="3" timelimit="0.057301"><result status="valid" time="0.057301" steps="0"/></proof>
+  <proof prover="3"><result status="valid" time="0.103327" steps="136"/></proof>
   </goal>
-  <goal name="vc_reverse_in_place.14" expl="new &#39;x&#39; type invariant" proved="true">
-  <proof prover="3" timelimit="0.059123"><result status="valid" time="0.059123" steps="0"/></proof>
+  <goal name="vc_reverse_in_place.14" proved="true">
+  <proof prover="3"><result status="valid" time="0.097770" steps="58"/></proof>
   </goal>
-  <goal name="vc_reverse_in_place.15" expl="as_mut &#39;own&#39; type invariant" proved="true">
-  <proof prover="3" timelimit="0.066112"><result status="valid" time="0.066112" steps="0"/></proof>
+  <goal name="vc_reverse_in_place.15" expl="new &#39;x&#39; type invariant" proved="true">
+  <proof prover="3"><result status="valid" time="0.096215" steps="77"/></proof>
   </goal>
-  <goal name="vc_reverse_in_place.16" expl="as_mut requires" proved="true">
-  <proof prover="3" timelimit="0.092424"><result status="valid" time="0.092424" steps="0"/></proof>
+  <goal name="vc_reverse_in_place.16" expl="as_mut &#39;own&#39; type invariant" proved="true">
+  <proof prover="3"><result status="valid" time="0.076180" steps="62"/></proof>
   </goal>
-  <goal name="vc_reverse_in_place.17" expl="type invariant" proved="true">
-  <proof prover="3" timelimit="0.092386"><result status="valid" time="0.092386" steps="0"/></proof>
+  <goal name="vc_reverse_in_place.17" expl="as_mut requires" proved="true">
+  <proof prover="3"><result status="valid" time="0.162195" steps="261"/></proof>
   </goal>
   <goal name="vc_reverse_in_place.18" expl="type invariant" proved="true">
-  <proof prover="0" timelimit="0.075345"><result status="valid" time="0.075345" steps="0"/></proof>
+  <proof prover="0"><result status="valid" time="0.073310" steps="45560"/></proof>
   </goal>
   <goal name="vc_reverse_in_place.19" expl="type invariant" proved="true">
-  <proof prover="0" timelimit="0.081835"><result status="valid" time="0.081835" steps="0"/></proof>
+  <proof prover="0"><result status="valid" time="0.069773" steps="46436"/></proof>
   </goal>
-  <goal name="vc_reverse_in_place.20" proved="true">
-  <proof prover="0" timelimit="0.05479"><result status="valid" time="0.054790" steps="0"/></proof>
+  <goal name="vc_reverse_in_place.20" expl="type invariant" proved="true">
+  <proof prover="0"><result status="valid" time="0.064262" steps="46960"/></proof>
   </goal>
-  <goal name="vc_reverse_in_place.21" expl="type invariant" proved="true">
-  <proof prover="0" timelimit="0.074534"><result status="valid" time="0.074534" steps="0"/></proof>
+  <goal name="vc_reverse_in_place.21" proved="true">
+  <proof prover="0"><result status="valid" time="0.076814" steps="47348"/></proof>
   </goal>
   <goal name="vc_reverse_in_place.22" expl="type invariant" proved="true">
-  <proof prover="0" timelimit="0.087268"><result status="valid" time="0.087268" steps="0"/></proof>
+  <proof prover="0"><result status="valid" time="0.079917" steps="48987"/></proof>
   </goal>
-  <goal name="vc_reverse_in_place.23" proved="true">
-  <proof prover="3" timelimit="0.082963"><result status="valid" time="0.082963" steps="0"/></proof>
+  <goal name="vc_reverse_in_place.23" expl="type invariant" proved="true">
+  <proof prover="0"><result status="valid" time="0.081193" steps="49906"/></proof>
   </goal>
-  <goal name="vc_reverse_in_place.24" expl="deref_mut &#39;self&#39; type invariant" proved="true">
-  <proof prover="0" timelimit="0.110198"><result status="valid" time="0.110198" steps="0"/></proof>
+  <goal name="vc_reverse_in_place.24" proved="true">
+  <proof prover="3"><result status="valid" time="0.070881" steps="94"/></proof>
   </goal>
-  <goal name="vc_reverse_in_place.25" proved="true">
-  <proof prover="3" timelimit="0.136665"><result status="valid" time="0.136665" steps="0"/></proof>
+  <goal name="vc_reverse_in_place.25" expl="deref_mut &#39;self&#39; type invariant" proved="true">
+  <proof prover="3"><result status="valid" time="0.094943" steps="124"/></proof>
   </goal>
-  <goal name="vc_reverse_in_place.26" expl="deref_mut &#39;self&#39; type invariant" proved="true">
-  <proof prover="0" timelimit="0.126061"><result status="valid" time="0.126061" steps="0"/></proof>
+  <goal name="vc_reverse_in_place.26" proved="true">
+  <proof prover="0"><result status="valid" time="0.051550" steps="3719"/></proof>
   </goal>
-  <goal name="vc_reverse_in_place.27" proved="true">
-  <proof prover="3" timelimit="0.145137"><result status="valid" time="0.145137" steps="0"/></proof>
+  <goal name="vc_reverse_in_place.27" expl="deref_mut &#39;self&#39; type invariant" proved="true">
+  <proof prover="3"><result status="valid" time="0.083988" steps="132"/></proof>
   </goal>
-  <goal name="vc_reverse_in_place.28" expl="pop_front_ghost &#39;self&#39; type invariant" proved="true">
-  <proof prover="0" timelimit="0.133772"><result status="valid" time="0.133772" steps="0"/></proof>
+  <goal name="vc_reverse_in_place.28" proved="true">
+  <proof prover="0"><result status="valid" time="0.063014" steps="49368"/></proof>
   </goal>
-  <goal name="vc_reverse_in_place.29" expl="type invariant" proved="true">
-  <proof prover="3" timelimit="0.228498"><result status="valid" time="0.228498" steps="0"/></proof>
+  <goal name="vc_reverse_in_place.29" expl="pop_front_ghost &#39;self&#39; type invariant" proved="true">
+  <proof prover="3"><result status="valid" time="0.085228" steps="145"/></proof>
   </goal>
-  <goal name="vc_reverse_in_place.30" expl="unwrap &#39;self_&#39; type invariant" proved="true">
-  <proof prover="3" timelimit="0.086927"><result status="valid" time="0.086927" steps="0"/></proof>
+  <goal name="vc_reverse_in_place.30" expl="type invariant" proved="true">
+  <proof prover="3"><result status="valid" time="0.135293" steps="292"/></proof>
   </goal>
-  <goal name="vc_reverse_in_place.31" expl="unwrap requires" proved="true">
-  <proof prover="3" timelimit="0.108713"><result status="valid" time="0.108713" steps="0"/></proof>
+  <goal name="vc_reverse_in_place.31" expl="unwrap &#39;self_&#39; type invariant" proved="true">
+  <proof prover="3"><result status="valid" time="0.076447" steps="120"/></proof>
   </goal>
-  <goal name="vc_reverse_in_place.32" proved="true">
-  <proof prover="3" timelimit="0.107742"><result status="valid" time="0.107742" steps="0"/></proof>
+  <goal name="vc_reverse_in_place.32" expl="unwrap requires" proved="true">
+  <proof prover="3"><result status="valid" time="0.108598" steps="182"/></proof>
   </goal>
-  <goal name="vc_reverse_in_place.33" expl="push_front_ghost &#39;self&#39; type invariant" proved="true">
-  <proof prover="3" timelimit="0.120731"><result status="valid" time="0.120731" steps="0"/></proof>
+  <goal name="vc_reverse_in_place.33" proved="true">
+  <proof prover="3"><result status="valid" time="0.114933" steps="150"/></proof>
   </goal>
-  <goal name="vc_reverse_in_place.34" expl="push_front_ghost &#39;x&#39; type invariant" proved="true">
-  <proof prover="0" timelimit="0.063218"><result status="valid" time="0.063218" steps="0"/></proof>
+  <goal name="vc_reverse_in_place.34" expl="push_front_ghost &#39;self&#39; type invariant" proved="true">
+  <proof prover="0"><result status="valid" time="0.095700" steps="56058"/></proof>
   </goal>
-  <goal name="vc_reverse_in_place.35" expl="type invariant" proved="true">
-  <proof prover="3" timelimit="0.199643"><result status="valid" time="0.199643" steps="0"/></proof>
+  <goal name="vc_reverse_in_place.35" expl="push_front_ghost &#39;x&#39; type invariant" proved="true">
+  <proof prover="3"><result status="valid" time="0.087017" steps="130"/></proof>
   </goal>
-  <goal name="vc_reverse_in_place.36" expl="assertion" proved="true">
-  <proof prover="3" timelimit="0.418102"><result status="valid" time="0.418102" steps="0"/></proof>
+  <goal name="vc_reverse_in_place.36" expl="type invariant" proved="true">
+  <proof prover="0"><result status="valid" time="0.094605" steps="56247"/></proof>
   </goal>
   <goal name="vc_reverse_in_place.37" expl="assertion" proved="true">
-  <proof prover="0" timelimit="0.222727"><result status="valid" time="0.222727" steps="0"/></proof>
+  <proof prover="3"><result status="valid" time="0.329061" steps="1060"/></proof>
   </goal>
   <goal name="vc_reverse_in_place.38" expl="assertion" proved="true">
-  <proof prover="0" timelimit="0.101419"><result status="valid" time="0.101419" steps="0"/></proof>
+  <proof prover="0" timelimit="0.302108"><result status="valid" time="0.120315" steps="94243"/></proof>
+  <proof prover="3"><result status="timeout" time="2.379003" steps="0"/></proof>
   </goal>
   <goal name="vc_reverse_in_place.39" expl="assertion" proved="true">
-  <proof prover="0" timelimit="0.198796"><result status="valid" time="0.198796" steps="0"/></proof>
+  <proof prover="0"><result status="valid" time="0.079854" steps="59581"/></proof>
   </goal>
-  <goal name="vc_reverse_in_place.40" expl="assertion" proved="true">
-  <proof prover="0" timelimit="0.619479"><result status="valid" time="0.619479" steps="0"/></proof>
+  <goal name="vc_reverse_in_place.40" expl="mut invariant" proved="true">
+  <proof prover="0"><result status="valid" time="0.095040" steps="60598"/></proof>
   </goal>
-  <goal name="vc_reverse_in_place.41" expl="assertion" proved="true">
-  <proof prover="0" timelimit="2.26581"><result status="valid" time="0.095188" steps="79263"/></proof>
-  </goal>
-  <goal name="vc_reverse_in_place.42" expl="assertion">
-  <proof prover="0"><result status="timeout" time="3.021079" steps="0"/></proof>
+  <goal name="vc_reverse_in_place.41" expl="loop invariant #0">
+  <proof prover="0" timelimit="3.02108"><result status="timeout" time="3.021079" steps="0"/></proof>
   <proof prover="1"><result status="timeout" time="4.469432" steps="0"/></proof>
   <proof prover="2"><result status="timeout" time="3.127830" steps="0"/></proof>
   <proof prover="3" timelimit="3.172"><result status="timeout" time="3.172004" steps="0"/></proof>
   <transf name="split_vc" >
-   <goal name="vc_reverse_in_place.42.0" expl="assertion">
-   <proof prover="0"><result status="timeout" time="3.021079" steps="0"/></proof>
+   <goal name="vc_reverse_in_place.41.0" expl="loop invariant #0">
+   <proof prover="0" timelimit="3.02108"><result status="timeout" time="3.021079" steps="0"/></proof>
    <proof prover="1"><result status="timeout" time="4.469432" steps="0"/></proof>
    <proof prover="2"><result status="timeout" time="3.127830" steps="0"/></proof>
    <proof prover="3" timelimit="3.172"><result status="timeout" time="3.172004" steps="0"/></proof>
    </goal>
   </transf>
   </goal>
-  <goal name="vc_reverse_in_place.43" expl="assertion" proved="true">
-  <proof prover="3" timelimit="0.098434"><result status="valid" time="0.098434" steps="0"/></proof>
+  <goal name="vc_reverse_in_place.42" expl="loop invariant #1" proved="true">
+  <proof prover="3" timelimit="0.3172"><result status="valid" time="0.088515" steps="142"/></proof>
   </goal>
-  <goal name="vc_reverse_in_place.44" expl="mut invariant" proved="true">
-  <proof prover="3" timelimit="0.127953"><result status="valid" time="0.127953" steps="0"/></proof>
+  <goal name="vc_reverse_in_place.43" expl="loop invariant #2" proved="true">
+  <proof prover="3"><result status="valid" time="0.477048" steps="1887"/></proof>
   </goal>
-  <goal name="vc_reverse_in_place.45" expl="loop invariant #0">
-  <proof prover="0"><result status="timeout" time="3.021079" steps="0"/></proof>
-  <proof prover="1"><result status="timeout" time="4.469432" steps="0"/></proof>
-  <proof prover="2"><result status="timeout" time="3.127830" steps="0"/></proof>
-  <proof prover="3" timelimit="3.172"><result status="timeout" time="3.172004" steps="0"/></proof>
-  <transf name="split_vc" >
-   <goal name="vc_reverse_in_place.45.0" expl="loop invariant #0">
-   <proof prover="0"><result status="timeout" time="3.021079" steps="0"/></proof>
-   <proof prover="1"><result status="timeout" time="4.469432" steps="0"/></proof>
-   <proof prover="2"><result status="timeout" time="3.127830" steps="0"/></proof>
-   <proof prover="3" timelimit="3.172"><result status="timeout" time="3.172004" steps="0"/></proof>
-   </goal>
-  </transf>
+  <goal name="vc_reverse_in_place.44" expl="loop invariant #3" proved="true">
+  <proof prover="3"><result status="valid" time="0.187099" steps="463"/></proof>
   </goal>
-  <goal name="vc_reverse_in_place.46" expl="loop invariant #1" proved="true">
-  <proof prover="3" timelimit="0.100523"><result status="valid" time="0.100523" steps="0"/></proof>
+  <goal name="vc_reverse_in_place.45" expl="loop invariant #4" proved="true">
+  <proof prover="3"><result status="valid" time="0.407791" steps="1399"/></proof>
   </goal>
-  <goal name="vc_reverse_in_place.47" expl="loop invariant #2" proved="true">
-  <proof prover="3" timelimit="0.202284"><result status="valid" time="0.202284" steps="0"/></proof>
+  <goal name="vc_reverse_in_place.46" expl="loop invariant #5" proved="true">
+  <proof prover="3"><result status="valid" time="0.197323" steps="511"/></proof>
   </goal>
-  <goal name="vc_reverse_in_place.48" expl="loop invariant #3" proved="true">
-  <proof prover="3" timelimit="0.091257"><result status="valid" time="0.091257" steps="0"/></proof>
+  <goal name="vc_reverse_in_place.47" expl="loop invariant #6" proved="true">
+  <proof prover="3"><result status="valid" time="0.081268" steps="151"/></proof>
   </goal>
-  <goal name="vc_reverse_in_place.49" expl="loop invariant #4" proved="true">
-  <proof prover="3" timelimit="0.190342"><result status="valid" time="0.190342" steps="0"/></proof>
+  <goal name="vc_reverse_in_place.48" expl="assertion" proved="true">
+  <proof prover="3"><result status="valid" time="0.097599" steps="187"/></proof>
   </goal>
-  <goal name="vc_reverse_in_place.50" expl="loop invariant #5" proved="true">
-  <proof prover="3" timelimit="0.210461"><result status="valid" time="0.210461" steps="0"/></proof>
+  <goal name="vc_reverse_in_place.49" expl="into_inner &#39;self&#39; type invariant" proved="true">
+  <proof prover="3"><result status="valid" time="0.071847" steps="40"/></proof>
   </goal>
-  <goal name="vc_reverse_in_place.51" expl="into_inner &#39;self&#39; type invariant" proved="true">
-  <proof prover="3" timelimit="0.070491"><result status="valid" time="0.070491" steps="0"/></proof>
+  <goal name="vc_reverse_in_place.50" proved="true">
+  <proof prover="3"><result status="valid" time="0.093473" steps="128"/></proof>
   </goal>
-  <goal name="vc_reverse_in_place.52" proved="true">
-  <proof prover="3" timelimit="0.094377"><result status="valid" time="0.094377" steps="0"/></proof>
+  <goal name="vc_reverse_in_place.51" expl="deref_mut &#39;self&#39; type invariant" proved="true">
+  <proof prover="3"><result status="valid" time="0.089292" steps="67"/></proof>
   </goal>
-  <goal name="vc_reverse_in_place.53" expl="deref_mut &#39;self&#39; type invariant" proved="true">
-  <proof prover="3" timelimit="0.088422"><result status="valid" time="0.088422" steps="0"/></proof>
+  <goal name="vc_reverse_in_place.52" expl="type invariant" proved="true">
+  <proof prover="3"><result status="valid" time="0.070682" steps="77"/></proof>
+  </goal>
+  <goal name="vc_reverse_in_place.53" expl="type invariant" proved="true">
+  <proof prover="3"><result status="valid" time="0.104779" steps="149"/></proof>
   </goal>
   <goal name="vc_reverse_in_place.54" expl="type invariant" proved="true">
-  <proof prover="3" timelimit="0.052082"><result status="valid" time="0.052082" steps="0"/></proof>
+  <proof prover="3"><result status="valid" time="0.112652" steps="181"/></proof>
   </goal>
-  <goal name="vc_reverse_in_place.55" expl="type invariant" proved="true">
-  <proof prover="3" timelimit="0.084051"><result status="valid" time="0.084051" steps="0"/></proof>
+  <goal name="vc_reverse_in_place.55" expl="reverse_in_place ensures #0" proved="true">
+  <transf name="split_vc" proved="true" >
+   <goal name="vc_reverse_in_place.55.0" expl="reverse_in_place ensures #0" proved="true">
+   <proof prover="3"><result status="valid" time="0.094863" steps="84"/></proof>
+   </goal>
+  </transf>
   </goal>
-  <goal name="vc_reverse_in_place.56" expl="type invariant" proved="true">
-  <proof prover="3" timelimit="0.089729"><result status="valid" time="0.089729" steps="0"/></proof>
-  </goal>
-  <goal name="vc_reverse_in_place.57" expl="reverse_in_place ensures #0" proved="true">
-  <proof prover="3" timelimit="0.092912"><result status="valid" time="0.092912" steps="0"/></proof>
-  </goal>
-  <goal name="vc_reverse_in_place.58" expl="reverse_in_place ensures #1" proved="true">
-  <proof prover="3" timelimit="0.079695"><result status="valid" time="0.079695" steps="0"/></proof>
-  </goal>
-  <goal name="vc_reverse_in_place.59" expl="reverse_in_place ensures #2" proved="true">
-  <proof prover="3" timelimit="0.0994"><result status="valid" time="0.099400" steps="0"/></proof>
+  <goal name="vc_reverse_in_place.56" expl="reverse_in_place ensures #1" proved="true">
+  <proof prover="3"><result status="valid" time="0.074347" steps="110"/></proof>
   </goal>
  </transf>
  </goal>

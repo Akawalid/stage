@@ -1,1 +1,0 @@
-creusot_contracts::logic::seq::Seq<creusot_contracts::ptr_own::PtrOwn<reversal_raw_ptr::Node<T>>>
