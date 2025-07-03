@@ -1,0 +1,79 @@
+\chapter{Introduction}
+
+\section{\scol{The Laboratoire Méthodes Formelles (LMF)}}
+LMF is a joint research centre of University Paris-Saclay, CNRS, ENS Paris-Saclay, Inria, and CentraleSupélec, it's divided to multiple departments interesting to various topics such as type systems, topology and quantum computing. My research project took place within \scol{Toccata's team} of the formal methods department. I worked on verification of programs with pointers under the supervision of \scol{Jean-Cristophe Filliâtre}, \scol{Arnaud GOULFOUSE} and \scol{Paul PATAULT}.
+There are multiple verification tools widely used and developed at the LMF research center. Among these tools, we find Creusot, Why3, Coma and AltErgo. 
+
+\section{\scol{Le langage de preuve Creusot}}
+\textsc{Creusot} is a formal verification language used to verify \textsc{Rust} code. It checks the safety of code against compile-time and runtime panics, integer overflows, and, more importantly, the logical correctness of the code, ensuring it adheres to its specifications.\\
+\textsc{Creusot} runs over \textsc{Why3} indirectly, it converts code to an intermediate verification language called \textsc{Coma}. The latter is a Why3 plug-in that is type-agnostic and state-agnostic, less formally, it simplifies communication with the Why3 API, therefor, it gives \textsc{Creusot} access to all the functionalities provided by \textsc{Why3}.
+Below is a simple example of \textsc{Creusot} code that verifies \texttt{SUM} function. 
+\newpage
+\begin{minted}[linenos]{rust}
+extern crate creusot_contracts;
+use creusot_contracts::*;
+
+#[requires(n@ < 1000)]
+#[ensures(result@ == n@ * (n@ + 1) / 2)]
+pub fn sum_first_n(n: u32) -> u32 {
+    let mut sum = 0;
+    #[invariant(sum@ * 2 == produced.len() * (produced.len() + 1))]
+    for i in 1..=n {
+        sum += i;
+    }
+    sum
+}
+\end{minted}
+explication...\\
+Recently, ghost code has been introduced to \textsc{Creusot}. It serves as an intermediate layer between the program world and the logical world. With ghost code, we extend the set of provable programs: it allows us to add data to the program to assist the prover. The subtlety lies in the fact that ghost code can be safely erased, thereby reverting the program to its original form.
+
+Another subtle feature enabled by ghost code is the ability to simulate separation logic \ccomp{details}.
+Speaking of separation logic, there are more specialized languages designed to reason about it. One such example is \textsc{Viper}, a verification infrastructure that supports separation logic for Rust. It is built on top of \textsc{Boogie}, an intermediate verification language (IVL) developed by Microsoft Research, and is widely used in the field of formal program verification. The illustration below demonstrates more clearly the relationship between all these languages.
+\ccomp{give examples of creusot where we can implement the separation logic, and compare with boogie or viper}
+% \vspace{1cm}
+% \begin{figure}[h]
+%   \centering
+%     \begin{tikzpicture}[
+%       node distance=1cm and 2cm,
+%       every node/.style={font=\sffamily},
+%       box/.style={draw, rectangle, rounded corners, minimum width=2cm, minimum height=1cm, align=center},
+%       ->, thick
+%     ]
+    
+    
+%     % Nodes
+%     \node[box] (creusot) {Creusot};
+%     \node[box, right=of creusot] (viper) {Viper};
+%     \node[box, below=of viper] (boogie) {Boogie};
+%     \node[box, left=of boogie] (why3) {Why3};
+%     \node[box, below=of boogie] (smt) {SMT};
+%     \node[box, right=0.8cm of boogie] (delphi) {Delphi};
+    
+%     % Arrows
+%     \draw (creusot) -- (why3);
+%     \draw (viper) -- (boogie);
+%     \draw (why3) -- (smt);
+%     \draw (boogie) -- (smt);
+%     \draw (delphi) -- (boogie);
+    
+%     % Add dashed vertical separation line
+%     \draw[dashed, red, line width=0.8pt] 
+%       (1.8,1.5) -- (1.8,-3);
+%     \draw[dashed, red, line width=0.8pt] 
+%       (8,-3) -- (-1.5,-3);
+%     % Arrow pointing to Delphi
+%     \draw[<-, dashed, blue] (delphi.east) -- ++(1,1) node[above, font=\small\sffamily, blue] {AWS services};
+%     \draw[<-, dashed, blue] (viper.east) -- ++(1,0) node[right, font=\small\sffamily, blue] {ETH Zurich};
+    
+%     % Add explanatory labels
+%     \node[above=0.1cm of creusot, align=center, font=\small\sffamily] (leftlabel) 
+%       {No Separation Logic};
+%     \node[above=0.1cm of viper, align=center, font=\small\sffamily] (rightlabel) 
+%       {Support Separation Logic};
+%     \node[left=0.1cm of smt, align=center, font=\small\sffamily] (rightlabel) 
+%       {Separation Logic has no meaning\\ at this level};
+%     \end{tikzpicture}
+%   \vspace{0.5cm}
+%   \caption{Illustration of the relationship between verification tools and intermediate languages.}
+%   \label{fig:verification-diagram}
+% \end{figure}

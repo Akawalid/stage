@@ -1,0 +1,10 @@
+\chapter{State of art}
+\section{\scol{Reynolds article}}
+
+\section{\scol{Different ways of implementing the problem}}
+The list reversal problem has already been proven in two different ways in \textsc{Creusot}, but both methods have certain limitations:
+
+\begin{itemize}
+\item \textbf{\textsc{BOX} method}: This approach models lists using \texttt{Rust Box} type. However, it imposes strong restrictions on the memory model by prohibiting any form of sharing or aliasing, since \texttt{Box} does not support multiple references to the same memory location.
+\item \textbf{Memory model method}: This approach consists of passing an object that models the entire memory as a parameter to each method to be verified, therefore, proving requires reasoning over the complete memory state. However, this approach prevents \ccomp{...todo}.
+\end{itemize}

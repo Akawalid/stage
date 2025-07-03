@@ -2,11 +2,10 @@
 extern crate creusot_contracts;
 use ::std::ptr;
 use creusot_contracts::ptr_own::{PtrOwn, RawPtr};
-//use creusot_contracts::std::ptr::PointerExt;
 use creusot_contracts::*;
 pub struct Node<T> {
     elem: T,
-    next: RawPtr<Node<T>>,
+    pub next: RawPtr<Node<T>>,
 }
 
 impl<T> Node<T> {
@@ -45,9 +44,9 @@ impl<T> Node<T> {
         // let ee = snapshot!(e);
         let (raw, own) = PtrOwn::new(Node { elem: e, next: l });
 
-        let seq2 = snapshot!(**seq);
+        let _seq2 = snapshot!(**seq);
         ghost!(seq.push_front_ghost(own.into_inner()));
-        proof_assert!(*seq2 == seq.tail());
+        proof_assert!(*_seq2 == seq.tail());
 
         raw
     }
@@ -139,54 +138,54 @@ impl<T> Node<T> {
         };
         let mut q: *const Node<T> = ptr::null();
         let mut reverted_seq = Seq::new();
-        let seq0 = snapshot!(**seq);
+        let _seq0 = snapshot!(**seq);
 
         #[invariant(Self::list(q, *reverted_seq))]
         #[invariant(Self::list(p, **seq))]
-        #[invariant(Self::reverse(seq0.subsequence(0, reverted_seq.len()), *reverted_seq, 0, reverted_seq.len()))]
+        #[invariant(Self::reverse(_seq0.subsequence(0, reverted_seq.len()), *reverted_seq, 0, reverted_seq.len()))]
         //Question!!!!!!!!!! Ican either keep this invariant which proves everything, or remove it and prove disjunction_lemma
         //which makes the code cleaner.
         //#[invariant(reverted_seq.len() + seq.len() == seq0.len())]
-        #[invariant(**seq == seq0.subsequence(reverted_seq.len(), seq0.len()))]
+        #[invariant(**seq == _seq0.subsequence(reverted_seq.len(), _seq0.len()))]
         #[invariant(inv(seq))]
         #[invariant(inv(reverted_seq))]
         while !p.is_null() {
-            snapshot!(Self::disjunciton_lemma(&*seq0, &**seq, &*reverted_seq));
-            let sloop_entry = snapshot!(**seq);
-            let revs_loop_entry = snapshot!(*reverted_seq);
+            snapshot!(Self::disjunciton_lemma(&*_seq0, &**seq, &*reverted_seq));
+            let _sloop_entry = snapshot!(**seq);
+            let _revs_loop_entry = snapshot!(*reverted_seq);
             let p2 =
                 unsafe { PtrOwn::as_mut(p, ghost!(seq.get_mut_ghost(*ghost!(0int)).unwrap())) };
             let next = p2.next;
             p2.next = q;
             q = p;
             p = next;
-            let sloop_exit = snapshot!(**seq);
+            let _sloop_exit = snapshot!(**seq);
 
             ghost!((*reverted_seq).push_front_ghost(seq.pop_front_ghost().unwrap()));
 
             //a0156: Assertion used to prove invariant #1 (we can remove it and use use_th seq.FreeMonoid instead)
-            proof_assert!(reverted_seq.tail() == *revs_loop_entry);
+            proof_assert!(reverted_seq.tail() == *_revs_loop_entry);
 
             //Hypothesis: invariant(Self::list (p, **seq))
             // We need to add to the hypothesis the fac that the tail of the previous seq is the new seq
             //a1369
-            proof_assert!((*sloop_exit).tail() == **seq);
+            proof_assert!((*_sloop_exit).tail() == **seq);
 
             //In order to proof the last assertion, we need the following assertion
             //It esnures that seq.tail() didn't change between the beginig of the loop and the end, what ensures the stability of our invariant
             //a7070
-            proof_assert!((*sloop_exit).tail() == (*sloop_entry).tail());
+            proof_assert!((*_sloop_exit).tail() == (*_sloop_entry).tail());
 
             //this should be enough to prove #[invariant(Self::list (p, **seq))], whith using the latter, creusot proves well the remaining invariant about q
             //proof_assert!(Self::list(p, (*snap2).tail()));
             //a1313
-            proof_assert!(Self::list(p, (*sloop_exit).tail()));
+            proof_assert!(Self::list(p, (*_sloop_exit).tail()));
             // ==> invariant #1 checks for iteration n+1
         }
-        snapshot!(Self::disjunciton_lemma(&*seq0, &**seq, &*reverted_seq));
+        snapshot!(Self::disjunciton_lemma(&*_seq0, &**seq, &*reverted_seq));
         //Pour montrer ensures#1 (ensures(seq.len() == (^seq).len() && Self::reverse(**seq, *^seq, 0, seq.len())))
         //a4224
-        proof_assert!(seq0.subsequence(0, reverted_seq.len()) == *seq0);
+        proof_assert!(_seq0.subsequence(0, reverted_seq.len()) == *_seq0);
         ghost!(**seq = reverted_seq.into_inner());
         q
     }
@@ -199,12 +198,12 @@ impl<T> Node<T> {
 pub fn list_of_vector1<T>(mut vec: Vec<T>) -> (RawPtr<Node<T>>, Ghost<Seq<PtrOwn<Node<T>>>>) {
     //Takes possession of elements in the vector
     let (mut l, mut seq) = Node::empty();
-    let vec0 = snapshot!(vec);
+    let _vec0 = snapshot!(vec);
     #[invariant(forall<i: Int>
-        vec.view().len() <= i && i < vec0.view().len() ==> seq[i - vec.view().len()].val().elem == vec0.view()[i])]
+        vec.view().len() <= i && i < _vec0.view().len() ==> seq[i - vec.view().len()].val().elem == _vec0.view()[i])]
     #[invariant(Node::list(l, *seq))]
-    #[invariant(vec.view().len() + seq.len() == vec0.view().len())]
-    #[invariant(forall<i: Int> 0 <= i && i < vec.view().len() ==> vec.view()[i] == vec0.view()[i])]
+    #[invariant(vec.view().len() + seq.len() == _vec0.view().len())]
+    #[invariant(forall<i: Int> 0 <= i && i < vec.view().len() ==> vec.view()[i] == _vec0.view()[i])]
     #[invariant(inv(seq))]
     loop {
         //let vec1 = snapshot!(vec);
@@ -240,15 +239,11 @@ pub fn list_of_vector2<T: Clone>(vec: &Vec<T>) -> (RawPtr<Node<T>>, Ghost<Seq<Pt
     (l, seq)
 }
 
-#[trusted]
-pub fn print(_: &str) {}
-
-// impl<T> Drop for List<T> {
+// impl<T> Drop for RawPtr<Node<T>> {
 //     fn drop(&mut self) {
-//         let mut p = self.head;
-//         while !p.is_null() {
+//         while !self.is_null() {
 //             unsafe {
-//                 let next = (*p).next;
+//                 let next = self.next;
 //                 drop(p);
 //                 p = next;
 //             }
