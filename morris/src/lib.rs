@@ -1,7 +1,7 @@
 extern crate creusot_contracts;
 //in this file, I put all the exercises I have done during the internship.
-//pub mod reversal_raw_ptr;
-pub mod lasso;
+pub mod reversal_raw_ptr;
+//pub mod lasso;
 // type NodeRef<T> = Option<Rc<Comb<T>>>;
 // struct Comb<T> {
 //     pcell: PCell<TreeNode<T>>,
