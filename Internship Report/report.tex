@@ -1,4 +1,4 @@
-\documentclass[11pt,a4paper]{report}
+\documentclass[11pt,a4paper]{article}
 \usepackage[margin=2.2cm]{geometry}
 \usepackage[pdftex]{graphicx}
 \usepackage{styles}
@@ -13,24 +13,27 @@
 \usepackage{titlesec}
 \usepackage{parskip}
 \usepackage{enumitem}
+\usepackage{parskip}
 \usepackage{amsmath}
 \usepackage{xcolor}
+\usepackage{titlesec}
 \usetikzlibrary{matrix, arrows.meta, positioning, fit}
 \usetikzlibrary{calc}
 \usetikzlibrary{decorations.pathreplacing}
 
-% Reduce space around sections and chapters
-\titlespacing*{\chapter}{0pt}{0pt}{10pt}
-\titlespacing*{\section}{0pt}{10pt}{5pt}
-\titlespacing*{\subsection}{0pt}{8pt}{3pt}
+% Indent subsections by 1em
+\titlespacing*{\subsection}{1em}{1ex plus .2ex minus .2ex}{0.5ex}
+
+% (Optional) Further indent subsubsections
+\titlespacing*{\subsubsection}{2em}{1ex plus .2ex minus .2ex}{0.5ex}
+
+\setlength{\parindent}{1.5em} % Re-enable paragraph indentation
 
 % Reduce line spacing
 \linespread{1.0}
 
 
 \begin{document}
-\renewcommand\bibname{References} 
-
 \input{title}
 
 \pagenumbering{roman}
@@ -39,15 +42,15 @@
 \newpage
 \pagenumbering{arabic} 
 
-\chapter{Introduction}
+\section{Introduction}
 
-\section{\scol{The Laboratoire Méthodes Formelles (LMF)}}
-LMF is a joint research centre of University Paris-Saclay, CNRS, ENS Paris-Saclay, Inria, and CentraleSupélec. it's divided to multiple departments interested in various topics such as type systems, topology and quantum computing. My research project took place within \scol{Toccata's team} of the formal methods department. I worked on verification of programs with pointers under the supervision of Jean-Cristophe Filliâtre, Arnaud Golfouse and Paul Patault.
+\subsection{\scol{The Laboratoire Méthodes Formelles (LMF)}}
+\ident LMF is a joint research centre of University Paris-Saclay, CNRS, ENS Paris-Saclay, Inria, and CentraleSupélec. it's divided to multiple departments interested in various topics such as type systems, topology and quantum computing. My research project took place within \scol{Toccata's team} of the formal methods department. I worked on verification of programs with pointers under the supervision of Jean-Cristophe Filliâtre, Arnaud Golfouse and Paul Patault.
 
 There are multiple verification tools widely used and developed at the LMF research center. Among these tools, we find Creusot and Why3.
 
-\section{\scol{Le langage de preuve Creusot}}
-\subsection{Introduction}
+\subsection{\scol{Le langage de preuve Creusot}}
+\subsubsection{\scol{Introduction}}
 \textsc{Creusot} is a formal verification language used to verify \textsc{Rust} code. It checks the safety of code against compile-time errors and runtime panics, integer overflows, and, more importantly, the logical correctness of the code, ensuring it adheres to its specifications.
 
 \textsc{Creusot} operates on top of \textsc{Why3} indirectly by translating Rust code into an intermediate verification language known as \textsc{Coma}. It facilitates the verification, and it also gives \textsc{Creusot} access to the full access to \textsc{Why3}'s features.
@@ -85,16 +88,16 @@ The function \textsc{sum\_first\_n} shown above computes the sum of the first \t
 \item \textbf{Postcondition:} It states that the returned result is equal to the expected mathematical value: \texttt{n * (n + 1) / 2}
 \item \textbf{Loop invariant:} The expression \texttt{produced.len()} corresponds to the number of iterations performed so far, it effectively can play the role of the loop index by applying a transformation. The reason we cannot refer directly to the loop index is due to scoping limitations.
 \end{itemize}
-\subsection{Ghost code in \textsc{CREUSOT}}
+\subsubsection{\scol{Ghost code in \textsc{CREUSOT}}}
 \textsc{Rust}'s ownership and borrowing principles make it difficult to use pointers in proofs. where the need for a notion of ghost code in such a language. Ghost code allows us to perform proofs that are not possible using only raw code and the logical world, especially when dealing with existential quantification, if we know how to construct the value we are seeking for the existential quantifier.
 
 Recently, ghost code has been introduced in \textsc{Creusot}. The subtlety lies in the fact that ghost code is separate from the original code. Therefore, it can be safely erased at compile time, allowing only the original code and the corresponding logical formulas to be executed. This results in faster and safer proof verification. Below are some examples of how to write ghost code in \textsc{Creusot}.
 
 \hypertarget{ghostcode}{}
 
-\chapter{State of art}
+\section{State of art}
 
-\section{\scol{Reynolds article}}
+\subsection{\scol{Reynolds article}}
 Reynolds' article introduced a new concept in formal program verification: \emph{Separation Logic}, an extension of Hoare Logic that facilitates automatic proofs on low-level imperative programs that use shared mutable data structures, by reasoning about disjoint parts of the heap. It greatly simplifies the formalization and verification of many problems that are otherwise difficult to handle using traditional Hoare Logic, such as concurrency, memory management, and aliasing.
 \\
 
@@ -208,7 +211,7 @@ One of key uses of separation logic can be show in case if we prohibit using \hy
 \caption{in\_place reversal on shared lists}
 \label{fig:shared-lists}
 \end{figure}
-
+\newpage
 So we need to provide a stronger precondition that prevents such cases. One possible way is:
 \[
 \texttt{list\ p\ }\alpha \ \land\ \forall\,\texttt{x},\, \alpha'.\ \texttt{list\ x\ } \alpha' \rightarrow \texttt{conflicting}(\texttt{x},\ \alpha',\ \texttt{p},\ \alpha) \rightarrow \texttt{x} = \texttt{nil}
@@ -299,7 +302,7 @@ There are, however, more specialized tools designed specifically for reasoning w
 \label{fig:verification-diagram}
 \end{figure}
 
-\section{\scol{Different ways of implementing the problem}}
+\subsection{\scol{Different ways of implementing the problem}}
 The list reversal problem has already been proven in two different ways in \textsc{Creusot}, but both methods have certain limitations:
 
 \begin{itemize}
@@ -307,12 +310,13 @@ The list reversal problem has already been proven in two different ways in \text
 \item \hypertarget{MEMmodel}{\textbf{Memory model method}}: This approach relies on modular reasoning over the memory. In other words, it involves passing an object that models the entire memory as a parameter to each method to be verified. As a result, verification requires reasoning about the complete memory state. This can quickly lead to complex proofs even for simple algorithms. For example, suppose we have two disjoint lists in the heap, each verified using a \texttt{list} predicate. If we reverse one of them, the \texttt{list} predicate on the other is not preserved automatically, and we must explicitly include it in the proof. This makes the verification process tedious. This is where separation logic becomes useful, and the solution we propose implicitly uses its principles, thanks to \textsc{Rust} type system.
 \end{itemize}
 
-\chapter{Problem definition and proposed solution}
+\section{Problem definition and proposed solution}
+\subsection{\scol{Problem definition}}
+Formal verification of mutable data structures with pointers is one of the most challenging aspects of formal methods. The in-place list reversal algorithm is a canonical example of this challenge, as it can easily lead to memory leaks, dangling pointers, or logical errors.\\
+The core problem is that, for a given list implementation in Rust using raw pointers, we need to formally verify the correctness of an in-place reversal algorithm not only that, but also the preservation of memory safety and the proper handling of shared lists.
 
-\section{Problem definition}
-
-\section{Proposed solution}
-\subsection{\texttt{PtrOwn} and \texttt{RawPtr}} Formally called linear algebraic types, they are used by \textsc{Creusot} to manipulate pointers in proofs. \texttt{PtrOwn} models ownership of memory cells in the ghost world and can be used in parallel with \texttt{RawPtr}, which represents the corresponding address of the cell represented by \texttt{PtrOwn}. The internal representation of \texttt{PtrOwn} is as follows:
+\subsection{\scol{Proposed solution}}
+\subsubsection{\scol{\texttt{PtrOwn} and \texttt{RawPtr}}} Formally called linear algebraic types, they are used by \textsc{Creusot} to manipulate pointers in proofs. \texttt{PtrOwn} models ownership of memory cells in the ghost world and can be used in parallel with \texttt{RawPtr}, which represents the corresponding address of the cell represented by \texttt{PtrOwn}. The internal representation of \texttt{PtrOwn} is as follows:
 
 \begin{figure}[h!]
 \begin{tikzpicture}[
@@ -364,7 +368,7 @@ The list reversal problem has already been proven in two different ways in \text
 
 Our solution relies on the use of linear algebraic types in \textsc{Creusot}, specifically, \texttt{PtrOwn} and \texttt{RawPtr}. This allows us to prove the correctness of in-place reversal even in the presence of shared data structures, making it better than the \hyperlink{BOXmeth}{BOX method$\dagger$}. Moreover, it also outperforms the \hyperlink{MEMmodel}{memory model$\dagger$} approach, our method requires to reason locally on memory. In other words, we only need to verify the parts of the heap we are manipulating, without having to reason about independent regions. This provides a form of separation logic, implicitly enforced by the Rust type system.\\
 In the following we will present our solutions in steps.\\
-\subsection{Data Structure}
+\subsubsection{\scol{Data Structure}}
 The list type is represented by \texttt{RawPtr<Node<T>>} where \texttt{Node<T>} is defined like the following:
 \begin{minted}[linenos, fontsize=\footnotesize, bgcolor=gray!5]{rust}
 struct Node<T> {
@@ -373,220 +377,173 @@ struct Node<T> {
 }
 \end{minted}
 
-\subsection{Predicates}
-\subsubsection{List Predicate}
-\hyperlink{list}{code$\dagger$}\\
-\texttt{list} predicate takes a pointer of type \texttt{RawPtr} and the abstract ghost sequence of permission \texttt{PtrOwn} that represents the list algebraically \texttt{seq}. it checks recursively that the pointers inside the permissions in the sequence correspond to the pointers in the progam world, and that the list ends with \texttt{nil}.\\
-\begin{align}
-    &\texttt{list p \textbf{nil} $\overset{\text{def}}{=}$ p = null\_ptr()}\\
-    &\texttt{list p (a.$\alpha$) $\overset{\text{def}}{=}$ p = a.ptr() $\land$ list [p+1] $\alpha$}
-\end{align}
+\subsubsection{\scol{Predicates}}
+\begin{itemize}
+    \item \textbf{List Predicate}
+        \hyperlink{list}{code$\dagger$}\\
+        \texttt{list} predicate takes a pointer of type \texttt{RawPtr} and the abstract ghost sequence of permission \texttt{PtrOwn} that represents the list algebraically \texttt{seq}. it checks recursively that the pointers inside the permissions in the sequence correspond to the pointers in the progam world, and that the list ends with \texttt{nil}.\\
+        \begin{align}
+            &\texttt{list p \textbf{nil} $\overset{\text{def}}{=}$ p = null\_ptr()}\\
+            &\texttt{list p (a.$\alpha$) $\overset{\text{def}}{=}$ p = a.ptr() $\land$ list [p+1] $\alpha$}
+        \end{align}
+    \item \textbf{inverse Predicate}  
+    \hyperlink{inverse}{code$\dagger$}\\
+    The predicate \texttt{inverse} takes two sequences of \texttt{PtrOwn} objects and determines whether the elements of the first sequence appear in reverse order in the second. One might notice that we could express this predicate more simply using the built-in \texttt{rev} function, as in \texttt{inverse(s1, s2) == inverse'(s1, s2)} where \texttt{inverse'(s1, s2) := s1.rev() == s2}. However, this is not the case due to our choice of the algebraic representation of the list and the invariants implied by the algorithm. We chose to model it as \texttt{Seq<PtrOwn<Node<T>>>},
+    before explaining why the \texttt{rev} function is not applicable in this context, we first present a figure showing the structure of a \texttt{Seq<PtrOwn<Node<T>>>} and its corresponding representation in the program’s memory model.
+    
+    \begin{figure}[h]
+    \centering
+    % Option 1: Single tikzpicture with both diagrams
+    \begin{tikzpicture}
+        % Program World
+        \node[font=\large\bfseries] at (3,8) {\texttt{Program World}};
+        
+        \draw (-2.5,6) rectangle (-1,6.75);
+        \node[font=\small] at (-1.75,6.375) {\texttt{\colorbox{yellow}{RawPtr}}};
+        \draw[->, thick, bend left=40] (-1,6.375) to (0,7.075);
+        
+        % First Node
+        \draw (0,6) rectangle (0.5,7.5);
+        \draw (0.5,6) rectangle (2,6.75);
+        \draw (0.5,6.75) rectangle (2,7.5);
+        \node[rotate=90, font=\small] at (0.25,6.75) {\texttt{Node}};
+        \node[font=\small] at (1.25,7.125) {\texttt{v1}};
+        \node[font=\small] at (1.25,6.375) {\texttt{RawPtr}};
+        
+        % Arrow to second node
+        \draw[->, thick, bend left=40] (2,6.375) to (3,7.075);
+        
+        % Second Node
+        \draw (3,6) rectangle (3.5,7.5);
+        \draw (3.5,6) rectangle (5,6.75);
+        \draw (3.5,6.75) rectangle (5,7.5);
+        \node[rotate=90, font=\small] at (3.25,6.75) {\texttt{Node}};
+        \node[font=\small] at (4.25,7.125) {\texttt{v2}};
+        \node[font=\small] at (4.25,6.375) {\texttt{RawPtr}};
+        
+        % Arrow to third node
+        \draw[->, thick, bend left=40] (5,6.375) to (6,7.075);
+        
+        % Third Node
+        \draw (6,6) rectangle (6.5,7.5);
+        \draw (6.5,6) rectangle (8,6.75);
+        \draw (6.5,6.75) rectangle (8,7.5);
+        \node[rotate=90, font=\small] at (6.25,6.75) {\texttt{Node}};
+        \node[font=\small] at (7.25,7.125) {\texttt{v3}};
+        \node[font=\small] at (7.25,6.375) {\texttt{nil}};
+        
+        % Dashed divider line
+        \draw[dashed, thick] (-3,5) -- (8.5,5);
+        
+        % Ghost World
+        \node[font=\large\bfseries] at (3.75,4.5) {\texttt{Ghost World}};
+        
+        % Manual grid lines for non-uniform rows
+        % Vertical lines
+        \draw[black, thick] (0,1) -- (0,4);
+        \draw[black, thick] (2.5,1) -- (2.5,4);
+        \draw[black, thick] (5,1) -- (5,4);
+        \draw[black, thick] (7.5,1) -- (7.5,4);
+        
+        % Horizontal lines
+        \draw[black, thick] (0,1) -- (7.5,1);     % Bottom
+        \draw[black, thick] (0,2.5) -- (7.5,2.5); % Middle (taller second row)
+        \draw[black, thick] (0,4) -- (7.5,4);     % Top
+        
+        % Column 1
+        % First row - ptr: RawPtr (smaller height)
+        \node[font=\small] at (1.25,3.25) {\texttt{\colorbox{yellow}{ptr: RawPtr}}};
+        
+        % Second row - Node struct (taller height)
+        \draw (0.25,1.25) rectangle (0.75,2.25);
+        \draw (0.75,1.25) rectangle (2.25,1.75);
+        \draw (0.75,1.75) rectangle (2.25,2.25);
+        \node[rotate=90, font=\small] at (0.5,1.75) {\texttt{Node}};
+        \node[font=\small] at (1.5,2) {\texttt{v1}};
+        \node[font=\small] at (1.5,1.5) {\texttt{RawPtr}};
+        
+        % Column 2
+        % First row - ptr: RawPtr
+        \node[font=\small] at (3.75,3.25) {\texttt{ptr: RawPtr}};
+        
+        % Second row - Node struct
+        \draw (2.75,1.25) rectangle (3.25,2.25);
+        \draw (3.25,1.25) rectangle (4.75,1.75);
+        \draw (3.25,1.75) rectangle (4.75,2.25);
+        \node[rotate=90, font=\small] at (3,1.75) {\texttt{Node}};
+        \node[font=\small] at (4,2) {\texttt{v2}};
+        \node[font=\small] at (4,1.5) {\texttt{RawPtr}};
+        
+        % Column 3
+        % First row - ptr: RawPtr
+        \node[font=\small] at (6.25,3.25) {\texttt{ptr: RawPtr}};
+        
+        % Second row - Node struct
+        \draw (5.25,1.25) rectangle (5.75,2.25);
+        \draw (5.75,1.25) rectangle (7.25,1.75);
+        \draw (5.75,1.75) rectangle (7.25,2.25);
+        \node[rotate=90, font=\small] at (5.5,1.75) {\texttt{Node}};
+        \node[font=\small] at (6.5,2) {\texttt{v3}};
+        \node[font=\small] at (6.5,1.5) {\texttt{nil}};
+        
+        Cross-reference arrows from Ghost World to Program World
+        From Ghost World ptr fields to Program World RawPtr elements
+    
+        \draw[->, thick]
+          (0.5,3.8)
+          .. controls (0.8,5.5) and (1.2,4.1)
+          .. (1.75,6);
+        
+        \draw[->, thick]
+          (3,3.8)
+          .. controls (3.4,5.5) and (4.1,4.1)
+          .. (4.75,6);
+        
+        \draw[->, thick]
+          (5.5,3.8)
+          .. controls (6,5.5) and (7.1,4.1)
+          .. (7.75,6);
+        
+        % Internal Ghost World arrows (within the grid)
+        \draw[->, thick, bend left=30] (2.25,1.5) to (2.75,1.75);
+        \draw[->, thick, bend left=30] (4.75,1.5) to (5.25,1.75);
+        \draw[->, thick, bend left=30] (2.25,1.5) to (3.75,2.755);
+    
+        
+        % Arrow from second node's RawPtr to third node
+        \draw[->, thick, bend left=30] (4.75,1.5) to (6.25,2.75);
+        
+    \end{tikzpicture}
+    
+    
+    \caption{Memory representation of a list with 3 elements with raw pointers and \texttt{Creusot} sequences.}
+  \end{figure}
+\newpage  
+    \texttt{inverse} and \texttt{inverse'} are not equivalent predicates. The key difference is that \texttt{inverse} is independent of the second field of \texttt{PtrOwn} (\texttt{Node} field), whereas \texttt{inverse'} is not. In the \texttt{in\_place\_reversal} algorithm, we reverse the direction of the pointers inside the \texttt{Node} field of each \texttt{PtrOwn}. As a result, if we use the built-in \texttt{rev} function to reverse the sequence, it will not reconstruct the original version as it was at the beginning of the function, since the internal pointers now point in the opposite direction.  
+    The predicate \texttt{inverse} avoids this problem by ignoring the second field entirely. It only checks the ordering of the elements in the list, which is the only relevant information we need to verify. This is precisely why we define and use this predicate.
+  \end{itemize}
 
-\subsubsection{inverse Predicate}
-\hyperlink{inverse}{code$\dagger$}\\
-the predicate inverse takes two sequences of \texttt{PtrOwn} objects and tells if the elements of the first one are set in reverse order in the second one, on can notice that we could have written the predicated in a simpler way using the built-in function \texttt{rev}, but it is not the case, before explaining the diffrence, we show a figure of a representation of \texttt{Seq<PtrOwn<Node<T>>>} and it's corresponding list in the program world.
+\section{Conclusion and perspectives}
+\subsection{\scol{Conclusion}}
+This work successfully addresses the challenge of formally verifying in-place linked list reversal in the presence of shared data structures using \textsc{Creusot}. I have learned many concepts through this research work, not only about formal verification but also about programming semantics and formal verification language compilation.
 
-\begin{figure}[h]
-\centering
-% Option 1: Single tikzpicture with both diagrams
-\begin{tikzpicture}
-    % Program World
-    \node[font=\large\bfseries] at (3,8) {\texttt{Program World}};
-    
-    \draw (-2.5,6) rectangle (-1,6.75);
-    \node[font=\small] at (-1.75,6.375) {\texttt{\colorbox{yellow}{RawPtr}}};
-    \draw[->, thick, bend left=40] (-1,6.375) to (0,7.075);
-    
-    % First Node
-    \draw (0,6) rectangle (0.5,7.5);
-    \draw (0.5,6) rectangle (2,6.75);
-    \draw (0.5,6.75) rectangle (2,7.5);
-    \node[rotate=90, font=\small] at (0.25,6.75) {\texttt{Node}};
-    \node[font=\small] at (1.25,7.125) {\texttt{v1}};
-    \node[font=\small] at (1.25,6.375) {\texttt{RawPtr}};
-    
-    % Arrow to second node
-    \draw[->, thick, bend left=40] (2,6.375) to (3,7.075);
-    
-    % Second Node
-    \draw (3,6) rectangle (3.5,7.5);
-    \draw (3.5,6) rectangle (5,6.75);
-    \draw (3.5,6.75) rectangle (5,7.5);
-    \node[rotate=90, font=\small] at (3.25,6.75) {\texttt{Node}};
-    \node[font=\small] at (4.25,7.125) {\texttt{v2}};
-    \node[font=\small] at (4.25,6.375) {\texttt{RawPtr}};
-    
-    % Arrow to third node
-    \draw[->, thick, bend left=40] (5,6.375) to (6,7.075);
-    
-    % Third Node
-    \draw (6,6) rectangle (6.5,7.5);
-    \draw (6.5,6) rectangle (8,6.75);
-    \draw (6.5,6.75) rectangle (8,7.5);
-    \node[rotate=90, font=\small] at (6.25,6.75) {\texttt{Node}};
-    \node[font=\small] at (7.25,7.125) {\texttt{v3}};
-    \node[font=\small] at (7.25,6.375) {\texttt{nil}};
-    
-    % Dashed divider line
-    \draw[dashed, thick] (-3,5) -- (8.5,5);
-    
-    % Ghost World
-    \node[font=\large\bfseries] at (3.75,4.5) {\texttt{Ghost World}};
-    
-    % Manual grid lines for non-uniform rows
-    % Vertical lines
-    \draw[black, thick] (0,1) -- (0,4);
-    \draw[black, thick] (2.5,1) -- (2.5,4);
-    \draw[black, thick] (5,1) -- (5,4);
-    \draw[black, thick] (7.5,1) -- (7.5,4);
-    
-    % Horizontal lines
-    \draw[black, thick] (0,1) -- (7.5,1);     % Bottom
-    \draw[black, thick] (0,2.5) -- (7.5,2.5); % Middle (taller second row)
-    \draw[black, thick] (0,4) -- (7.5,4);     % Top
-    
-    % Column 1
-    % First row - ptr: RawPtr (smaller height)
-    \node[font=\small] at (1.25,3.25) {\texttt{\colorbox{yellow}{ptr: RawPtr}}};
-    
-    % Second row - Node struct (taller height)
-    \draw (0.25,1.25) rectangle (0.75,2.25);
-    \draw (0.75,1.25) rectangle (2.25,1.75);
-    \draw (0.75,1.75) rectangle (2.25,2.25);
-    \node[rotate=90, font=\small] at (0.5,1.75) {\texttt{Node}};
-    \node[font=\small] at (1.5,2) {\texttt{v1}};
-    \node[font=\small] at (1.5,1.5) {\texttt{RawPtr}};
-    
-    % Column 2
-    % First row - ptr: RawPtr
-    \node[font=\small] at (3.75,3.25) {\texttt{ptr: RawPtr}};
-    
-    % Second row - Node struct
-    \draw (2.75,1.25) rectangle (3.25,2.25);
-    \draw (3.25,1.25) rectangle (4.75,1.75);
-    \draw (3.25,1.75) rectangle (4.75,2.25);
-    \node[rotate=90, font=\small] at (3,1.75) {\texttt{Node}};
-    \node[font=\small] at (4,2) {\texttt{v2}};
-    \node[font=\small] at (4,1.5) {\texttt{RawPtr}};
-    
-    % Column 3
-    % First row - ptr: RawPtr
-    \node[font=\small] at (6.25,3.25) {\texttt{ptr: RawPtr}};
-    
-    % Second row - Node struct
-    \draw (5.25,1.25) rectangle (5.75,2.25);
-    \draw (5.75,1.25) rectangle (7.25,1.75);
-    \draw (5.75,1.75) rectangle (7.25,2.25);
-    \node[rotate=90, font=\small] at (5.5,1.75) {\texttt{Node}};
-    \node[font=\small] at (6.5,2) {\texttt{v3}};
-    \node[font=\small] at (6.5,1.5) {\texttt{nil}};
-    
-    Cross-reference arrows from Ghost World to Program World
-    From Ghost World ptr fields to Program World RawPtr elements
+\subsection{\scol{Perspectives}}
+We are looking forward to extending the proof to lasso structures and, more importantly, to proving the Morris tree traversal algorithm, which was my initial subject. Unfortunately, due to the complexity of the proof compared to the given time, I had to work on a simpler but very important algorithm, which is the list reversal.
+\newpage
 
-    \draw[->, thick]
-      (0.5,3.8)
-      .. controls (0.8,5.5) and (1.2,4.1)
-      .. (1.75,6);
-    
-    \draw[->, thick, red]
-      (3,3.8)
-      .. controls (3.4,5.5) and (4.1,4.1)
-      .. (4.75,6);
-    
-    \draw[->, thick, red]
-      (5.5,3.8)
-      .. controls (6,5.5) and (7.1,4.1)
-      .. (7.75,6);
-    
-    % Internal Ghost World arrows (within the grid)
-    \draw[->, thick, bend left=30] (2.25,1.5) to (2.75,1.75);
-    \draw[->, thick, bend left=30] (4.75,1.5) to (5.25,1.75);
-    \draw[->, thick, bend left=30] (2.25,1.5) to (3.75,2.755);
+\begin{thebibliography}{9}
 
-    
-    % Arrow from second node's RawPtr to third node
-    \draw[->, thick, bend left=30] (4.75,1.5) to (6.25,2.75);
-    
-\end{tikzpicture}
+\bibitem{reynolds}
+John C. Reynolds,  
+\textit{Separation Logic: A Logic for Shared Mutable Data Structures},  
+Proceedings of the 17th Annual IEEE Symposium on Logic in Computer Science (LICS), 2002.
 
-
-\caption{Program representation: Raw pointer-based list}
-\end{figure}
-
-
-
-
-% \subsection{Empty List Constructor}
-% \begin{lstlisting}
-% #[ensures(Self::list(result.0, *result.1))]
-% #[ensures(result.0.is_null_logic())]
-% pub fn empty() -> (RawPtr<Self>, Ghost<Seq<PtrOwn<Node<T>>>>)
-% \end{lstlisting}
-% \textbf{Purpose}: Creates an empty list represented by a null pointer and an empty permission sequence.
-% \textbf{Postconditions}: Ensures the returned pointer is null and satisfies the list predicate with an empty sequence.
-% \subsection{Cons Operation}
-% \begin{lstlisting}
-% #[requires(Self::list(l, **seq))]
-% #[ensures(Self::list(result, *^seq))]
-% #[ensures(forall<i:Int> 0 <= i && i < (^seq).tail().len()
-% ==> seq[i] == (^seq).tail()[i])]
-% #[ensures((^seq)[0].val().elem == e)]
-% #[ensures((^seq)[0].ptr() == result)]
-% #[ensures((^seq).len() == seq.len() + 1)]
-% pub fn cons(e: T, l: RawPtr<Self>,
-% seq: &mut Ghost<Seq<PtrOwn<Node<T>>>>) -> RawPtr<Self>
-% \end{lstlisting}
-% \textbf{Purpose}: Adds a new element to the front of the list.
-% \textbf{Preconditions}: Requires that the input pointer and sequence satisfy the list predicate.
-% \textbf{Postconditions}: Ensures the result forms a valid list with the new element at the front, maintaining the original elements in their relative order.
-% \section{Helper Functions}
-% \subsection{List Access}
-% \begin{lstlisting}
-% #[requires(Self::list(p, **seq))]
-% #[requires(0 <= nth@ && nth@ < seq.len())]
-% #[ensures(seq[nth@].val().elem == *result)]
-% pub fn nth(mut p: RawPtr<Self>, nth: i128,
-% seq: &Ghost<Seq<PtrOwn<Node<T>>>>) -> &T
-% \end{lstlisting}
-% \textbf{Purpose}: Provides safe access to the $n$-th element of the list.
-% \textbf{Preconditions}: Requires a valid list and that the index is within bounds.
-% \textbf{Postconditions}: Ensures the returned reference points to the element at the specified logical position.
-% \subsection{In-Place Reversal}
-% \begin{lstlisting}
-% #[requires(Self::list(p, **seq))]
-% #[ensures(Self::list(result, *^seq))]
-% #[ensures(seq.len() == (^seq).len() &&
-% Self::reverse(**seq, *^seq, 0, seq.len()))]
-% pub fn reverse_in_place(mut p: RawPtr<Self>,
-% seq: &mut Ghost<Seq<PtrOwn<Node<T>>>>) -> RawPtr<Self>
-% \end{lstlisting}
-% \textbf{Purpose}: Reverses the list in-place by manipulating pointer links.
-% \textbf{Preconditions}: Requires a valid list representation.
-% \textbf{Postconditions}: Ensures the result is a valid list with the same length, where the final sequence is the reverse of the original sequence.
-% \subsection{Vector Conversion}
-% \begin{lstlisting}
-% #[ensures(Node::list(result.0, *result.1))]
-% #[ensures(result.1.len() == vec.view().len())]
-% #[ensures(forall<i: Int> 0 <= i && i < vec.view().len()
-% ==> (*result.1)[i].val().elem == vec.view()[i])]
-% pub fn list_of_vector1<T>(mut vec: Vec<T>)
-% -> (RawPtr<Node<T>>, Ghost<Seq<PtrOwn<Node<T>>>>)
-% \end{lstlisting}
-% \textbf{Purpose}: Converts a vector into a linked list representation.
-% \textbf{Postconditions}: Ensures the resulting list has the same length as the original vector and maintains element correspondence at each position.
-% \section{Verification Approach}
-% The implementation employs several key verification techniques:
-% \begin{enumerate}
-% \item \textbf{Ghost State}: Uses ghost sequences to maintain logical representations alongside physical pointer structures.
-% \item \textbf{Loop Invariants}: Maintains complex invariants during iterative operations, particularly in the reversal algorithm.
-% \item \textbf{Ownership Tracking}: Leverages Creusot's ownership system to ensure memory safety without garbage collection.
-% \item \textbf{Quantified Specifications}: Uses first-order logic with quantifiers to express properties over sequences.
-% \end{enumerate}
-
-
-\chapter{Conclusion and prespectives}
-
+\bibitem{morris}
+Joseph M. Morris,  
+\textit{Traversing Binary Trees Simply and Cheaply},  
+Information Processing Letters, Vol. 9, No. 5, December 1979, pp. 197–200.
+\end{thebibliography}
+\newpage
 \input{appendix}
 
 \end{document}
