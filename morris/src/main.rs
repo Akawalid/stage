@@ -1,6 +1,6 @@
 use creusot_contracts::vec;
 use creusot_contracts::*;
-use morris::reversal_raw_ptr::*;
+// use morris::reversal_raw_ptr::*;
 fn main() {
     // let v1 = vec![1, 5, 3];
     // let (list1, mut _seq1) = list_of_vector1(v1.clone());

@@ -7,8 +7,7 @@
 &\quad \quad \texttt{(k := [i + 1]; [i + 1] := j; j := i; i := k).}
 \end{align*}
 \subsection{\scol{Code}}
-\begin{minted}{rust}
-#![allow(dead_code)]
+\begin{minted}[breaklines=true]{rust}
 extern crate creusot_contracts;
 use ::std::ptr;
 use creusot_contracts::ptr_own::{PtrOwn, RawPtr};
@@ -62,7 +61,6 @@ impl<T> Node<T> {
     #[requires(0 <= nth@ && nth@ < seq.len() )]
     #[ensures(seq[nth@].val().elem == *result)]
     pub fn nth(mut p: RawPtr<Self>, nth: i128, seq: &Ghost<Seq<PtrOwn<Node<T>>>>) -> &T {
-        //requires nth >= 0
         let mut i = 0;
         proof_assert!(**seq == seq.subsequence(0, seq.len()));
         #[invariant(0 <= i@ && i@ <= nth@)]
@@ -102,8 +100,6 @@ impl<T> Node<T> {
         mut p: RawPtr<Self>,
         seq: &mut Ghost<Seq<PtrOwn<Node<T>>>>,
     ) -> RawPtr<Self> {
-        //requires p n'est pas un lasso
-
         snapshot! {
             let _ = Seq::<T>::ext_eq;
         };
@@ -194,7 +190,4 @@ pub fn tr() {
 
     print!("ok");
 }
-
 \end{minted}
-
-\newpage

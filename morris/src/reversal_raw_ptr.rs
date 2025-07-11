@@ -52,7 +52,6 @@ impl<T> Node<T> {
     #[requires(0 <= nth@ && nth@ < seq.len() )]
     #[ensures(seq[nth@].val().elem == *result)]
     pub fn nth(mut p: RawPtr<Self>, nth: i128, seq: &Ghost<Seq<PtrOwn<Node<T>>>>) -> &T {
-        //requires nth >= 0
         let mut i = 0;
         proof_assert!(**seq == seq.subsequence(0, seq.len()));
         #[invariant(0 <= i@ && i@ <= nth@)]
@@ -92,8 +91,6 @@ impl<T> Node<T> {
         mut p: RawPtr<Self>,
         seq: &mut Ghost<Seq<PtrOwn<Node<T>>>>,
     ) -> RawPtr<Self> {
-        //requires p n'est pas un lasso
-
         snapshot! {
             let _ = Seq::<T>::ext_eq;
         };
@@ -121,27 +118,22 @@ impl<T> Node<T> {
 
             ghost!((*reverted_seq).push_front_ghost(seq.pop_front_ghost().unwrap()));
 
-            //a0156: Assertion used to prove invariant #1 (we can remove it and use use_th seq.FreeMonoid instead)
+            //Assertion used to prove invariant #1 (we can remove it and use use_th seq.FreeMonoid instead)
             proof_assert!(reverted_seq.tail() == *_revs_loop_entry);
 
             //Hypothesis: invariant(Self::list (p, **seq))
             // We need to add to the hypothesis the fac that the tail of the previous seq is the new seq
-            //a1369
             proof_assert!((*_sloop_exit).tail() == **seq);
 
             //In order to proof the last assertion, we need the following assertion
             //It esnures that seq.tail() didn't change between the beginig of the loop and the end, what ensures the stability of our invariant
-            //a7070
             proof_assert!((*_sloop_exit).tail() == (*_sloop_entry).tail());
 
             //this should be enough to prove #[invariant(Self::list (p, **seq))], whith using the latter, creusot proves well the remaining invariant about q
-            //proof_assert!(Self::list(p, (*snap2).tail()));
-            //a1313
             proof_assert!(Self::list(p, (*_sloop_exit).tail()));
             // ==> invariant #1 checks for iteration n+1
         }
         //Pour montrer ensures#1 (ensures(seq.len() == (^seq).len() && Self::inverse(**seq, *^seq, 0, seq.len())))
-        //a4224
         proof_assert!(_seq0.subsequence(0, reverted_seq.len()) == *_seq0);
         ghost!(**seq = reverted_seq.into_inner());
         q
