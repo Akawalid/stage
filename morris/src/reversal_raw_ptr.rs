@@ -35,11 +35,11 @@ impl<T> Node<T> {
     }
 
     #[requires(Self::list(l, **seq))]
-    #[ensures(Self::list(result,  ^*seq))]
-    #[ensures(forall<i:Int> 0 <= i && i < (^*seq).tail().len() ==> seq[i] == (^*seq).tail()[i])]
-    #[ensures((^*seq)[0].val().elem == e)]
-    #[ensures((^*seq)[0].ptr() == result)]
-    #[ensures((^*seq).len() == seq.len() + 1)]
+    #[ensures(Self::list(result,  ^seq.inner_logic()))]
+    #[ensures(forall<i:Int> 0 <= i && i < (^seq.inner_logic()).tail().len() ==> seq[i] == (^seq.inner_logic()).tail()[i])]
+    #[ensures((^seq.inner_logic())[0].val().elem == e)]
+    #[ensures((^seq.inner_logic())[0].ptr() == result)]
+    #[ensures((^seq.inner_logic()).len() == seq.len() + 1)]
     //
     //#[ensures(^seq == seq.push_front())]
     pub fn cons(e: T, l: RawPtr<Self>, mut seq: Ghost<&mut Seq<PtrOwn<Node<T>>>>) -> RawPtr<Self> {
@@ -96,8 +96,8 @@ impl<T> Node<T> {
     }
 
     #[requires(Self::list(p, **seq))]
-    #[ensures(Self::list(result, ^*seq))]
-    #[ensures(seq.len() == (^*seq).len() && Self::inverse(**seq, ^*seq, 0, seq.len()))]
+    #[ensures(Self::list(result, ^seq.inner_logic()))]
+    #[ensures(seq.len() == (^seq.inner_logic()).len() && Self::inverse(**seq, ^seq.inner_logic(), 0, seq.len()))]
     pub fn reverse_in_place(
         mut p: RawPtr<Self>,
         mut seq: Ghost<&mut Seq<PtrOwn<Node<T>>>>,
