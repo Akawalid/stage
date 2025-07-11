@@ -1,6 +1,5 @@
 extern crate creusot_contracts;
-
-//mod reversal_pcell;
+//in this file, I put all the exercises I have done during the internship.
 pub mod reversal_raw_ptr;
 
 // type NodeRef<T> = Option<Rc<Comb<T>>>;

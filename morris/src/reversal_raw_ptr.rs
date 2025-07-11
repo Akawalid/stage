@@ -86,7 +86,8 @@ impl<T> Node<T> {
 
     #[requires(Self::list(p, **seq))]
     #[ensures(Self::list(result, *^seq))]
-    #[ensures(seq.len() == (^seq).len() && Self::inverse(**seq, *^seq, 0, seq.len()))]
+    #[ensures(seq.len() == (^seq).len())]
+    #[ensures(Self::inverse(**seq, *^seq, 0, (*^seq).len()))]
     pub fn reverse_in_place(
         mut p: RawPtr<Self>,
         seq: &mut Ghost<Seq<PtrOwn<Node<T>>>>,
@@ -168,4 +169,18 @@ pub fn list_of_vector1<T>(mut vec: Vec<T>) -> (RawPtr<Node<T>>, Ghost<Seq<PtrOwn
         }
     }
     (l, seq)
+}
+
+pub fn tr() {
+    let v1 = creusot_contracts::vec![1, 5, 3];
+    let (list1, mut _seq1) = list_of_vector1(v1.clone());
+    assert!(*Node::nth(list1, 0, &_seq1) == 1);
+    assert!(*Node::nth(list1, 1, &_seq1) == 5);
+    assert!(*Node::nth(list1, 2, &_seq1) == 3);
+    let l2 = Node::reverse_in_place(list1, &mut _seq1);
+    assert!(*Node::nth(l2, 2, &_seq1) == 1);
+    assert!(*Node::nth(l2, 1, &_seq1) == 5);
+    assert!(*Node::nth(l2, 0, &_seq1) == 3);
+
+    print!("ok");
 }
