@@ -12,8 +12,6 @@ impl<T> Node<T> {
     #[predicate]
     #[variant(perm_seq.len())]
     fn list(l: RawPtr<Self>, perm_seq: Seq<PtrOwn<Node<T>>>) -> bool {
-        //On n'aura pas vraiment besoin de l puisque on suppose que perm_seq ne peut pas etre autre chose que la liste
-        //des permissions de l
         pearlite! {
             if l.is_null_logic() {
                 perm_seq.len() == 0
@@ -35,15 +33,12 @@ impl<T> Node<T> {
     }
 
     #[requires(Self::list(l, **seq))]
-    #[ensures(Self::list(result,  ^seq.inner_logic()))]
-    #[ensures(forall<i:Int> 0 <= i && i < (^seq.inner_logic()).tail().len() ==> seq[i] == (^seq.inner_logic()).tail()[i])]
-    #[ensures((^seq.inner_logic())[0].val().elem == e)]
-    #[ensures((^seq.inner_logic())[0].ptr() == result)]
-    #[ensures((^seq.inner_logic()).len() == seq.len() + 1)]
-    //
-    //#[ensures(^seq == seq.push_front())]
-    pub fn cons(e: T, l: RawPtr<Self>, mut seq: Ghost<&mut Seq<PtrOwn<Node<T>>>>) -> RawPtr<Self> {
-        // let ee = snapshot!(e);
+    #[ensures(Self::list(result,  *^seq))]
+    #[ensures(forall<i:Int> 0 <= i && i < (^seq).tail().len() ==> seq[i] == (^seq).tail()[i])]
+    #[ensures((^seq)[0].val().elem == e)]
+    #[ensures((^seq)[0].ptr() == result)]
+    #[ensures((^seq).len() == seq.len() + 1)]
+    pub fn cons(e: T, l: RawPtr<Self>, seq: &mut Ghost<Seq<PtrOwn<Node<T>>>>) -> RawPtr<Self> {
         let (raw, own) = PtrOwn::new(Node { elem: e, next: l });
 
         let _seq2 = snapshot!(**seq);
@@ -56,18 +51,13 @@ impl<T> Node<T> {
     #[requires(Self::list(p, **seq))]
     #[requires(0 <= nth@ && nth@ < seq.len() )]
     #[ensures(seq[nth@].val().elem == *result)]
-    pub fn nth(mut p: RawPtr<Self>, nth: i128, seq: Ghost<&Seq<PtrOwn<Node<T>>>>) -> &T {
+    pub fn nth(mut p: RawPtr<Self>, nth: i128, seq: &Ghost<Seq<PtrOwn<Node<T>>>>) -> &T {
         //requires nth >= 0
         let mut i = 0;
-        //let mut seq_taililng = snapshot!(**seq);
         proof_assert!(**seq == seq.subsequence(0, seq.len()));
         #[invariant(0 <= i@ && i@ <= nth@)]
         #[invariant(Self::list(p, seq.subsequence(i@, seq.len())))]
         loop {
-            //je ne comprends pas pourquoi il n'arirve pas à prouver les deux assertions en bas alors que c'est trivial
-            // hypothèse: snapshot! n'est bon pour tracker la valeur de seq meme si c'est une valeur immutable
-            //proof_assert!(seq_taililng[0] == seq[i@]);
-            //proof_assert!(Self::list(p, *seq_taililng));
             let rw = unsafe {
                 PtrOwn::as_ref(p, ghost!(seq.get_ghost(Int::new(i).into_inner()).unwrap()))
             };
@@ -79,14 +69,13 @@ impl<T> Node<T> {
             p = rw.next;
             proof_assert!(seq.subsequence(i@, seq.len()).tail() == seq.subsequence(i@+1, seq.len()));
             i += 1;
-            //seq_taililng = snapshot!((*seq_taililng).tail());
         }
     }
 
     #[predicate]
     pub fn inverse(seq: Seq<PtrOwn<Node<T>>>, other: Seq<PtrOwn<Node<T>>>, lb: Int, lh: Int) -> bool
     where
-        T: Sized, // TODO: don't require this (problem: uses index)
+        T: Sized,
     {
         pearlite! {
              forall<i: Int>
@@ -96,13 +85,14 @@ impl<T> Node<T> {
     }
 
     #[requires(Self::list(p, **seq))]
-    #[ensures(Self::list(result, ^seq.inner_logic()))]
-    #[ensures(seq.len() == (^seq.inner_logic()).len() && Self::inverse(**seq, ^seq.inner_logic(), 0, seq.len()))]
+    #[ensures(Self::list(result, *^seq))]
+    #[ensures(seq.len() == (^seq).len() && Self::inverse(**seq, *^seq, 0, seq.len()))]
     pub fn reverse_in_place(
         mut p: RawPtr<Self>,
-        mut seq: Ghost<&mut Seq<PtrOwn<Node<T>>>>,
+        seq: &mut Ghost<Seq<PtrOwn<Node<T>>>>,
     ) -> RawPtr<Self> {
         //requires p n'est pas un lasso
+
         snapshot! {
             let _ = Seq::<T>::ext_eq;
         };
@@ -113,14 +103,11 @@ impl<T> Node<T> {
         #[invariant(Self::list(q, *reverted_seq))]
         #[invariant(Self::list(p, **seq))]
         #[invariant(Self::inverse(_seq0.subsequence(0, reverted_seq.len()), *reverted_seq, 0, reverted_seq.len()))]
-        //Question!!!!!!!!!! Ican either keep this invariant which proves everything, or remove it and prove disjunction_lemma
-        //which makes the code cleaner.
         #[invariant(reverted_seq.len() + seq.len() == _seq0.len())]
         #[invariant(**seq == _seq0.subsequence(reverted_seq.len(), _seq0.len()))]
         #[invariant(inv(seq))]
         #[invariant(inv(reverted_seq))]
         while !p.is_null() {
-            //snapshot!(Self::disjunciton_lemma(&*_seq0, &**seq, &*reverted_seq));
             let _sloop_entry = snapshot!(**seq);
             let _revs_loop_entry = snapshot!(*reverted_seq);
             let p2 =
@@ -152,8 +139,7 @@ impl<T> Node<T> {
             proof_assert!(Self::list(p, (*_sloop_exit).tail()));
             // ==> invariant #1 checks for iteration n+1
         }
-        //snapshot!(Self::disjunciton_lemma(&*_seq0, &**seq, &*reverted_seq));
-        //Pour montrer ensures#1 (ensures(seq.len() == (^seq).len() && Self::reverse(**seq, *^seq, 0, seq.len())))
+        //Pour montrer ensures#1 (ensures(seq.len() == (^seq).len() && Self::inverse(**seq, *^seq, 0, seq.len())))
         //a4224
         proof_assert!(_seq0.subsequence(0, reverted_seq.len()) == *_seq0);
         ghost!(**seq = reverted_seq.into_inner());
@@ -175,35 +161,11 @@ pub fn list_of_vector1<T>(mut vec: Vec<T>) -> (RawPtr<Node<T>>, Ghost<Seq<PtrOwn
     #[invariant(forall<i: Int> 0 <= i && i < vec.view().len() ==> vec.view()[i] == _vec0.view()[i])]
     #[invariant(inv(seq))]
     loop {
-        //let vec1 = snapshot!(vec);
-        //let seq1 = snapshot!(seq);
-        //proof_assert!(vec1.view().len() > 0 ==> vec1.view()[vec1.view().len()-1] == vec0.view()[vec1.view().len()-1]);
-
         if let Some(v) = vec.pop() {
-            //let vv = snapshot!(v);
-            l = Node::cons(v, l, seq.borrow_mut());
-            //proof_assert!(vec1.view().len() == vec.view().len() + 1);
-            //proof_assert!(seq[0].val().elem == *vv && seq.tail() == **seq1);
-            //proof_assert!(forall<i: Int>
-            //  vec1.view().len() <= i && i < vec0.view().len() ==> seq1[i - vec1.view().len()].val().elem == vec0.view()[i]);
-            //proof_assert!(vec1.view() == vec.view().push_back(*vv));
-            //proof_assert!(vec1.view()[vec.view().len()] == vec0.view()[vec.view().len()]);
-            //proof_assert!(seq[0].val().elem == vec0.view()[vec.view().len()]);
+            l = Node::cons(v, l, &mut seq);
         } else {
             break;
         }
     }
     (l, seq)
 }
-
-// impl<T> Drop for RawPtr<Node<T>> {
-//     fn drop(&mut self) {
-//         while !self.is_null() {
-//             unsafe {
-//                 let next = self.next;
-//                 drop(p);
-//                 p = next;
-//             }
-//         }
-//     }
-// }
