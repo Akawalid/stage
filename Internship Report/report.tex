@@ -92,7 +92,7 @@ pub fn sum_first_n(n: u32) -> u32 {
 The function \texttt{sum\_first\_n} in \autoref{fig:sum-example} computes the sum of the first \texttt{n} natural numbers. The special comments denoted with \texttt{\#[...]} represent its specification:
 \begin{itemize}
 \item \textbf{Precondition:} It asserts that the sum of the first \texttt{n} natural numbers where \texttt{n} is provided as a parameter, does not overflow the capacity of the result type. This ensures that the final sum, which will be stored in the return variable will not exceed the capacity of the return type. The operator \texttt{@} converts machine integers into mathematical integers, which are unbounded, allowing us to use arithmetic theory.
-\item \textbf{Postcondition:} It states that the returned result is equal to the expected mathematical value: \texttt{n * (n + 1) / 2}
+\item \textbf{Postcondition:} It states that the returned result is equal to the expected mathematical value: \texttt{n * (n + 1) / 2}.
 \item \textbf{Loop invariant:} The expression \texttt{produced.len()} corresponds to the number of iterations performed so far. It effectively can play the role of the loop index by applying a transformation. The reason we cannot refer directly to the loop index is due to scoping limitations.
 \end{itemize}
 \subsubsection{\scol{Ghost code in \creusot{}}}
@@ -132,11 +132,11 @@ To prove properties of algorithms on data structures, it's usually not enough to
 \end{align*}
 
 
-\texttt{i $\hookrightarrow$ a} means "\texttt{i} points to \texttt{a}"\\
+where \texttt{i $\hookrightarrow$ a} means "\texttt{i} points to \texttt{a}"\\.
 The predicate \texttt{list} allows us to link the code pointer \texttt{i} into it's corresponding sequence $\alpha$.\\
 If we extend the proof to lassos, it would be better to define a list in a more general way, so that a list is identified by a pair of pointers: the first pointer represents the head of the sub-list, and the second pointer represents the tail of the sub-list. This way, we can separate the lasso into its two main parts, the cycle and the entry list.
 
-One of key uses of separation logic can be seen when trying to use \hyperlink{reversal}{\texttt{in\_place\_reversal}$\dagger$} on shared data structures, in this context, given the following precondition for in-place reversal: \texttt{list p $\alpha$}, the post-condition \texttt{list p }$\overline{\alpha}$ is not sufficient to ensure the correctness of the algorithm. consider the example in \autoref{fig:shared-lists}.
+One of key uses of separation logic can be seen when trying to use \hyperlink{reversal}{\texttt{in\_place\_reversal}$\dagger$} on shared data structures, in this context, given the following precondition for in-place reversal: \texttt{list p $\alpha$}, the post-condition \texttt{list p }$\overline{\alpha}$ is not sufficient to ensure the correctness of the algorithm. Consider the example in \autoref{fig:shared-lists}.
 
 \begin{figure}[tp]
 \centering
@@ -290,7 +290,7 @@ There are, however, more specialized tools designed specifically for reasoning w
 \node[box, right=of creusot] (viper) {\textsc{Viper}};
 \node[box, below=of viper] (boogie) {\textsc{Boogie}};
 \node[box, left=of boogie] (why3) {\why{}};
-\node[box, below left=0cm and 0.7cm of creusot] (comma) {\textsc{Comma}};
+\node[box, below left=0cm and 0.7cm of creusot] (coma) {\textsc{Coma}};
 \node[box, below=of boogie] (smt) {\textsc{SMT}};
 \node[box, right=0.8cm of viper] (delphi) {\textsc{Prusti}};
 
@@ -301,8 +301,8 @@ There are, however, more specialized tools designed specifically for reasoning w
 \draw[-, dashed, red, line width=0.8pt] 
   (8,-2.5) -- (-3.5,-2.5);
   
-\draw (creusot) -- (comma);
-\draw (comma) -- (why3);
+\draw (creusot) -- (coma);
+\draw (coma) -- (why3);
 \draw (viper) -- (boogie);
 \draw (why3) -- (smt);
 \draw (boogie) -- (smt);
@@ -352,7 +352,7 @@ The core problem is that, for a given list implementation in \rust{} using raw p
         q
     }
     \end{minted}
-\caption{Rust code of \texttt{in\_place\_reversal}}
+\caption{Rust code of \texttt{in\_place\_reversal}.}
 \label{fig:reversalinp}
 \end{figure}
 
@@ -408,7 +408,7 @@ The core problem is that, for a given list implementation in \rust{} using raw p
 \label{fig:ptrown-structure}
 \end{figure}
 
-Our solution relies on the use of linear algebraic types in \creusot{}, specifically, \texttt{PtrOwn} and \texttt{RawPtr}. This allows us to prove the correctness of in-place reversal even in the presence of shared data structures, making it better than the \hyperlink{BOXmeth}{BOX method$\dagger$}. Moreover, it also outperforms the \hyperlink{MEMmodel}{memory model$\dagger$} approach, our method requires to reason locally on memory. In other words, we only need to verify the parts of the heap we are manipulating, without having to reason about independent regions. This provides a form of separation logic, implicitly enforced by the \rust{} type system.\\
+Our solution relies on the use of linear algebraic types in \creusot{}, specifically, \texttt{PtrOwn} and \texttt{RawPtr}. This allows us to prove the correctness of in-place reversal even in the presence of shared data structures, making it better than the \hyperlink{BOXmeth}{BOX method$\dagger$}. Moreover, it also outperforms the \hyperlink{MEMmodel}{memory model$\dagger$} approach, our method requires to reason locally on memory. In other words, we only need to verify the parts of the heap we are manipulating, without having to reason about independent regions. This provides a form of separation logic, implicitly enforced by the rust type system.\\
 In the following we will present our solutions in steps.\\
 \subsubsection{\scol{Data Structure}}
 The list type is represented by \texttt{RawPtr<Node<T>>} where \texttt{Node<T>} is defined like the following:
@@ -423,7 +423,7 @@ struct Node<T> {
 \begin{itemize}
     \item  \hyperlink{list}{\textbf{The \texttt{list} Predicate}
       $\dagger$}\\
-        We defined a predicate \texttt{list} that takes a pointer of type \texttt{RawPtr} and the abstract ghost sequence of permission \texttt{PtrOwn} that represents the list algebraically \texttt{seq}. it checks recursively that the pointers inside the permissions in the sequence correspond to the pointers in the progam world, and that the list ends with \texttt{nil}.\\
+        We defined a predicate \texttt{list} that takes a pointer of type \texttt{RawPtr} and the abstract ghost sequence of permission \texttt{PtrOwn} that represents the list algebraically \texttt{seq}. It checks recursively that the pointers inside the permissions in the sequence correspond to the pointers in the program world, and that the list ends with \texttt{nil}.\\
     \begin{minted}{rust}
     #[predicate]
     #[variant(perm_seq.len())]
@@ -575,20 +575,20 @@ struct Node<T> {
     At some point in the specification, we need to express that the elements of a certain sequence in the program appear in reverse order compared to their version at the beginning. But we cannot use the \texttt{inverse} predicate as defined above, because even though the elements in the two sequences are logically reversed, \texttt{inverse} will return \texttt{false} since the internal pointers are reversed as well, and pointer equality does not hold.
   \end{itemize}
   
-\subsubsection{Code specification of \texttt{in\_place\_reversal}}
+\subsubsection{\scol{Code specification of \texttt{in\_place\_reversal}}}
 Reference to the code in \autoref{fig:reversalinp}
 \begin{itemize}
-    \item \textbf{Pre-condition}
+    \item \textbf{Pre-condition}:
     As a precondition we require that the pointer \texttt{p} and the provided sequence \texttt{seq} form a list, in other means, it obeys to the structure presented in \autoref{fig:beautiful}.
-    \item \textbf{Post-conditions}
-    As a post-condition we need to ensure that, the result pointer \texttt{result} and the final sequence \texttt{seq} form a list or obeys to the structure presented in \autoref{fig:beautiful}.
+    \item \textbf{Post-conditions}:
+    As a post-condition we need to ensure that, the result pointer \texttt{result} and the final sequence \texttt{seq} form a list and obeys to the structure presented in \autoref{fig:beautiful}.
     Also we have to precise that the elements in the final list are set in reverse order of the primary list.
     \begin{minted}{rust}
         #[ensures(Self::list(result, *^seq))]
         #[ensures(Self::inverse(**seq, *^seq, 0, (*^seq).len()))]
     \end{minted}
-    \texttt{\^{}} denotes the object at the end of the program.
-    \item \textbf{Invariants}
+    where \texttt{\^{}} denotes the object at the end of the program.
+    \item \textbf{Invariants}:
     In the loop, we maintain two sequences: \texttt{reverted\_seq} and \texttt{seq}. At each iteration, we redirect the pointer in the correct direction, pop the head of the \texttt{seq} sequence, and push it into \texttt{reverted\_seq}. As a result, the memory representation of the data during execution resembles the diagram shown in \autoref{fig:invariant}.
 
       \begin{figure}[tp]
@@ -762,7 +762,7 @@ Reference to the code in \autoref{fig:reversalinp}
 This work successfully addresses the challenge of formally verifying in-place linked list reversal in the presence of shared data structures using \creusot{}. I have learned many concepts through this research work, not only about formal verification but also about program semantics and notions about the provers' compilers.
 
 \subsection{\scol{Perspectives}}
-We are looking forward to extending the proof to lasso structures and, more importantly, to proving the Morris~\cite{morris} tree traversal algorithm, which was my initial subject. Unfortunately, due to the complexity of the proof compared to the given time, We decided to work on a simpler but very important algorithm, which is the list reversal.
+we are looking forward to extending the proof to lasso structures and, more importantly, to proving the Morris~\cite{morris} tree traversal algorithm, which was my initial subject. Unfortunately, due to the complexity of the proof compared to the given time, We decided to work on a simpler but very important algorithm, which is the list reversal.
 \newpage
 \printbibliography
 
