@@ -1,0 +1,441 @@
+(* #"/home/baggabom/stage/creusot_rust/creusot/src/reversal_raw_ptr.rs" 166 0 166 11 *)
+
+let%span sreversal_raw_ptr = "/home/baggabom/stage/creusot_rust/creusot/src/reversal_raw_ptr.rs" 167 37 167 38
+let%span sreversal_raw_ptr'0 = "/home/baggabom/stage/creusot_rust/creusot/src/reversal_raw_ptr.rs" 167 40 167 41
+let%span sreversal_raw_ptr'1 = "/home/baggabom/stage/creusot_rust/creusot/src/reversal_raw_ptr.rs" 167 43 167 44
+let%span sreversal_raw_ptr'2 = "/home/baggabom/stage/creusot_rust/creusot/src/reversal_raw_ptr.rs" 169 30 169 31
+let%span sreversal_raw_ptr'3 = "/home/baggabom/stage/creusot_rust/creusot/src/reversal_raw_ptr.rs" 169 44 169 45
+let%span sreversal_raw_ptr'4 = "/home/baggabom/stage/creusot_rust/creusot/src/reversal_raw_ptr.rs" 170 30 170 31
+let%span sreversal_raw_ptr'5 = "/home/baggabom/stage/creusot_rust/creusot/src/reversal_raw_ptr.rs" 170 44 170 45
+let%span sreversal_raw_ptr'6 = "/home/baggabom/stage/creusot_rust/creusot/src/reversal_raw_ptr.rs" 171 30 171 31
+let%span sreversal_raw_ptr'7 = "/home/baggabom/stage/creusot_rust/creusot/src/reversal_raw_ptr.rs" 171 44 171 45
+let%span sreversal_raw_ptr'8 = "/home/baggabom/stage/creusot_rust/creusot/src/reversal_raw_ptr.rs" 173 27 173 28
+let%span sreversal_raw_ptr'9 = "/home/baggabom/stage/creusot_rust/creusot/src/reversal_raw_ptr.rs" 173 41 173 42
+let%span sreversal_raw_ptr'10 = "/home/baggabom/stage/creusot_rust/creusot/src/reversal_raw_ptr.rs" 174 27 174 28
+let%span sreversal_raw_ptr'11 = "/home/baggabom/stage/creusot_rust/creusot/src/reversal_raw_ptr.rs" 174 41 174 42
+let%span sreversal_raw_ptr'12 = "/home/baggabom/stage/creusot_rust/creusot/src/reversal_raw_ptr.rs" 175 27 175 28
+let%span sreversal_raw_ptr'13 = "/home/baggabom/stage/creusot_rust/creusot/src/reversal_raw_ptr.rs" 175 41 175 42
+let%span sreversal_raw_ptr'14 = "/home/baggabom/stage/creusot_rust/creusot/src/reversal_raw_ptr.rs" 175 4 175 43
+let%span sreversal_raw_ptr'15 = "/home/baggabom/stage/creusot_rust/creusot/src/reversal_raw_ptr.rs" 174 4 174 43
+let%span sreversal_raw_ptr'16 = "/home/baggabom/stage/creusot_rust/creusot/src/reversal_raw_ptr.rs" 173 4 173 43
+let%span sreversal_raw_ptr'17 = "/home/baggabom/stage/creusot_rust/creusot/src/reversal_raw_ptr.rs" 171 4 171 46
+let%span sreversal_raw_ptr'18 = "/home/baggabom/stage/creusot_rust/creusot/src/reversal_raw_ptr.rs" 170 4 170 46
+let%span sreversal_raw_ptr'19 = "/home/baggabom/stage/creusot_rust/creusot/src/reversal_raw_ptr.rs" 169 4 169 46
+let%span sreversal_raw_ptr'20 = "/home/baggabom/stage/creusot_rust/creusot/src/reversal_raw_ptr.rs" 146 46 146 92
+let%span sreversal_raw_ptr'21 = "/home/baggabom/stage/creusot_rust/creusot/src/reversal_raw_ptr.rs" 143 10 143 41
+let%span sreversal_raw_ptr'22 = "/home/baggabom/stage/creusot_rust/creusot/src/reversal_raw_ptr.rs" 144 10 144 44
+let%span sreversal_raw_ptr'23 = "/home/baggabom/stage/creusot_rust/creusot/src/reversal_raw_ptr.rs" 145 10 145 102
+let%span sreversal_raw_ptr'24 = "/home/baggabom/stage/creusot_rust/creusot/src/reversal_raw_ptr.rs" 54 47 54 50
+let%span sreversal_raw_ptr'25 = "/home/baggabom/stage/creusot_rust/creusot/src/reversal_raw_ptr.rs" 51 15 51 35
+let%span sreversal_raw_ptr'26 = "/home/baggabom/stage/creusot_rust/creusot/src/reversal_raw_ptr.rs" 52 15 52 44
+let%span sreversal_raw_ptr'27 = "/home/baggabom/stage/creusot_rust/creusot/src/reversal_raw_ptr.rs" 53 14 53 45
+let%span sreversal_raw_ptr'28 = "/home/baggabom/stage/creusot_rust/creusot/src/reversal_raw_ptr.rs" 92 8 92 11
+let%span sreversal_raw_ptr'29 = "/home/baggabom/stage/creusot_rust/creusot/src/reversal_raw_ptr.rs" 86 15 86 35
+let%span sreversal_raw_ptr'30 = "/home/baggabom/stage/creusot_rust/creusot/src/reversal_raw_ptr.rs" 87 14 87 39
+let%span sreversal_raw_ptr'31 = "/home/baggabom/stage/creusot_rust/creusot/src/reversal_raw_ptr.rs" 88 14 88 39
+let%span sreversal_raw_ptr'32 = "/home/baggabom/stage/creusot_rust/creusot/src/reversal_raw_ptr.rs" 89 14 89 59
+let%span sreversal_raw_ptr'33 = "/home/baggabom/stage/creusot_rust/creusot/src/reversal_raw_ptr.rs" 177 11 177 15
+let%span sreversal_raw_ptr'34 = "/home/baggabom/stage/creusot_rust/creusot/src/reversal_raw_ptr.rs" 13 14 13 28
+let%span sreversal_raw_ptr'35 = "/home/baggabom/stage/creusot_rust/creusot/src/reversal_raw_ptr.rs" 16 12 25 13
+let%span sreversal_raw_ptr'36 = "/home/baggabom/stage/creusot_rust/creusot/src/reversal_raw_ptr.rs" 80 13 82 74
+let%span sptr = "/home/baggabom/stage/creusot/creusot-contracts/src/std/ptr.rs" 59 14 59 53
+let%span sptr'0 = "/home/baggabom/stage/creusot/creusot-contracts/src/std/ptr.rs" 61 8 61 35
+let%span sseq = "/home/baggabom/stage/creusot/creusot-contracts/src/logic/seq.rs" 169 8 169 39
+let%span sseq'0 = "/home/baggabom/stage/creusot/creusot-contracts/src/logic/seq.rs" 673 20 673 95
+let%span sghost = "/home/baggabom/stage/creusot/creusot-contracts/src/ghost.rs" 99 8 99 18
+let%span sboxed = "/home/baggabom/stage/creusot/creusot-contracts/src/std/boxed.rs" 22 8 22 22
+let%span sboxed'0 = "/home/baggabom/stage/creusot/creusot-contracts/src/std/boxed.rs" 33 8 33 18
+let%span sptr_own = "/home/baggabom/stage/creusot/creusot-contracts/src/ptr_own.rs" 49 8 49 35
+let%span sresolve = "/home/baggabom/stage/creusot/creusot-contracts/src/resolve.rs" 49 20 49 34
+let%span sinvariant = "/home/baggabom/stage/creusot/creusot-contracts/src/invariant.rs" 101 20 101 44
+let%span sinvariant'0 = "/home/baggabom/stage/creusot/creusot-contracts/src/invariant.rs" 91 8 91 18
+let%span svec = "/home/baggabom/stage/creusot/creusot-contracts/src/std/vec.rs" 21 14 21 41
+let%span sslice = "/home/baggabom/stage/creusot/creusot-contracts/src/std/slice.rs" 318 18 318 35
+let%span sslice'0 = "/home/baggabom/stage/creusot/creusot-contracts/src/std/slice.rs" 28 14 28 41
+let%span sslice'1 = "/home/baggabom/stage/creusot/creusot-contracts/src/std/slice.rs" 29 14 29 42
+let%span sclone = "/home/baggabom/stage/creusot/creusot-contracts/src/std/clone.rs" 15 26 15 41
+let%span sfmt = "/home/baggabom/stage/creusot/creusot-contracts/src/std/fmt.rs" 25 27 25 31
+let%span sio = "/home/baggabom/stage/creusot/creusot-contracts/src/std/io.rs" 9 22 9 26
+
+use creusot.slice.Slice64
+use creusot.int.Int32
+use creusot.prelude.Opaque
+use creusot.int.UInt64
+use seq.Seq
+use mach.int.Int
+use creusot.int.Int128
+use creusot.prelude.MutBorrow
+use creusot.prelude.Any
+use creusot.prelude.Char
+use creusot.int.UInt32
+
+type t_NonNull  =
+  { t_NonNull__pointer: Opaque.ptr }
+
+type t_Unique  =
+  { t_Unique__pointer: t_NonNull; t_Unique__qy95zmarker: () }
+
+type t_UsizeNoHighBit  =
+  { t_UsizeNoHighBit__0: UInt64.t }
+
+type t_RawVecInner  =
+  { t_RawVecInner__ptr: t_Unique; t_RawVecInner__cap: t_UsizeNoHighBit; t_RawVecInner__alloc: () }
+
+type t_RawVec  =
+  { t_RawVec__inner: t_RawVecInner; t_RawVec__qy95zmarker: () }
+
+type t_Vec  =
+  { t_Vec__buf: t_RawVec; t_Vec__len: UInt64.t }
+
+constant v_MAX : UInt64.t = (18446744073709551615 : UInt64.t)
+
+function view (self : t_Vec) : Seq.seq Int32.t
+
+axiom view_spec : forall self : t_Vec . [%#svec] Seq.length (view self) <= UInt64.t'int (v_MAX : UInt64.t)
+
+function view'0 (self : Slice64.slice Int32.t) : Seq.seq Int32.t
+
+axiom view_spec'0 : forall self : Slice64.slice Int32.t . ([%#sslice'0] Seq.length (view'0 self)
+<= UInt64.t'int (v_MAX : UInt64.t))
+&& ([%#sslice'1] view'0 self = Slice64.id self)
+
+function view'1 (self : Slice64.slice Int32.t) : Seq.seq Int32.t =
+  [%#sboxed] view'0 self
+
+let rec into_vec (self_:Slice64.slice Int32.t) (return'  (x:t_Vec))= any
+  [ return''0 (result:t_Vec)-> {[%#sslice] view result = view'1 self_} (! return' {result}) ]
+
+
+let rec clone' (self_:t_Vec) (return'  (x:t_Vec))= any
+  [ return''0 (result:t_Vec)-> {[%#sclone] result = self_} (! return' {result}) ]
+
+
+type t_Node  =
+  { t_Node__elem: Int32.t; t_Node__next: Opaque.ptr }
+
+type t_PtrOwn  =
+  { t_PtrOwn__ptr: Opaque.ptr; t_PtrOwn__val: t_Node }
+
+type tuple  =
+  { _p0: Opaque.ptr; _p1:  (Seq.seq t_PtrOwn) }
+
+function addr_logic (self : Opaque.ptr) : UInt64.t
+
+function is_null_logic (self : Opaque.ptr) : bool =
+  [%#sptr'0] addr_logic self = (0 : UInt64.t)
+
+axiom is_null_logic_spec : forall self : Opaque.ptr . [%#sptr] is_null_logic self = (addr_logic self = (0 : UInt64.t))
+
+function ptr (self : t_PtrOwn) : Opaque.ptr
+
+predicate invariant' (self : t_PtrOwn) =
+  [%#sptr_own] not is_null_logic (ptr self)
+
+predicate inv (_0 : t_PtrOwn)
+
+axiom inv_axiom [@rewrite] : forall x : t_PtrOwn [inv x] . inv x
+= (invariant' x
+/\ match x with
+  | {t_PtrOwn__ptr = ptr'0 ; t_PtrOwn__val = val'} -> true
+  end)
+
+predicate invariant''0 (self : t_PtrOwn) =
+  [%#sboxed'0] inv self
+
+predicate inv'0 (_0 : t_PtrOwn)
+
+axiom inv_axiom'0 [@rewrite] : forall x : t_PtrOwn [inv'0 x] . inv'0 x = invariant''0 x
+
+predicate invariant''1 (self : Seq.seq t_PtrOwn) =
+  [%#sseq'0] forall i : int . 0 <= i /\ i < Seq.length self  -> inv'0 (Seq.get self i)
+
+predicate inv'1 (_0 : Seq.seq t_PtrOwn)
+
+axiom inv_axiom'1 [@rewrite] : forall x : Seq.seq t_PtrOwn [inv'1 x] . inv'1 x = invariant''1 x
+
+predicate invariant''2 (self :  (Seq.seq t_PtrOwn)) =
+  [%#sghost] inv'1 self
+
+predicate inv'2 (_0 :  (Seq.seq t_PtrOwn))
+
+axiom inv_axiom'2 [@rewrite] : forall x :  (Seq.seq t_PtrOwn) [inv'2 x] . inv'2 x = invariant''2 x
+
+predicate inv'3 (_0 : tuple)
+
+axiom inv_axiom'3 [@rewrite] : forall x : tuple [inv'3 x] . inv'3 x = (let {_p0 = x0 ; _p1 = x1} = x in inv'2 x1)
+
+function val' (self : t_PtrOwn) : t_Node
+
+function tail (self : Seq.seq t_PtrOwn) : Seq.seq t_PtrOwn =
+  [%#sseq] Seq.([..]) self 1 (Seq.length self)
+
+predicate list [#"/home/baggabom/stage/creusot_rust/creusot/src/reversal_raw_ptr.rs" 14 4 14 68] (l : Opaque.ptr) (perm_seq : Seq.seq t_PtrOwn)
+
+
+axiom list_def : forall l : Opaque.ptr, perm_seq : Seq.seq t_PtrOwn . list l perm_seq
+= ([%#sreversal_raw_ptr'35] if is_null_logic l then
+  Seq.length perm_seq = 0
+else
+  if Seq.length perm_seq > 0 then
+    let ptr'0 = ptr (Seq.get perm_seq 0) in l = ptr'0 /\ list (val' (Seq.get perm_seq 0)).t_Node__next (tail perm_seq)
+  else
+    false
+
+)
+
+let rec list_of_vector1 (vec:t_Vec) (return'  (x:tuple))= any
+  [ return''0 (result:tuple)-> {[%#sreversal_raw_ptr'20] inv'3 result}
+    {[%#sreversal_raw_ptr'21] list result._p0 result._p1}
+    {[%#sreversal_raw_ptr'22] Seq.length result._p1 = Seq.length (view vec)}
+    {[%#sreversal_raw_ptr'23] forall i : int . 0 <= i /\ i < Seq.length (view vec)
+     -> (val' (Seq.get result._p1 i)).t_Node__elem = Seq.get (view vec) i}
+    (! return' {result}) ]
+
+
+predicate invariant''3 (self :  (Seq.seq t_PtrOwn)) =
+  [%#sinvariant'0] inv'2 self
+
+predicate inv'4 (_0 :  (Seq.seq t_PtrOwn))
+
+axiom inv_axiom'4 [@rewrite] : forall x :  (Seq.seq t_PtrOwn) [inv'4 x] . inv'4 x = invariant''3 x
+
+let rec nth (p:Opaque.ptr) (nth'0:Int128.t) (seq: (Seq.seq t_PtrOwn)) (return'  (x:Int32.t))= {[@expl:nth 'seq' type invariant] [%#sreversal_raw_ptr'24] inv'4 seq}
+  {[@expl:nth requires #0] [%#sreversal_raw_ptr'25] list p seq}
+  {[@expl:nth requires #1] [%#sreversal_raw_ptr'26] 0 <= Int128.to_int nth'0 /\ Int128.to_int nth'0 < Seq.length seq}
+  any
+  [ return''0 (result:Int32.t)-> {[%#sreversal_raw_ptr'27] (val' (Seq.get seq (Int128.to_int nth'0))).t_Node__elem
+    = result}
+    (! return' {result}) ]
+
+
+predicate invariant''4 (self : MutBorrow.t ( (Seq.seq t_PtrOwn))) =
+  [%#sinvariant] inv'2 self.current /\ inv'2 self.final
+
+predicate inv'5 (_0 : MutBorrow.t ( (Seq.seq t_PtrOwn)))
+
+axiom inv_axiom'5 [@rewrite] : forall x : MutBorrow.t ( (Seq.seq t_PtrOwn)) [inv'5 x] . inv'5 x = invariant''4 x
+
+predicate inverse [#"/home/baggabom/stage/creusot_rust/creusot/src/reversal_raw_ptr.rs" 75 4 77 17] (seq : Seq.seq t_PtrOwn) (other : Seq.seq t_PtrOwn) (lb : int) (lh : int)
+
+ =
+  [%#sreversal_raw_ptr'36] forall i : int . lb <= i /\ i < lh
+   -> (val' (Seq.get seq i)).t_Node__elem = (val' (Seq.get other (Seq.length other - i - 1))).t_Node__elem
+
+let rec reverse_in_place (p:Opaque.ptr) (seq:MutBorrow.t ( (Seq.seq t_PtrOwn))) (return'  (x:Opaque.ptr))= {[@expl:reverse_in_place 'seq' type invariant] [%#sreversal_raw_ptr'28] inv'5 seq}
+  {[@expl:reverse_in_place requires] [%#sreversal_raw_ptr'29] list p seq.current}
+  any
+  [ return''0 (result:Opaque.ptr)-> {[%#sreversal_raw_ptr'30] list result seq.final}
+    {[%#sreversal_raw_ptr'31] Seq.length seq.current = Seq.length seq.final}
+    {[%#sreversal_raw_ptr'32] inverse seq.current seq.final 0 (Seq.length seq.final)}
+    (! return' {result}) ]
+
+
+predicate resolve (self : MutBorrow.t ( (Seq.seq t_PtrOwn))) =
+  [%#sresolve] self.final = self.current
+
+predicate resolve'0 (_0 : MutBorrow.t ( (Seq.seq t_PtrOwn))) =
+  resolve _0
+
+let rec promoted0__tr (return'  (x:Slice64.array string))= bb0
+  [ bb0 = s0
+    [ s0 = any
+      [ any_ (__arr_temp:Slice64.array string)-> (! -{Seq.get __arr_temp.Slice64.elts 0
+        = ([%#sreversal_raw_ptr'33] "ok")
+        /\ Seq.length __arr_temp.Slice64.elts = 1}-
+         [ &_1 <- __arr_temp ] 
+        s1) ]
+    
+    | s1 =  [ &_0 <- _1 ] s2
+    | s2 = return''0 {_0} ]
+   ]
+   [ & _0 : Slice64.array string = Any.any_l () | & _1 : Slice64.array string = Any.any_l () ] 
+  [ return''0 (result:Slice64.array string)-> return' {result} ]
+
+
+type t_Alignment  =
+  | C_Left
+  | C_Right
+  | C_Center
+  | C_Unknown
+
+type t_Count  =
+  | C_Is UInt64.t
+  | C_Param UInt64.t
+  | C_Implied
+
+type t_Placeholder  =
+  { t_Placeholder__position: UInt64.t;
+    t_Placeholder__fill: Char.t;
+    t_Placeholder__align: t_Alignment;
+    t_Placeholder__flags: UInt32.t;
+    t_Placeholder__precision: t_Count;
+    t_Placeholder__width: t_Count }
+
+type t_Option  =
+  | C_None
+  | C_Some (Slice64.slice t_Placeholder)
+
+type t_NonNull'0  =
+  { t_NonNull__pointer'0: Opaque.ptr }
+
+type t_ArgumentType  =
+  | C_Placeholder t_NonNull'0 Opaque.ptr ()
+  | C_Count UInt64.t
+
+type t_Argument  =
+  { t_Argument__ty: t_ArgumentType }
+
+type t_Arguments  =
+  { t_Arguments__pieces: Slice64.slice string; t_Arguments__fmt: t_Option; t_Arguments__args: Slice64.slice t_Argument }
+
+let rec new_const (pieces:Slice64.array string) (return'  (x:t_Arguments))= {[@expl:new_const requires] [%#sfmt] true}
+  any [ return''0 (result:t_Arguments)-> (! return' {result}) ] 
+
+let rec qy95zprint (args:t_Arguments) (return'  (x:()))= any
+  [ return''0 (result:())-> {[%#sio] true} (! return' {result}) ]
+
+
+meta "compute_max_steps" 1000000
+
+let rec tr[#"/home/baggabom/stage/creusot_rust/creusot/src/reversal_raw_ptr.rs" 166 0 166 11] (return'  (x:()))= (! bb0
+  [ bb0 = s0
+    [ s0 = any
+      [ any_ (__arr_temp:Slice64.array Int32.t)-> (! -{Seq.get __arr_temp.Slice64.elts 0
+        = ([%#sreversal_raw_ptr] (1 : Int32.t))
+        /\ Seq.get __arr_temp.Slice64.elts 1 = ([%#sreversal_raw_ptr'0] (5 : Int32.t))
+        /\ Seq.get __arr_temp.Slice64.elts 2 = ([%#sreversal_raw_ptr'1] (3 : Int32.t))
+        /\ Seq.length __arr_temp.Slice64.elts = 3}-
+         [ &_4 <- __arr_temp ] 
+        s1) ]
+    
+    | s1 = bb1 ]
+  
+  | bb1 = bb2
+  | bb2 = s0 [ s0 = into_vec {_4} (fun (_ret:t_Vec) ->  [ &v1 <- _ret ] s1) | s1 = bb3 ] 
+  | bb3 = s0 [ s0 = clone' {v1} (fun (_ret:t_Vec) ->  [ &_8 <- _ret ] s1) | s1 = bb4 ] 
+  | bb4 = s0 [ s0 = list_of_vector1 {_8} (fun (_ret:tuple) ->  [ &_7 <- _ret ] s1) | s1 = bb5 ] 
+  | bb5 = s0
+    [ s0 =  [ &list1 <- _7._p0 ] s1
+    | s1 =  [ &_seq1 <- _7._p1 ] s2
+    | s2 =  [ &_16 <- _seq1 ] s3
+    | s3 = nth {list1} {[%#sreversal_raw_ptr'2] (0 : Int128.t)} {_16} (fun (_ret:Int32.t) ->  [ &_13 <- _ret ] s4)
+    | s4 = bb6 ]
+  
+  | bb6 = s0
+    [ s0 =  [ &_11 <- _13 = ([%#sreversal_raw_ptr'3] (1 : Int32.t)) ] s1
+    | s1 = any [ br0 -> {_11 = false} (! bb8) | br1 -> {_11} (! bb7) ]  ]
+  
+  | bb7 = s0
+    [ s0 =  [ &_24 <- _seq1 ] s1
+    | s1 = nth {list1} {[%#sreversal_raw_ptr'4] (1 : Int128.t)} {_24} (fun (_ret:Int32.t) ->  [ &_21 <- _ret ] s2)
+    | s2 = bb9 ]
+  
+  | bb9 = s0
+    [ s0 =  [ &_19 <- _21 = ([%#sreversal_raw_ptr'5] (5 : Int32.t)) ] s1
+    | s1 = any [ br0 -> {_19 = false} (! bb11) | br1 -> {_19} (! bb10) ]  ]
+  
+  | bb10 = s0
+    [ s0 =  [ &_32 <- _seq1 ] s1
+    | s1 = nth {list1} {[%#sreversal_raw_ptr'6] (2 : Int128.t)} {_32} (fun (_ret:Int32.t) ->  [ &_29 <- _ret ] s2)
+    | s2 = bb12 ]
+  
+  | bb12 = s0
+    [ s0 =  [ &_27 <- _29 = ([%#sreversal_raw_ptr'7] (3 : Int32.t)) ] s1
+    | s1 = any [ br0 -> {_27 = false} (! bb14) | br1 -> {_27} (! bb13) ]  ]
+  
+  | bb13 = s0
+    [ s0 = {inv'2 _seq1}
+      MutBorrow.borrow_mut < (Seq.seq t_PtrOwn)> {_seq1}
+        (fun (_ret:MutBorrow.t ( (Seq.seq t_PtrOwn))) ->
+           [ &_37 <- _ret ] 
+          -{inv'2 _ret.final}-
+           [ &_seq1 <- _ret.final ] 
+          s1)
+    | s1 = {inv'2 _37.current}
+      MutBorrow.borrow_final < (Seq.seq t_PtrOwn)> {_37.current} {MutBorrow.get_id _37}
+        (fun (_ret:MutBorrow.t ( (Seq.seq t_PtrOwn))) ->
+           [ &_36 <- _ret ] 
+          -{inv'2 _ret.final}-
+           [ &_37 <- { _37 with current = _ret.final } ] 
+          s2)
+    | s2 = reverse_in_place {list1} {_36} (fun (_ret:Opaque.ptr) ->  [ &l2 <- _ret ] s3)
+    | s3 = bb15 ]
+  
+  | bb15 = s0
+    [ s0 = {[@expl:type invariant] inv'5 _37} s1
+    | s1 = -{resolve'0 _37}- s2
+    | s2 =  [ &_44 <- _seq1 ] s3
+    | s3 = nth {l2} {[%#sreversal_raw_ptr'8] (2 : Int128.t)} {_44} (fun (_ret:Int32.t) ->  [ &_41 <- _ret ] s4)
+    | s4 = bb16 ]
+  
+  | bb16 = s0
+    [ s0 =  [ &_39 <- _41 = ([%#sreversal_raw_ptr'9] (1 : Int32.t)) ] s1
+    | s1 = any [ br0 -> {_39 = false} (! bb18) | br1 -> {_39} (! bb17) ]  ]
+  
+  | bb17 = s0
+    [ s0 =  [ &_52 <- _seq1 ] s1
+    | s1 = nth {l2} {[%#sreversal_raw_ptr'10] (1 : Int128.t)} {_52} (fun (_ret:Int32.t) ->  [ &_49 <- _ret ] s2)
+    | s2 = bb19 ]
+  
+  | bb19 = s0
+    [ s0 =  [ &_47 <- _49 = ([%#sreversal_raw_ptr'11] (5 : Int32.t)) ] s1
+    | s1 = any [ br0 -> {_47 = false} (! bb21) | br1 -> {_47} (! bb20) ]  ]
+  
+  | bb20 = s0
+    [ s0 =  [ &_60 <- _seq1 ] s1
+    | s1 = nth {l2} {[%#sreversal_raw_ptr'12] (0 : Int128.t)} {_60} (fun (_ret:Int32.t) ->  [ &_57 <- _ret ] s2)
+    | s2 = bb22 ]
+  
+  | bb22 = s0
+    [ s0 =  [ &_55 <- _57 = ([%#sreversal_raw_ptr'13] (3 : Int32.t)) ] s1
+    | s1 = any [ br0 -> {_55 = false} (! bb24) | br1 -> {_55} (! bb23) ]  ]
+  
+  | bb23 = s0
+    [ s0 = promoted0__tr (fun (pr0:Slice64.array string) ->  [ &_68 <- pr0 ] s1)
+    | s1 =  [ &_66 <- _68 ] s2
+    | s2 = new_const {_66} (fun (_ret:t_Arguments) ->  [ &_64 <- _ret ] s3)
+    | s3 = bb25 ]
+  
+  | bb25 = s0 [ s0 = qy95zprint {_64} (fun (_ret:()) ->  [ &_63 <- _ret ] s1) | s1 = bb26 ] 
+  | bb26 = bb27
+  | bb27 = return''0 {_0}
+  | bb24 = {[%#sreversal_raw_ptr'14] false} any
+  | bb21 = {[%#sreversal_raw_ptr'15] false} any
+  | bb18 = {[%#sreversal_raw_ptr'16] false} any
+  | bb14 = {[%#sreversal_raw_ptr'17] false} any
+  | bb11 = {[%#sreversal_raw_ptr'18] false} any
+  | bb8 = {[%#sreversal_raw_ptr'19] false} any ]
+  )
+  [ & _0 : () = Any.any_l ()
+  | & v1 : t_Vec = Any.any_l ()
+  | & _4 : Slice64.array Int32.t = Any.any_l ()
+  | & list1 : Opaque.ptr = Any.any_l ()
+  | & _seq1 :  (Seq.seq t_PtrOwn) = Any.any_l ()
+  | & _7 : tuple = Any.any_l ()
+  | & _8 : t_Vec = Any.any_l ()
+  | & _11 : bool = Any.any_l ()
+  | & _13 : Int32.t = Any.any_l ()
+  | & _16 :  (Seq.seq t_PtrOwn) = Any.any_l ()
+  | & _19 : bool = Any.any_l ()
+  | & _21 : Int32.t = Any.any_l ()
+  | & _24 :  (Seq.seq t_PtrOwn) = Any.any_l ()
+  | & _27 : bool = Any.any_l ()
+  | & _29 : Int32.t = Any.any_l ()
+  | & _32 :  (Seq.seq t_PtrOwn) = Any.any_l ()
+  | & l2 : Opaque.ptr = Any.any_l ()
+  | & _36 : MutBorrow.t ( (Seq.seq t_PtrOwn)) = Any.any_l ()
+  | & _37 : MutBorrow.t ( (Seq.seq t_PtrOwn)) = Any.any_l ()
+  | & _39 : bool = Any.any_l ()
+  | & _41 : Int32.t = Any.any_l ()
+  | & _44 :  (Seq.seq t_PtrOwn) = Any.any_l ()
+  | & _47 : bool = Any.any_l ()
+  | & _49 : Int32.t = Any.any_l ()
+  | & _52 :  (Seq.seq t_PtrOwn) = Any.any_l ()
+  | & _55 : bool = Any.any_l ()
+  | & _57 : Int32.t = Any.any_l ()
+  | & _60 :  (Seq.seq t_PtrOwn) = Any.any_l ()
+  | & _63 : () = Any.any_l ()
+  | & _64 : t_Arguments = Any.any_l ()
+  | & _66 : Slice64.array string = Any.any_l ()
+  | & _68 : Slice64.array string = Any.any_l () ]
+   [ return''0 (result:())-> (! return' {result}) ] 

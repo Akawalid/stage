@@ -1,0 +1,15 @@
+{
+  "profile": [
+    { "prover": "z3@4.12.4", "size": 32, "time": 0.367 },
+    { "prover": "cvc5@1.0.5", "size": 30, "time": 0.553 },
+    { "prover": "alt-ergo@2.6.0", "size": 15, "time": 0.464 },
+    { "prover": "cvc4@1.8", "size": 26, "time": 0.398 }
+  ],
+  "proofs": {
+    "Coma": {
+      "vc_empty": { "prover": "alt-ergo@2.6.0", "time": 0.115 },
+      "vc_new": { "prover": "alt-ergo@2.6.0", "time": 0.123 },
+      "vc_null": { "prover": "alt-ergo@2.6.0", "time": 0.088 }
+    }
+  }
+}

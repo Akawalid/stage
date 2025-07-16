@@ -1,0 +1,21 @@
+{
+  "profile": [
+    { "prover": "z3@4.12.4", "size": 32, "time": 0.367 },
+    { "prover": "cvc5@1.0.5", "size": 30, "time": 0.553 },
+    { "prover": "alt-ergo@2.6.0", "size": 15, "time": 0.464 },
+    { "prover": "cvc4@1.8", "size": 26, "time": 0.398 }
+  ],
+  "proofs": {
+    "Coma": {
+      "vc_clone'": { "prover": "alt-ergo@2.6.0", "time": 0.099 },
+      "vc_into_vec": { "prover": "alt-ergo@2.6.0", "time": 0.099 },
+      "vc_list_of_vector1": { "prover": "alt-ergo@2.6.0", "time": 0.116 },
+      "vc_new_const": { "prover": "alt-ergo@2.6.0", "time": 0.118 },
+      "vc_nth": { "prover": "alt-ergo@2.6.0", "time": 0.087 },
+      "vc_promoted0__tr": { "prover": "alt-ergo@2.6.0", "time": 0.089 },
+      "vc_qy95zprint": { "prover": "alt-ergo@2.6.0", "time": 0.118 },
+      "vc_reverse_in_place": { "prover": "alt-ergo@2.6.0", "time": 0.088 },
+      "vc_tr": { "prover": "z3@4.12.4", "time": 0.08 }
+    }
+  }
+}

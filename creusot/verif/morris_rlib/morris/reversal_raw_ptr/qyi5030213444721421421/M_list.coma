@@ -1,0 +1,59 @@
+(* #"/home/baggabom/stage/creusot_rust/creusot/src/reversal_raw_ptr.rs" 14 4 14 68 *)
+
+(* reversal_raw_ptr::Node<T> *)
+
+let%span sreversal_raw_ptr = "/home/baggabom/stage/creusot_rust/creusot/src/reversal_raw_ptr.rs" 13 14 13 28
+let%span sreversal_raw_ptr'0 = "/home/baggabom/stage/creusot_rust/creusot/src/reversal_raw_ptr.rs" 16 12 25 13
+let%span sptr = "/home/baggabom/stage/creusot/creusot-contracts/src/std/ptr.rs" 59 14 59 53
+let%span sptr'0 = "/home/baggabom/stage/creusot/creusot-contracts/src/std/ptr.rs" 61 8 61 35
+let%span sseq = "/home/baggabom/stage/creusot/creusot-contracts/src/logic/seq.rs" 169 8 169 39
+
+use creusot.prelude.Opaque
+use seq.Seq
+use creusot.int.UInt64
+use mach.int.Int
+
+type t_T
+
+type t_Node  =
+  { t_Node__elem: t_T; t_Node__next: Opaque.ptr }
+
+type t_PtrOwn  =
+  { t_PtrOwn__ptr: Opaque.ptr; t_PtrOwn__val: t_Node }
+
+function addr_logic (self : Opaque.ptr) : UInt64.t
+
+function is_null_logic (self : Opaque.ptr) : bool =
+  [%#sptr'0] addr_logic self = (0 : UInt64.t)
+
+axiom is_null_logic_spec : forall self : Opaque.ptr . [%#sptr] is_null_logic self = (addr_logic self = (0 : UInt64.t))
+
+function ptr (self : t_PtrOwn) : Opaque.ptr
+
+function val' (self : t_PtrOwn) : t_Node
+
+function tail (self : Seq.seq t_PtrOwn) : Seq.seq t_PtrOwn =
+  [%#sseq] Seq.([..]) self 1 (Seq.length self)
+
+constant l  : Opaque.ptr
+
+constant perm_seq  : Seq.seq t_PtrOwn
+
+predicate list [#"/home/baggabom/stage/creusot_rust/creusot/src/reversal_raw_ptr.rs" 14 4 14 68] (l'0 : Opaque.ptr) (perm_seq'0 : Seq.seq t_PtrOwn)
+
+
+goal vc_list : ([%#sptr] is_null_logic l = (addr_logic l = (0 : UInt64.t)))
+ -> (if is_null_logic l then
+  true
+else
+  if Seq.length perm_seq > 0 then
+    let ptr'0 = ptr (Seq.get perm_seq 0) in if l = ptr'0 then
+      0 <= ([%#sreversal_raw_ptr] Seq.length perm_seq)
+      /\ ([%#sreversal_raw_ptr] Seq.length (tail perm_seq)) < ([%#sreversal_raw_ptr] Seq.length perm_seq)
+    else
+      true
+  
+  else
+    true
+
+)
