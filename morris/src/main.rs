@@ -1,4 +1,4 @@
-use creusot_contracts::vec;
+//use creusot_contracts::vec;
 use creusot_contracts::*;
 // use morris::reversal_raw_ptr::*;
 fn main() {
